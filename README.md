@@ -1,1 +1,51 @@
-# WTECG-Bor-k-Rem-k
+# Projekt z predmetu WTECH 
+- [Projekt z predmetu WTECH](#projekt-z-predmetu-wtech)
+  - [Téma zadania - všoebecý zámer](#téma-zadania---všoebecý-zámer)
+    - [Technologický predpoklad](#technologický-predpoklad)
+  - [Dizajn - figma TODO tracker](#dizajn---figma-todo-tracker)
+    - [Skice extra large](#skice-extra-large)
+    - [Responzivné šablóny](#responzivné-šablóny)
+    - [UML class diagram dátového modelu](#uml-class-diagram-dátového-modelu)
+
+## Téma zadania - všoebecý zámer
+Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, ktorá bude simulovať e-shop v oblasti predaja elektroniky, presnejšie sa budeme venovať mobilným telefónom. 
+
+Nižšie pod špecifikáciou témy sú technologické predpoklad vyobrazené v jednoduchom prehľade, detailnejšie sa venujem jednotlivým postupom, konfiguráciám a implementáciám v praktickej časti aplikovania softvérového riešenia.
+
+### Technologický predpoklad
+- Frontend - **Tailwind**
+- Backend - **Laravel**
+- Docker (Databáza) - **Docker Postgres**
+
+## Dizajn - figma TODO tracker
+- [ ] Navigačné menu
+  - [ ] Search bar
+- [ ] Homepage
+- [ ] Obchodná časť
+  - [ ] Kategórie (katalóg)
+  - [ ] List (page)
+  - [ ] Single (page) 
+- [ ] Košík
+  - [ ] Produkty
+  - [ ] Doprava
+  - [ ] Platba
+  - [ ] Dokončenie
+- [ ] Regristračný form
+- [ ] Prihlasovací form
+- [ ] Použitaľské rozhranie
+  - [ ] Zákazník
+  - [ ] Admin
+
+### Skice extra large
+V tejto časti by sme si radi zadefinovali všeobecnú štruktúru dizajnu, teda jednotnotný postup, ktorý bude dodržovaný pri dizajnovaní stránky. Používame softvér Figma, kde sme si vytvorili zdieľaný projekt, následne si vytvoríme všeobecnú stránku s elementami a tie budeme používať pri tvorbe celého dizajnu.
+
+- tlačidlá (pseudo triedy)
+- navbar
+- sidebar
+- searchbar
+
+Farebná paleta: https://colors.muz.li/palette/e0f0ea/95adbe/574f7d/503a65/3c2a4d
+
+### Responzivné šablóny
+
+### UML class diagram dátového modelu
