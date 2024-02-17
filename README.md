@@ -39,7 +39,7 @@ Nižšie pod špecifikáciou témy sú technologické predpoklad vyobrazené v j
 ### Skice extra large
 V tejto časti by sme si radi zadefinovali všeobecnú štruktúru dizajnu, teda jednotnotný postup, ktorý bude dodržovaný pri dizajnovaní stránky. Používame softvér Figma, kde sme si vytvorili zdieľaný projekt, následne si vytvoríme všeobecnú stránku s elementami a tie budeme používať pri tvorbe celého dizajnu.
 
-- tlačidlá (pseudo triedy)
+- tlačidlá
 - navbar
 - searchbar
 
