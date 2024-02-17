@@ -13,35 +13,34 @@ Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, kto
 Nižšie pod špecifikáciou témy sú technologické predpoklad vyobrazené v jednoduchom prehľade, detailnejšie sa venujem jednotlivým postupom, konfiguráciám a implementáciám v praktickej časti aplikovania softvérového riešenia.
 
 ### Technologický predpoklad
-- Frontend - **Tailwind**
+- Frontend styling - **Tailwind**
 - Backend - **Laravel**
 - Docker (Databáza) - **Docker Postgres**
 
 ## Dizajn - figma TODO tracker
-- [ ] Navigačné menu
-  - [ ] Search bar
-- [ ] Homepage
-- [ ] Obchodná časť
-  - [ ] Kategórie (katalóg)
-  - [ ] List (page)
-  - [ ] Single (page) 
-- [ ] Košík
-  - [ ] Produkty
-  - [ ] Doprava
-  - [ ] Platba
-  - [ ] Dokončenie
-- [ ] Regristračný form
-- [ ] Prihlasovací form
-- [ ] Použitaľské rozhranie
-  - [ ] Zákazník
-  - [ ] Admin
+- [x] Navigačné menu
+  - [x] Search bar
+- [x] Homepage
+- [x] Obchodná časť
+  - [x] Kategórie (katalóg)
+  - [x] List (page)
+  - [x] Single (page) 
+- [x] Košík
+  - [x] Produkty
+  - [x] Doprava
+  - [x] Platba
+  - [x] Dokončenie
+- [x] Regristračný form
+- [x] Prihlasovací form
+- [x] Použitaľské rozhranie
+  - [x] Zákazník
+  - [x] Admin
 
 ### Skice extra large
 V tejto časti by sme si radi zadefinovali všeobecnú štruktúru dizajnu, teda jednotnotný postup, ktorý bude dodržovaný pri dizajnovaní stránky. Používame softvér Figma, kde sme si vytvorili zdieľaný projekt, následne si vytvoríme všeobecnú stránku s elementami a tie budeme používať pri tvorbe celého dizajnu.
 
 - tlačidlá (pseudo triedy)
 - navbar
-- sidebar
 - searchbar
 
 Farebná paleta: https://colors.muz.li/palette/e0f0ea/95adbe/574f7d/503a65/3c2a4d
