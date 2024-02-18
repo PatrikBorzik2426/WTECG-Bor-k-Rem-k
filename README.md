@@ -10,7 +10,7 @@
   - [Implementácia](#implementácia)
     - [Autorizácia](#autorizácia)
 
-## Téma zadania - všoebecý zámer
+## Téma zadania - všoebecný zámer
 Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, ktorá bude simulovať e-shop v oblasti predaja elektroniky, presnejšie sa budeme venovať mobilným telefónom. 
 
 Nižšie pod špecifikáciou témy sú technologické predpoklad vyobrazené v jednoduchom prehľade, detailnejšie sa venujem jednotlivým postupom, konfiguráciám a implementáciám v praktickej časti aplikovania softvérového riešenia.
