@@ -6,6 +6,7 @@
     - [Skice extra large](#skice-extra-large)
     - [Responzivné šablóny](#responzivné-šablóny)
     - [UML class diagram dátového modelu](#uml-class-diagram-dátového-modelu)
+  - [Databázová štruktúra](#databázová-štruktúra)
 
 ## Téma zadania - všoebecý zámer
 Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, ktorá bude simulovať e-shop v oblasti predaja elektroniky, presnejšie sa budeme venovať mobilným telefónom. 
@@ -48,3 +49,9 @@ Farebná paleta: https://colors.muz.li/palette/e0f0ea/95adbe/574f7d/503a65/3c2a4
 ### Responzivné šablóny
 
 ### UML class diagram dátového modelu
+Na vytváranie fyzického modelu používame stránku [dbdiagram](https://dbdiagram.io/d)
+
+![UML Diagram](./Img/fyzicky_model.svg)
+
+## Databázová štruktúra
+Na vytvorenie testovaích dát do databázy používame Faker library.

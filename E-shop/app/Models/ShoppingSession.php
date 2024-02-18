@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class ShoppingSession extends Model
 {
     use HasFactory;
 
     const UPDATED_AT = null;
 
-    public function user()
+    public function shoppingSession()
     {
         return [
-            $this->belongsToMany(Order::class),
-            $this->belongsTo(ShoppingSession::class),
+            $this->belongsToMany(CartItem::class),
+            $this->belongsTo(Order::class),
+            $this->hasOne(User::class)
         ];
     }
 }
