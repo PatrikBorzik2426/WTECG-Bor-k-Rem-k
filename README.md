@@ -7,6 +7,8 @@
     - [Responzivné šablóny](#responzivné-šablóny)
     - [UML class diagram dátového modelu](#uml-class-diagram-dátového-modelu)
   - [Databázová štruktúra](#databázová-štruktúra)
+  - [Implementácia](#implementácia)
+    - [Autorizácia](#autorizácia)
 
 ## Téma zadania - všoebecý zámer
 Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, ktorá bude simulovať e-shop v oblasti predaja elektroniky, presnejšie sa budeme venovať mobilným telefónom. 
@@ -55,3 +57,8 @@ Na vytváranie fyzického modelu používame stránku [dbdiagram](https://dbdiag
 
 ## Databázová štruktúra
 Na vytvorenie testovaích dát do databázy používame Faker library.
+
+## Implementácia
+
+### Autorizácia
+Laravel Sanctum

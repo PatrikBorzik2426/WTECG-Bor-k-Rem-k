@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\v1;
 
-use App\Models\User;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+use App\Models\ShoppingSession;
+use App\Http\Requests\StoreShoppingSessionRequest;
+use App\Http\Requests\UpdateShoppingSessionRequest;
+
+class ShoppingSessionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +29,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreShoppingSessionRequest $request)
     {
         //
     }
@@ -35,7 +37,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(ShoppingSession $shoppingSession)
     {
         //
     }
@@ -43,7 +45,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(ShoppingSession $shoppingSession)
     {
         //
     }
@@ -51,7 +53,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateShoppingSessionRequest $request, ShoppingSession $shoppingSession)
     {
         //
     }
@@ -59,7 +61,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(ShoppingSession $shoppingSession)
     {
         //
     }

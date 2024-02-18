@@ -2,10 +2,15 @@
 export default {
   content: [
     "./resources/**/*.blade.php",
-    "./resources/**/*.js"
+    "./resources/**/*.js",
+    "./resources/**/**/*.php",
+
   ],
   theme: {
     extend: {
+      fontFamily:{
+        'manrope': ['manrope', 'sans-serif']
+      },
       colors:{
         'light-green': '#E0F0EA',
         'light-grey': '#95ADBE',

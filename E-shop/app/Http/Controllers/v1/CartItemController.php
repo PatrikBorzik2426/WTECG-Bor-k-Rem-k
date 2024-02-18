@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\v1;
 
-use App\Models\ShoppingSession;
-use App\Http\Requests\StoreShoppingSessionRequest;
-use App\Http\Requests\UpdateShoppingSessionRequest;
+use App\Http\Controllers\Controller;
+use App\Models\CartItem;
+use App\Http\Requests\StoreCartItemRequest;
+use App\Http\Requests\UpdateCartItemRequest;
 
-class ShoppingSessionController extends Controller
+class CartItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class ShoppingSessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreShoppingSessionRequest $request)
+    public function store(StoreCartItemRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class ShoppingSessionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ShoppingSession $shoppingSession)
+    public function show(CartItem $cartItem)
     {
         //
     }
@@ -43,7 +44,7 @@ class ShoppingSessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ShoppingSession $shoppingSession)
+    public function edit(CartItem $cartItem)
     {
         //
     }
@@ -51,7 +52,7 @@ class ShoppingSessionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateShoppingSessionRequest $request, ShoppingSession $shoppingSession)
+    public function update(UpdateCartItemRequest $request, CartItem $cartItem)
     {
         //
     }
@@ -59,7 +60,7 @@ class ShoppingSessionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ShoppingSession $shoppingSession)
+    public function destroy(CartItem $cartItem)
     {
         //
     }

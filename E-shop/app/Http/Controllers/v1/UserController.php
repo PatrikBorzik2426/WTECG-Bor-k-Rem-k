@@ -1,19 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\v1;
 
-use App\Models\Parameter;
-use App\Http\Requests\StoreParameterRequest;
-use App\Http\Requests\UpdateParameterRequest;
+use App\Http\Controllers\Controller;
 
-class ParameterController extends Controller
+use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $all_users = User::all();
+        
+        return view('welcome', [
+            'array' => $all_users,
+        ]);
     }
 
     /**
@@ -27,7 +33,7 @@ class ParameterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreParameterRequest $request)
+    public function store(StoreUserRequest $request)
     {
         //
     }
@@ -35,7 +41,7 @@ class ParameterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Parameter $parameter)
+    public function show(User $user)
     {
         //
     }
@@ -43,7 +49,7 @@ class ParameterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Parameter $parameter)
+    public function edit(User $user)
     {
         //
     }
@@ -51,7 +57,7 @@ class ParameterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateParameterRequest $request, Parameter $parameter)
+    public function update(UpdateUserRequest $request, User $user)
     {
         //
     }
@@ -59,7 +65,7 @@ class ParameterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Parameter $parameter)
+    public function destroy(User $user)
     {
         //
     }
