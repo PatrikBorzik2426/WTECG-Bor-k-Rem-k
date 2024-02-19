@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'custom': '0 0px 17px 10px ',
+      },
       fontFamily:{
         'manrope': ['manrope', 'sans-serif']
       },

@@ -19,7 +19,7 @@ use App\Http\Controllers\v1\UserController;
 //! dd() - function for debbuging  in Laravel
 //! ddd() - function for debbuging  in Laravel on deeper level
 
-Route::get('/all_users', [UserController::class, 'index']); # This is the correct way to use controllers
+Route::get('/shop', [UserController::class, 'index']); # This is the correct way to use controllers
 
 Route::get('/', function () {
     return view('home');
