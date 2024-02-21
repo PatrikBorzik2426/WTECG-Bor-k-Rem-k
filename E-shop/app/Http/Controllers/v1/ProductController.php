@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -14,13 +15,25 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $parameter = $request->input('parameter');
+
         $n = 18;
-        $array = DB::table('products')->paginate($n);
+
+        if ($parameter == '0') {
+            $array = DB::table('products')->where('category', 0)->orderBy('price', 'asc')->paginate($n);
+        } else if ($parameter == '1') {
+            $array = DB::table('products')->where('category', 1)->orderBy('price', 'asc')->paginate($n);
+        } else if ($parameter == '2') {
+            $array = DB::table('products')->where('category', 2)->orderBy('price', 'asc')->paginate($n);
+        } else {
+            $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
+        }
 
         return view('shop', [
-            'array' => $array
+            'array' => $array,
+            'parameter' => $parameter
         ]);
     }
 
