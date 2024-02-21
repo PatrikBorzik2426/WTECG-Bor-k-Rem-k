@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $n = 18;
+        $array = DB::table('products')->paginate($n);
+
+        return view('shop', [
+            'array' => $array
+        ]);
     }
 
     /**
