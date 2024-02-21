@@ -17,7 +17,7 @@ export default {
       colors:{
         'light-green': '#E0F0EA',
         'light-grey': '#95ADBE',
-        'light-purpel': '#571F4D',
+        'light-purple': '#574F7D',
         'purple': '#503A65',
         'dark-purple' : '#3C2A4D',
         'black' : '#121212',
