@@ -34,6 +34,7 @@
             </a>
 
         </div>
+        <x-filter />
         <div class="grid grid-cols-4 w-8/12 mx-auto gap-x-16 gap-y-16 my-20">
             @foreach ($array as $item)
                 <div class="flex flex-col items-center">
