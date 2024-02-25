@@ -39,3 +39,15 @@ Route::get('/posts/{id}', function ($id) {
 Route::get('/search', function (Request $request) {
     dd($request->name);
 });
+
+Route::get('/registration', function () {
+    return view('registration');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/submit-registration', [UserController::class, 'registration']);
+
+Route::post('/submit-login', [UserController::class, 'login']);

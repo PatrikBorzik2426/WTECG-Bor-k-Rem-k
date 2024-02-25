@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        'custom': '0 0px 17px 10px ',
+        'custom': '0 0px 6px 8px ',
       },
       fontFamily:{
         'manrope': ['manrope', 'sans-serif']
@@ -22,9 +22,21 @@ export default {
         'dark-purple' : '#3C2A4D',
         'black' : '#121212',
         'white' : '#F0F0F0'
+      },
+      keyframes:{
+        custom_pulse:{
+          '0%': { backgroundColor: 'rgba(220,38,38,0.75)' },
+          '50%': { backgroundColor: 'rgba(200,38,38,0)' },
+          '100%': { backgroundColor: 'rgba(220,38,38,0.25)' },
+        }
+      },
+      animation:{
+        custom_pulse: 'custom_pulse 2s 3'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 

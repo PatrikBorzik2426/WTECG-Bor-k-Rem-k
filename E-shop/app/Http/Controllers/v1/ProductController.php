@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $parameter = $request->input('parameter');
 
-        $n = 18;
+        $n = 20;
 
         if ($parameter == '0') {
             $array = DB::table('products')->where('category', 0)->orderBy('price', 'asc')->paginate($n);
