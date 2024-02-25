@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -25,9 +26,43 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function registration(Request $request)
     {
-        //
+        $validationOfData = $request->validate(
+            [
+                'name' => 'required|string|max:100|unique:users,login',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:8',
+                'address' => 'string|max:255',
+                'city' => 'string|max:100',
+                'postal_code' => 'string|digits:5',
+                'phone' => 'string|max:20'
+            ],
+            [
+                'name.required' => 'Name is required',
+                'email.required' => 'Email is required',
+                'password.required' => 'Password is required',
+                'address.string' => 'Address must be a string',
+                'city.string' => 'City must be a string',
+                'postal_code.string' => 'Postal code must be a number',
+                'phone.string' => 'Phone must be a string'
+            ]
+        );
+
+
+        $user = User::create([
+            'login' => $validationOfData['name'],
+            'email' => $validationOfData['email'],
+            'password' => bcrypt($validationOfData['password'])
+        ]);
+
+        return response()->json(
+            [
+                'token' => $user->createToken('eshop')->plainTextToken,
+                'message' => 'Registration successful! You are now logged in.'
+            ],
+            200
+        );
     }
 
     /**
