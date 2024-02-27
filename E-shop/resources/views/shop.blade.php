@@ -11,7 +11,9 @@
 
 <body class="bg-black font-manrope">
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
-        <x-navbar />
+        <header>
+            <x-navbar />
+        </header>
         <div class="flex flex-col items-center mt-12 text-light-green">
             <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl">Katalóg produktov</h1>
             <p class=" font-light text-xl max-md:text-lg max-sm:text-md text-center">Všeobecný prehľad všetkých

@@ -92,9 +92,10 @@
                 <div class="flex gap-x-4 mt-8">
                     <button type="submit"
                         class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">REGISTROVAŤ</button>
-                    <button type="button"
-                        class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all"
-                        href="/store"><a href="/shop">OBCHOD</a></button>
+                    <a href="./shop.html"
+                        class=" flex items-center justify-center w-full h-8 bg-light-green font-bold hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
+                        <span>OBCHOD</span>
+                    </a>
                 </div>
             </form>
         </div>
