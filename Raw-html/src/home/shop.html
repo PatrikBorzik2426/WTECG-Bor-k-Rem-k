@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Shop</title>
     <link href="../output.css" rel="stylesheet">
 
 </head>
@@ -94,7 +94,56 @@
             </a>
 
         </div>
-        <x-filter />
+        <!--TODO Urobiť filter-->
+        <form>
+            <div
+                class="flex items-center justify-center  w-2/3 h-16 space-x-10 mx-auto bg-light-purple text-light-green rounded-full">
+                <div class="flex flex-col font-medium">
+                    <div class="flex justify-between w-full">
+                        <label for="priceRange">Cena: </label>
+                        <input id="inputPrice" type="number" min="0" max="2499" value="500"
+                            class=" inputPrice bg-transparent text-right font-bold hover:cursor-pointer">
+                        <span class=" font-bold">€</span>
+                    </div>
+                    <div>
+                        <input type="range" id="sliderPrice" min="0" max="2499" value="500"
+                            class="rounded-3xl custom-slider sliderPrice">
+                    </div>
+                </div>
+                <div>
+                    <label for="category">Kategória: </label>
+                    <select name="category" id="category" class="bg-transparent font-bold text-light-green">
+                        <!-- TODO dorobiť foreloop pre všetky možnosti-->
+                        <option value="all" class="bg-dark-purple">Všetky</option>
+                        <option value="iOS" class="bg-dark-purple">iOS</option>
+                        <option value="android" class="bg-dark-purple">Android</option>
+                        <option value="gadgets" class="bg-dark-purple">Gadgets</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="category">Farba: </label>
+                    <select name="category" id="category" class="bg-transparent font-bold text-light-green">
+                        <!-- TODO dorobiť foreloop pre všetky možnosti-->
+                        <option value="all" class="bg-dark-purple">Všetky</option>
+                        <option value="iOS" class="bg-dark-purple">iOS</option>
+                        <option value="android" class="bg-dark-purple">Android</option>
+                        <option value="gadgets" class="bg-dark-purple">Gadgets</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="category">Pamäť: </label>
+                    <select name="category" id="category" class="bg-transparent font-bold text-light-green">
+                        <option value="all" class="bg-dark-purple">Všetky</option>
+                        <option value="iOS" class="bg-dark-purple">iOS</option>
+                        <option value="android" class="bg-dark-purple">Android</option>
+                        <option value="gadgets" class="bg-dark-purple">Gadgets</option>
+                    </select>
+                </div>
+                <img src='../svg/filter_off.svg' class="">
+            </div>
+        </form>
+
         <div
             class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-16 max-md:gap-y-4 my-20">
             <!-- @foreach ($array as $item) -->
@@ -146,15 +195,7 @@
 </body>
 
 <script src="../js/navbar.js"></script>
-<script>
-    priceHolder.addEventListener("mousemove", function () {
-        price.textContent = "Kúpiť";
-    });
-
-    priceHolder.addEventListener("mouseleave", function () {
-        price.textContent = "1299,98 €";
-    });
-</script>
-
+<script src="../js/buy_change.js"></script>
+<script src="../js/slider_value.js"></script>
 
 </html>

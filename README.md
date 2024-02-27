@@ -69,6 +69,7 @@ Laravel Sanctum
 ## Rozdelenie
 - admin-prduct-detail -> Patrik
 - admin -> Patrik
+- profile -> Patrik
 - create_order -> Filip
 - index -> Filip
 - login -> Patrik
