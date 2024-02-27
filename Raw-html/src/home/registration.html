@@ -21,13 +21,13 @@
             {{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
             @endif -->
             <form method="POST" action="/submit-registration" class="grid grid-cols-2 w-10/12 h-full gap-x-12">
-                {{-- Security feature --}}
+                <!-- {{-- Security feature --}} -->
                 <!-- @csrf -->
 
                 <div>
                     <label for="name">Login</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text" id="name"
-                        name="name" value="{{ old('name') }}" tabindex="1" />
+                        name="name" value="" tabindex="1" />
                     <!-- @error('name')
                     <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                         {{ $message }}</p>
@@ -36,7 +36,7 @@
                 <div>
                     <label for="city">Mesto</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text" id="city"
-                        name="city" value="{{ old('city') }}" tabindex="4">
+                        name="city" value="" tabindex="4">
                     <!-- @error('city')
                     <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                         {{ $message }}</p>
@@ -55,7 +55,7 @@
                 <div>
                     <label for="address">Adresa</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="address" name="address" value="{{ old('address') }}" tabindex="5">
+                        id="address" name="address" value="" tabindex="5">
                     <!-- @error('address')
                     <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                         {{ $message }}</p>
@@ -64,7 +64,7 @@
                 <div>
                     <label for="email">Email</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
-                        id="email" name="email" value="{{ old('email') }}" tabindex="3">
+                        id="email" name="email" value="" tabindex="3">
                     <!-- @error('email')
                     <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                         {{ $message }}</p>
@@ -73,7 +73,7 @@
                 <div>
                     <label for="postal_code">PSČ</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="postal_code" name="postal_code" value="{{ old('postal_code') }}" tabindex="6">
+                        id="postal_code" name="postal_code" value="" tabindex="6">
                     <!-- @error('postal_code')
                     <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                         {{ $message }}</p>
@@ -82,7 +82,7 @@
                 <div class=" col-start-2">
                     <label for="phone">Tel. číslo</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="phone" name="phone" value="{{ old('phone') }}" tabindex="7">
+                        id="phone" name="phone" value="" tabindex="7">
                     <!-- @error('phone')
                     <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                         {{ $message }}</p>
