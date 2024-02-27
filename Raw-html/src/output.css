@@ -1109,16 +1109,28 @@ video {
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3C2A4D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #574F7D;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #95ADBE;
+}
+
 .hover\:cursor-pointer:hover {
   cursor: pointer;
 }
 
 .hover\:border-2:hover {
   border-width: 2px;
-}
-
-.hover\:border:hover {
-  border-width: 1px;
 }
 
 .hover\:border-light-green:hover {
@@ -1314,3 +1326,4 @@ video {
     display: none;
   }
 }
+  

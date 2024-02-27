@@ -42,3 +42,20 @@
     -webkit-appearance: none;
     margin: 0;
 }
+
+::-webkit-scrollbar {
+    width: 10px; 
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #3C2A4D; 
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #574F7D; 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #95ADBE;
+  }
+  
