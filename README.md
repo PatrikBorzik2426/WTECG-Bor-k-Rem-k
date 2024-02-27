@@ -1,6 +1,6 @@
 # Projekt z predmetu WTECH 
 - [Projekt z predmetu WTECH](#projekt-z-predmetu-wtech)
-  - [Téma zadania - všoebecý zámer](#téma-zadania---všoebecý-zámer)
+  - [Téma zadania - všoebecný zámer](#téma-zadania---všoebecný-zámer)
     - [Technologický predpoklad](#technologický-predpoklad)
   - [Dizajn - figma TODO tracker](#dizajn---figma-todo-tracker)
     - [Skice extra large](#skice-extra-large)
@@ -9,6 +9,8 @@
   - [Databázová štruktúra](#databázová-štruktúra)
   - [Implementácia](#implementácia)
     - [Autorizácia](#autorizácia)
+- [Raw html](#raw-html)
+  - [Rozdelenie](#rozdelenie)
 
 ## Téma zadania - všoebecný zámer
 Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, ktorá bude simulovať e-shop v oblasti predaja elektroniky, presnejšie sa budeme venovať mobilným telefónom. 
@@ -62,3 +64,17 @@ Na vytvorenie testovaích dát do databázy používame Faker library.
 
 ### Autorizácia
 Laravel Sanctum
+
+# Raw html
+## Rozdelenie
+- admin-prduct-detail -> Patrik
+- admin -> Patrik
+- create_order -> Filip
+- index -> Filip
+- login -> Patrik
+- registration -> Patrik
+- shop -> Patrik
+- shopping-cart -> Filip
+- single-page -> Filip
+- footer -> Patrik
+- header -> Patrik
