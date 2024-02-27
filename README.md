@@ -72,8 +72,8 @@ Laravel Sanctum
 - create_order -> Filip
 - index -> Filip
 - login -> Patrik
-- registration -> Patrik
-- shop -> Patrik
+- registration -> Patrik 
+- shop -> Patrik ✅
 - shopping-cart -> Filip
 - single-page -> Filip
 - footer -> Patrik

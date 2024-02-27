@@ -95,16 +95,48 @@
 
         </div>
         <x-filter />
-        <div class="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-16 gap-y-16 my-20">
+        <div
+            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-16 max-md:gap-y-4 my-20">
             <!-- @foreach ($array as $item) -->
             <div class="flex flex-col">
                 <div
-                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2rem]">
-                    <p class="text-white font-medium mt-2 text-lg">{{ $item->name }}</p>
-                    <img src="{{ $item->image }}" class=" mb-8 scale-75 rounded-2xl">
+                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 text-lg">Iphone 14 PRO Max</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </div>
+                <div id="priceHolder"
+                    class=" relative bottom-6 bg-light-purple text-light-green text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    <a id="priceChange" class=" font-bold text-lg">1299,98 €</a>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div
+                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 text-lg">Iphone 14 PRO Max</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
                 </div>
                 <div class=" relative bottom-6 bg-light-purple text-center w-32 py-2 rounded-3xl mx-auto">
-                    <a class=" text-light-green font-bold text-lg">{{ number_format($item->price, 2) }} €</a>
+                    <a class=" text-light-green font-bold text-lg">1299,98 €</a>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div
+                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 text-lg">Iphone 14 PRO Max</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </div>
+                <div class=" relative bottom-6 bg-light-purple text-center w-32 py-2 rounded-3xl mx-auto">
+                    <a class=" text-light-green font-bold text-lg">1299,98 €</a>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div
+                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 text-lg">Iphone 14 PRO Max</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </div>
+                <div class=" relative bottom-6 bg-light-purple text-center w-32 py-2 rounded-3xl mx-auto">
+                    <a class=" text-light-green font-bold text-lg">1299,98 €</a>
                 </div>
             </div>
             <!-- @endforeach -->
@@ -113,22 +145,16 @@
     <!-- {{ $array->links() }} -->
 </body>
 
+<script src="../js/navbar.js"></script>
 <script>
-    const menu = document.getElementById('menu');
-    const menuToggle = document.getElementById('menuToggle');
-    const menuClose = document.getElementById('menuClose');
-
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('max-lg:block');
-        menu.classList.toggle('hidden');
-        menuClose.classList.toggle('hidden');
+    priceHolder.addEventListener("mousemove", function () {
+        price.textContent = "Kúpiť";
     });
 
-    menuClose.addEventListener('click', () => {
-        menuToggle.classList.toggle('max-lg:block');
-        menu.classList.toggle('hidden');
-        menuClose.classList.toggle('hidden');
+    priceHolder.addEventListener("mouseleave", function () {
+        price.textContent = "1299,98 €";
     });
 </script>
+
 
 </html>
