@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $validationOfData = $request->validate(
             [
-                'name' => 'required|string|max:100|unique:users,login',
+                'name' => 'required|string|max:20|unique:users,login',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|string|min:8',
                 'address' => 'string|max:255',
