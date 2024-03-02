@@ -97,9 +97,9 @@
         <!--TODO Urobiť filter-->
         <form>
             <div
-                class="flex items-center justify-center  w-2/3 h-16 space-x-10 mx-auto bg-light-purple text-light-green rounded-full">
-                <div class="flex flex-col font-medium">
-                    <div class="flex justify-between w-full">
+                class="flex items-center justify-center px-12 max-sm:px-6 py-4 w-fit h-fit md:space-x-10 mx-auto max-md:grid max-md:grid-cols-2 bg-light-purple text-light-green rounded-full max-md:rounded-3xl max-md:w-10/12 max-md:gap-y-3 max-md:gap-x-3">
+                <div class="flex flex-col font-medium max-md:col-span-2 text-center">
+                    <div class="flex justify-between w-full ">
                         <label for="priceRange">Cena: </label>
                         <input id="inputPrice" type="number" min="0" max="2499" value="500"
                             class=" inputPrice bg-transparent text-right font-bold hover:cursor-pointer">
@@ -110,7 +110,7 @@
                             class="rounded-3xl custom-slider sliderPrice">
                     </div>
                 </div>
-                <div>
+                <div class=" text-center">
                     <label for="category">Kategória: </label>
                     <select name="category" id="category" class="bg-transparent font-bold text-light-green">
                         <!-- TODO dorobiť foreloop pre všetky možnosti-->
@@ -121,7 +121,7 @@
                     </select>
                 </div>
 
-                <div>
+                <div class=" text-center">
                     <label for="category">Farba: </label>
                     <select name="category" id="category" class="bg-transparent font-bold text-light-green">
                         <!-- TODO dorobiť foreloop pre všetky možnosti-->
@@ -131,7 +131,7 @@
                         <option value="gadgets" class="bg-dark-purple">Gadgets</option>
                     </select>
                 </div>
-                <div>
+                <div class=" text-center">
                     <label for="category">Pamäť: </label>
                     <select name="category" id="category" class="bg-transparent font-bold text-light-green">
                         <option value="all" class="bg-dark-purple">Všetky</option>
@@ -140,7 +140,13 @@
                         <option value="gadgets" class="bg-dark-purple">Gadgets</option>
                     </select>
                 </div>
-                <img src='../svg/filter_off.svg' class="">
+                <img src='../svg/filter_off.svg' class=" mx-auto">
+                <div class="max-md:col-span-2 flex items-center justify-center">
+                    <button type="submit"
+                        class="flex items-center justify-center w-fit h-fit p-2 max-md:px-20 max-md:col-span-2 rounded-full bg-light-green text-light-purple font-bold hover:scale-110 ">
+                        <img src="../svg/search.svg">
+                    </button>
+                </div>
             </div>
         </form>
 
