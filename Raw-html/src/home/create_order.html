@@ -4,13 +4,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Nákup</title>
     <link href="../output.css" rel="stylesheet">
 
 </head>
 
-<body class=" h-screen w-screen bg-red-400">
+<body class=" h-screen w-screen">
     <!-- COMPONENT - HEADER -->
+    <main class="flex items-center bg-gradient-to-b from-dark-purple to-black h-full w-full scroll-smooth">
+    <header>
+
+    </header>
+   
+   
+        <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden   transition ease-in-out duration-700" id="checkout">
+            <div class="flex items-end lg:flex-row flex-col justify-end" id="cart">
+                <div
+                class="flex flex-col items-center p-12 text-light-green w-6/12 mx-auto shadow-custom shadow-light-purple rounded-[3rem]">
+                <div class="text-center mb-12">
+                    <h1 class=" font-bold text-2xl mb-2">Fakturačné údaje</h1>
+                    
+                </div>
+                <!-- @if ($errors->any())
+                {{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
+                @endif -->
+                <form method="POST" action="/submit-registration" class="grid grid-cols-2 w-10/12 h-full gap-x-12">
+                    <div>
+                        <label for="name">Meno</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text" id="name"
+                            name="name" value="{{ old('name') }}" tabindex="1" />
+                        <!-- @error('name')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+                    <div>
+                        <label for="surname">Priezvisko</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text" id="surname"
+                            name="surname" value="{{ old('surname') }}" tabindex="4">
+                        <!-- @error('city')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+    
+                    <div>
+                        <label for="state">Štát</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                            id="state" name="state" value="{{ old('state') }}"  tabindex="2">
+                        <!-- @error('password')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+                    <div>
+                        <label for="city">Mesto</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                            id="city" name="address" value="{{ old('address') }}" tabindex="5">
+                        <!-- @error('address')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+                    <div>
+                        <label for="postal_code">PSČ</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                            id="postal_code" name="postal_code" value="{{ old('postal_code') }}" tabindex="3">
+                        <!-- @error('email')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+                    <div>
+                        <label for="email">Súpisné číslo</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
+                            id="email" name="email" value="{{ old('email') }}" tabindex="3">
+                        <!-- @error('email')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+                    <div>
+                        <label for="street">Ulica</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                            id="street" name="street" value="{{ old('street') }}" tabindex="6">
+                        <!-- @error('postal_code')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+                    <div class=" col-start-2">
+                        <label for="phone">Tel. číslo</label><br>
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                            id="phone" name="phone" value="{{ old('phone') }}" tabindex="7">
+                        <!-- @error('phone')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror -->
+                    </div>
+    
+                    <div class="flex gap-x-4 mt-8">
+                        <button type="submit"
+                            class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">OBJEDNAŤ</button>
+                        <button type="button"
+                            class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all"
+                            href="/store"><a href="/shop">ZRUŠIŤ</a></button>
+                    </div>
+                </form>
+            </div>
+                <div class="lg:w-96 md:w-8/12 w-full  dark:bg-gray-900 h-full">
+                    <div class="flex mr-10 my-10 flex-col lg:h-auto h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6  overflow-y-auto p-12 shadow-custom shadow-light-purple rounded-[3rem]">
+                        <div>
+                            <p class="lg:text-4xl text-3xl font-black leading-9 text-white">Prepočet ceny</p>
+                           
+                            <div class="flex items-center justify-between pt-16">
+                                <p class="text-base leading-none text-white ">Cena bez DPH</p>
+                                <p class="text-base leading-none text-white ">900 €</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-5">
+                                <p class="text-base leading-none text-white">Cena s DPH</p>
+                                <p class="text-base leading-none text-white">800 €</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-5">
+                                <p class="text-base leading-none text-white">Doprava</p>
+                                <p class="text-base leading-none text-white ">5 €</p>
+                            </div>
+                        </div>
+                        <hr class="my-10">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-2xl leading-normal text-white">Spolu</p>
+                                <p class="text-2xl font-bold leading-normal text-right text-white">905 €</p>
+                            </div>
+                        
+                        </div>
+                        <div>
+                            <form method="POST" action="/submit-registration">
+                                <div class="flex items-center mb-4">
+                                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="h-4 text-blue-600 bg-gray-100 border-gray-300">
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Osobný odber</label>
+                                    <p class="text-base leading-none ml-auto text-white text-right">0 €</p>
+                                </div>
+                            
+                                <div class="flex items-center mb-4">
+                                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Slovenská pošta</label>
+                                    <p class="text-base leading-none ml-auto text-white text-right">8 €</p>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Packeta</label>
+                                    <p class="text-base leading-none ml-auto text-white text-right">8 €</p>
+                                </div>
+                                
+                
+                                <button onclick="" class="leading-none w-full py-5 bg-purple text-white rounded-3xl">Pokračovať</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+      
+    </div>
+
+
+</main>
+
+
+
+
+   
 </body>
 
 </html>

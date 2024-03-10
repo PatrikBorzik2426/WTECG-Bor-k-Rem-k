@@ -4,13 +4,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Nákupný košík</title>
     <link href="../output.css" rel="stylesheet">
 
 </head>
 
-<body class=" h-screen w-screen bg-red-400">
+<body class=" h-screen w-screen">
     <!-- COMPONENT - HEADER -->
+    <main class="flex items-center bg-gradient-to-b from-dark-purple to-black h-full w-full scroll-smooth">
+        <header>
+
+        </header>
+       
+       
+            <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden   transition ease-in-out duration-700" id="checkout">
+                <div class="flex items-end lg:flex-row flex-col justify-end" id="cart">
+                    <div class="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-6 md:px-6 px-4 md:py-8 py-4 dark:bg-gray-800 overflow-y-hidden overflow-x-hidden lg:h-screen h-auto" id="scroll">
+                        
+                        <p class="lg:text-4xl text-3xl font-black leading-10 text-white pt-3">Nákupný košík</p>
+                        <div class="md:flex items-strech py-8 md:py-10 lg:py-8 ">
+                           
+                            <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                               
+                                <div class="flex justify-between w-full pt-1">
+                                    <p class="text-base font-black leading-none text-white">Názov</p>
+                                    <p class="text-base font-black leading-none text-white"> Množstvo</p>
+                                    <p class="text-base font-black leading-none text-white">Cena</p>
+                                </div>
+                               
+                                
+                            </div>
+                        </div>
+                        <div class="md:flex items-strech py-2 md:py-2 lg:py-2 ">
+                           
+                            <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                               
+                                <div class="flex justify-between w-full pt-1">
+                                    <p class="text-base font-black leading-none text-white">Mobil</p>
+                                    <select aria-label="Select quantity" class="py-2 px-1 border bg-transparent mr-6 focus:outline-none text-white">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                    </select>
+                                    <p class="text-base font-black leading-none text-white">200 €</p>
+                                </div>
+                               
+                                
+                            </div>
+                        </div>
+                        <div class="md:flex items-strech py-2 md:py-2 lg:py-2 ">
+                           
+                            <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                               
+                                <div class="flex justify-between w-full pt-1">
+                                    <p class="text-base font-black leading-none text-white">Mobil</p>
+                                    <select aria-label="Select quantity" class="py-2 px-1 border bg-transparent mr-6 focus:outline-none text-white">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                    </select>
+                                    <p class="text-base font-black leading-none text-white">200 €</p>
+                                </div>
+                               
+                                
+                            </div>
+                        </div>
+                        <div class="md:flex items-strech py-2 md:py-2 lg:py-2 ">
+                           
+                            <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                               
+                                <div class="flex justify-between w-full pt-1">
+                                    <p class="text-base font-black leading-none text-white">Mobil</p>
+                                    <select aria-label="Select quantity" class="py-2 px-1 border bg-transparent mr-6 focus:outline-none text-white">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                    </select>
+                                    <p class="text-base font-black leading-none text-white">200 €</p>
+                                </div>
+                               
+                                
+                            </div>
+                        </div>
+                        <div class="md:flex items-strech py-2 md:py-2 lg:py-2 ">
+                           
+                            <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                               
+                                <div class="flex justify-between w-full pt-1">
+                                    <p class="text-base font-black leading-none text-white">Mobil</p>
+                                    <select aria-label="Select quantity" class="py-2 px-1 border bg-transparent mr-6 focus:outline-none text-white">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                    </select>
+                                    <p class="text-base font-black leading-none text-white">200 €</p>
+                                </div>
+                               
+                                
+                            </div>
+                        </div>
+                    
+                        
+                        
+                    </div>
+                    <div class="lg:w-96 md:w-8/12 w-full  dark:bg-gray-900 h-full">
+                        <div class="flex mr-10 my-10 flex-col lg:h-auto h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6  overflow-y-auto p-12 shadow-custom shadow-light-purple rounded-[3rem]">
+                            <div>
+                                <p class="lg:text-4xl text-3xl font-black leading-9 text-white">Prepočet ceny</p>
+                               
+                                <div class="flex items-center justify-between pt-16">
+                                    <p class="text-base leading-none text-white ">Cena bez DPH</p>
+                                    <p class="text-base leading-none text-white ">900 €</p>
+                                </div>
+                                <div class="flex items-center justify-between pt-5">
+                                    <p class="text-base leading-none text-white">Cena s DPH</p>
+                                    <p class="text-base leading-none text-white">800 €</p>
+                                </div>
+                                <div class="flex items-center justify-between pt-5">
+                                    <p class="text-base leading-none text-white">Doprava</p>
+                                    <p class="text-base leading-none text-white ">5 €</p>
+                                </div>
+                            </div>
+                            <hr class="my-10">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <p class="text-2xl leading-normal text-white">Spolu</p>
+                                    <p class="text-2xl font-bold leading-normal text-right text-white">905 €</p>
+                                </div>
+                            
+                            </div>
+                            <div>
+                                <form method="POST" action="/Raw-html/src/home/single_page.html">
+                                    <div class="flex items-center mb-4">
+                                        <input id="default-radio-1" type="radio" value="" name="default-radio" class="h-4 text-blue-600 bg-gray-100 border-gray-300">
+                                        <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Osobný odber</label>
+                                        <p class="text-base leading-none ml-auto text-white text-right">0 €</p>
+                                    </div>
+                                
+                                    <div class="flex items-center mb-4">
+                                        <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                                        <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Slovenská pošta</label>
+                                        <p class="text-base leading-none ml-auto text-white text-right">8 €</p>
+                                    </div>
+                                    <div class="flex items-center mb-4">
+                                        <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                                        <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Packeta</label>
+                                        <p class="text-base leading-none ml-auto text-white text-right">8 €</p>
+                                    </div>
+                                    
+                    
+                                    <button onclick="" class="leading-none w-full py-5 bg-purple text-white rounded-3xl">Pokračovať</button>
+                                </form>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+          
+        </div>
+
+
+
+
+       
+
+    </main>
+
 </body>
 
 </html>
