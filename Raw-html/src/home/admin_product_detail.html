@@ -60,7 +60,7 @@
             <a class="hover:font-bold cursor-pointer">Profile</a>
         </div>
     </header>
-    <main class="flex max-lg:items-center w-8/12 mx-auto mt-10 max-lg:flex-col max-sm:w-10/12">
+    <main class="flex max-lg:items-center w-8/12 mx-auto mt-10 max-lg:mt-0 max-lg:flex-col max-sm:w-10/12">
         <aside
             class=" w-fit min-w-48 h-fit grid grid-cols-1 max-lg:grid-cols-3 max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
             <h3 class=" text-center font-bold text-2xl max-lg:hidden">Menu</h3>
@@ -80,10 +80,10 @@
             <a href="./shop.html"
                 class="w-full h-fit text-center border-2 mt-4 px-4 py-2 max-lg:col-start-1 max-lg:col-span-3 max-lg:py-0 max-lg:mt-0 rounded-full hover:bg-light-green hover:font-extrabold hover:text-dark-purple">Odhlásiť</a>
         </aside>
-        <div class="mx-auto w-8/12 h-fit max-lg:w-9/12 max-sm:w-10/12 ">
+        <div class="mx-auto w-8/12 h-fit max-lg:w-9/12 max-sm:w-full mb-10">
             <h1 class="text-center text-3xl font-bold text-light-green mb-10">Detail produktu</h1>
             <form
-                class="grid grid-cols-2 w-full h-full p-6 gap-x-6 max-md:w-full shadow-custom shadow-purple text-light-green rounded-2xl">
+                class="grid grid-cols-2 max-lg:grid-cols-1 w-full h-full p-6 gap-x-6 gap-y-0 max-md:w-full shadow-custom shadow-purple text-light-green rounded-2xl">
                 <div>
                     <label for="product_name">Meno produktu</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
@@ -110,26 +110,27 @@
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="number"
                         id="amount" name="amount" value="" tabindex="3">
                 </div>
-                <div class="grid grid-cols-2 gap-x-4 max-lg:col-start-1 col-start-2 row-start-1">
+                <div class="grid grid-cols-2 gap-x-4 col-start-2 max-lg:col-start-1 row-start-1 max-lg:row-start-6">
                     <label for="paramter">Parametre</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="paramter" name="parameter" value="" tabindex="7">
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="paramter" name="parameter" value="" tabindex="7">
                 </div>
-                <div id="photosHolder" class="bg-white h-full mt-2 rounded-lg row-span-4 row-start-2 col-start-2">
+                <div id="photosHolder"
+                    class="bg-white max-h-none max-lg: mt-2 rounded-lg row-span-3 row-start-2 col-start-2 max-lg:col-start-1 max-lg:row-start-7">
                     <input id="fileInput" class="hidden opacity-100 w-full h-full cursor-pointer" type="file"
                         accept="image/jpeg, image/png" multiple="true">
                     <label for="fileInput"
-                        class=" flex justify-center items-center flex-col w-full h-full text-white font-bold rounded cursor-pointer">
-                        <img src="../svg/picture_add.svg" class="w-1/4">
+                        class=" flex justify-center items-center flex-col max-lg:flex-row max-lg:gap-2 w-full h-full text-white font-bold rounded cursor-pointer">
+                        <img src="../svg/picture_add.svg" class="max-h-fit">
                         <p class="text-center text-dark-purple font-extrabold text-xl">Pridať obrázok/y</p>
                     </label>
-                    <div id="imagePreview" class="grid grid-cols-4 py-2 gap-x-2">
-
-                    </div>
                 </div>
-                <div class=" flex gap-4 col-span-2 mt-8">
+                <div id="imagePreview" class="grid grid-cols-4 rounded-lg pt-4 gap-x-2">
+
+                </div>
+                <div class=" flex gap-4  col-span-2 max-lg:col-span-1 mt-8 max-lg:mx-auto">
                     <button
                         class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green">Vytvoriť</button>
                     <button
