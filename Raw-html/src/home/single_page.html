@@ -2,51 +2,103 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail produktu</title>
-    <link href="../output.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail produktu</title>
+  <link href="../output.css" rel="stylesheet">
 
 </head>
 
-<body>
-    <!-- COMPONENT - HEADER -->
-    <main class="flex items-center bg-gradient-to-b w-full from-dark-purple to-black h-full">
-       
+<body class="bg-gradient-to-b from-dark-purple to-black via-black">
+  <!-- COMPONENT - HEADER -->
+  <header>
+    <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
+      <div>
+        <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+      </div>
+      <div id="menuClose" class="hidden lg:hidden">
+        <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
+      </div>
+      <div id="menuToggle" class="hidden max-lg:block lg:hidden">
+        <span class="text-right text-light-green font-semibold cursor-pointer">&#9776;</span>
+      </div>
+
+      <div class="text-light-green flex justify-end items-center gap-x-4 text-center w-7/12 min-w-fit max-lg:hidden">
+        <div class=" grid grid-cols-4 text-center w-7/12 min-w-fit">
+          <a class="hover:font-bold cursor-pointer min-w-16">Home</a>
+          <a class="hover:font-bold cursor-pointer">News</a>
+          <a class="hover:font-bold cursor-pointer">Store</a>
+          <a class="hover:font-bold cursor-pointer">Profile</a>
+        </div>
+        <div id="search-bar" class="w-1/3">
+          <input type="text"
+            class=" border-2 w-full h-8 border-light-green rounded-3xl bg-transparent focus:outline-none text-center"
+            placeholder="Search">
+        </div>
+        <img src='../svg/avatar.svg' class=" scale-150"> <!--TODO Zmeniť src za asset helper cez blade-->
+        <div id="cart" class=" flex justify-center items-baseline">
+          <div class=" pt-6">
+            <img src='../svg/cart.svg' class=" scale-150">
+            <!--TODO Zmeniť src za asset helper cez blade-->
+            <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+              0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="menu"
+      class="hidden flex flex-col items-center text-center text-dark-purple bg-light-green gap-y-2 py-2 lg:hidden">
+      <input type="text"
+        class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
+        placeholder="Search">
+      <a class="hover:font-bold cursor-pointer">Home</a>
+      <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+      <a class="hover:font-bold cursor-pointer">News</a>
+      <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+      <a class="hover:font-bold cursor-pointer">Store</a>
+      <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+      <a class="hover:font-bold cursor-pointer">Profile</a>
+    </div>
+  </header>
+  <main class="flex items-center w-full h-full">
     <div class="pt-6 mt-80 w-full">
       <h1 class="text-3xl font-bold tracking-tight text-white sm:text-3xl text-center">Mobilný telefón</h1>
-      
-   
-  
+
+
+
       <!-- Image gallery -->
       <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-       
-        
+
+
         <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-          <img src="../../../Img/mobil.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+          <img src="../../../Img/mobil.jpg" alt="Model wearing plain white basic tee."
+            class="h-full w-full object-cover object-center">
         </div>
         <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-            <img src="../../../Img/mobil.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
-          </div>
+          <img src="../../../Img/mobil.jpg" alt="Model wearing plain white basic tee."
+            class="h-full w-full object-cover object-center">
+        </div>
       </div>
-  
+
       <!-- Product info -->
-      <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+      <div
+        class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
         <div class="lg:col-span-2 lg:pr-8">
           <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Popis produktu</h1>
         </div>
-  
+
         <!-- Options -->
         <div class="mt-4 lg:row-span-3 lg:mt-0">
           <p class="text-3xl tracking-tight text-white">192 €</p>
-  
-          
-  
+
+
+
           <form class="mt-10">
-  
-           
-  
-            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-3xl border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Kúpiť</button>
+
+
+
+            <button type="submit"
+              class="mt-10 flex w-full items-center justify-center rounded-3xl border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Kúpiť</button>
           </form>
           <div class="mt-4">
             <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
@@ -57,22 +109,26 @@
             </ul>
           </div>
         </div>
-  
+
         <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8 lg:pt-6">
           <!-- Description and details -->
           <div>
             <div class="space-y-6">
-              <p class="text-base text-white">Mobil xx je inovatívny mobilný telefón navrhnutý pre tých, ktorí hľadajú spojenie medzi výkonom a eleganciou. S plynulým skleneným dizajnom a špičkovými technológiami, prináša tento telefón revolučný zážitok z používania.
+              <p class="text-base text-white">Mobil xx je inovatívny mobilný telefón navrhnutý pre tých, ktorí hľadajú
+                spojenie medzi výkonom a eleganciou. S plynulým skleneným dizajnom a špičkovými technológiami, prináša
+                tento telefón revolučný zážitok z používania.
               <h1 class="text-2xl text-white">Brilantný displej:</h1>
-              <p class="text-base text-white">Užite si každý detail na jasnom a pôsobivom Super AMOLED displeji s uhlopriečkou 6,5 palca. Vďaka rozlíšeniu 4K a živým farbám vám Mobil xx prináša neuveriteľne realistický vizuálny zážitok pri sledovaní videí, prezeraní fotografií a hraní hier.</p>
+              <p class="text-base text-white">Užite si každý detail na jasnom a pôsobivom Super AMOLED displeji s
+                uhlopriečkou 6,5 palca. Vďaka rozlíšeniu 4K a živým farbám vám Mobil xx prináša neuveriteľne realistický
+                vizuálny zážitok pri sledovaní videí, prezeraní fotografií a hraní hier.</p>
+            </div>
+
+
+
+
           </div>
-  
-         
-  
-         
         </div>
       </div>
-    </div>
 
 
 
@@ -84,9 +140,9 @@
 
 
 
-    
-  
-    </main>
+
+
+  </main>
 </body>
 
 </html>
