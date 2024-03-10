@@ -69,11 +69,12 @@ Laravel Sanctum
 ## Rozdelenie
 - admin-prduct-detail -> Patrik
 - admin -> Patrik
+- profile -> Patrik
 - create_order -> Filip
 - index -> Filip
-- login -> Patrik
-- registration -> Patrik
-- shop -> Patrik
+- login -> Patrik ✅
+- registration -> Patrik ✅
+- shop -> Patrik ✅
 - shopping-cart -> Filip
 - single-page -> Filip
 - footer -> Patrik

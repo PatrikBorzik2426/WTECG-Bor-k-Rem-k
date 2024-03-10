@@ -11,7 +11,9 @@
 
 <body class="bg-black font-manrope">
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
-        <x-navbar />
+        <header>
+            <x-navbar />
+        </header>
         <div class="flex flex-col items-center mt-12 text-light-green">
             <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl">Katalóg produktov</h1>
             <p class=" font-light text-xl max-md:text-lg max-sm:text-md text-center">Všeobecný prehľad všetkých
@@ -45,7 +47,8 @@
 
         </div>
         <x-filter />
-        <div class="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-16 gap-y-16 my-20">
+        <div
+            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-16 max-md:gap-y-4 my-20">
             @foreach ($array as $item)
                 <div class="flex flex-col">
                     <div
