@@ -14,7 +14,9 @@
     <header>
         <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
             <div>
-                <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+                <a href="./index.html">
+                    <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+                </a>
             </div>
             <div id="menuClose" class="hidden lg:hidden">
                 <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
@@ -25,25 +27,27 @@
 
             <div
                 class="text-light-green flex justify-end items-center gap-x-4 text-center w-7/12 min-w-fit max-lg:hidden">
-                <div class=" grid grid-cols-4 text-center w-7/12 min-w-fit">
-                    <a class="hover:font-bold cursor-pointer min-w-16">Home</a>
-                    <a class="hover:font-bold cursor-pointer">News</a>
-                    <a class="hover:font-bold cursor-pointer">Store</a>
-                    <a class="hover:font-bold cursor-pointer">Profile</a>
+                <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
+                    <a href="./index.html" class="hover:font-bold cursor-pointer min-w-16">Home</a>
+                    <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+                    <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
                 </div>
                 <div id="search-bar" class="w-1/3">
                     <input type="text"
                         class=" border-2 w-full h-8 border-light-green rounded-3xl bg-transparent focus:outline-none text-center"
                         placeholder="Search">
                 </div>
-                <img src='../svg/avatar.svg' class=" scale-150"> <!--TODO Zmeniť src za asset helper cez blade-->
+                <a href="./registration.html">
+                    <img src='../svg/avatar.svg' class=" scale-150">
+                    <!--TODO Zmeniť src za asset helper cez blade-->
+                </a>
                 <div id="cart" class=" flex justify-center items-baseline">
-                    <div class=" pt-6">
+                    <a href="./shopping_cart.html" class=" pt-6">
                         <img src='../svg/cart.svg' class=" scale-150">
                         <!--TODO Zmeniť src za asset helper cez blade-->
                         <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
                             0</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -54,116 +58,115 @@
                 placeholder="Search">
             <a class="hover:font-bold cursor-pointer">Home</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-            <a class="hover:font-bold cursor-pointer">News</a>
-            <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
             <a class="hover:font-bold cursor-pointer">Store</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
             <a class="hover:font-bold cursor-pointer">Profile</a>
         </div>
     </header>
     <main class="flex items-center h-full w-full scroll-smooth">
-   
-   
+
+
         <div class="w-full z-10 right-0 h-full overflow-x-hidden transition ease-in-out duration-700" id="checkout">
             <div class="flex grig-cols-2 items-end items-center lg:flex-row flex-col justify-end" id="cart">
                 <div
-                class="flex flex-col items-center p-20 text-light-green w-6/12 mx-auto shadow-custom shadow-light-purple rounded-[3rem]">
-                <div class="text-center mb-12">
-                    <h1 class=" font-bold text-3xl mb-2">Fakturačné údaje</h1>
-                    
-                </div>
-                <!-- @if ($errors->any())
+                    class="flex flex-col items-center p-20 text-light-green w-6/12 mx-auto shadow-custom shadow-light-purple rounded-[3rem]">
+                    <div class="text-center mb-12">
+                        <h1 class=" font-bold text-3xl mb-2">Fakturačné údaje</h1>
+
+                    </div>
+                    <!-- @if ($errors->any())
                 {{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
                 @endif -->
-                <form method="POST" action="/submit-registration" class="grid grid-cols-2 w-10/12 h-full gap-x-12">
-                    <div>
-                        <label for="name">Meno</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text" id="name"
-                            name="name" value="{{ old('name') }}" tabindex="1" />
-                        <!-- @error('name')
+                    <form method="POST" action="/submit-registration" class="grid grid-cols-2 w-10/12 h-full gap-x-12">
+                        <div>
+                            <label for="name">Meno</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="name" name="name" value="{{ old('name') }}" tabindex="1" />
+                            <!-- @error('name')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-                    <div>
-                        <label for="surname">Priezvisko</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text" id="surname"
-                            name="surname" value="{{ old('surname') }}" tabindex="4">
-                        <!-- @error('city')
+                        </div>
+                        <div>
+                            <label for="surname">Priezvisko</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="surname" name="surname" value="{{ old('surname') }}" tabindex="4">
+                            <!-- @error('city')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-    
-                    <div>
-                        <label for="state">Štát</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                            id="state" name="state" value="{{ old('state') }}"  tabindex="2">
-                        <!-- @error('password')
+                        </div>
+
+                        <div>
+                            <label for="state">Štát</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="state" name="state" value="{{ old('state') }}" tabindex="2">
+                            <!-- @error('password')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-                    <div>
-                        <label for="city">Mesto</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                            id="city" name="address" value="{{ old('address') }}" tabindex="5">
-                        <!-- @error('address')
+                        </div>
+                        <div>
+                            <label for="city">Mesto</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="city" name="address" value="{{ old('address') }}" tabindex="5">
+                            <!-- @error('address')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-                    <div>
-                        <label for="postal_code">PSČ</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                            id="postal_code" name="postal_code" value="{{ old('postal_code') }}" tabindex="3">
-                        <!-- @error('email')
+                        </div>
+                        <div>
+                            <label for="postal_code">PSČ</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="postal_code" name="postal_code" value="{{ old('postal_code') }}" tabindex="3">
+                            <!-- @error('email')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-                    <div>
-                        <label for="email">Súpisné číslo</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
-                            id="email" name="email" value="{{ old('email') }}" tabindex="3">
-                        <!-- @error('email')
+                        </div>
+                        <div>
+                            <label for="email">Súpisné číslo</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
+                                id="email" name="email" value="{{ old('email') }}" tabindex="3">
+                            <!-- @error('email')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-                    <div>
-                        <label for="street">Ulica</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                            id="street" name="street" value="{{ old('street') }}" tabindex="6">
-                        <!-- @error('postal_code')
+                        </div>
+                        <div>
+                            <label for="street">Ulica</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="street" name="street" value="{{ old('street') }}" tabindex="6">
+                            <!-- @error('postal_code')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-                    <div>
-                        <label for="phone">Tel. číslo</label><br>
-                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                            id="phone" name="phone" value="{{ old('phone') }}" tabindex="7">
-                        <!-- @error('phone')
+                        </div>
+                        <div>
+                            <label for="phone">Tel. číslo</label><br>
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="phone" name="phone" value="{{ old('phone') }}" tabindex="7">
+                            <!-- @error('phone')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                         @enderror -->
-                    </div>
-    
-                    <div class="flex gap-x-4 mt-8">
-                        <button type="submit"
-                            class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">OBJEDNAŤ</button>
-                        <button type="button"
-                            class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all"
-                            href="/store"><a href="/shop">ZRUŠIŤ</a></button>
-                    </div>
-                </form>
-            </div>
-                <div class="lg:w-96 md:w-8/12 w-full">
-                    <div class="flex mr-10 my-10 flex-col lg:h-auto h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6  overflow-y-auto p-12 shadow-custom shadow-light-purple rounded-[3rem]">
+                        </div>
+
+                        <div class="flex gap-x-4 mt-8">
+                            <button type="submit"
+                                class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">OBJEDNAŤ</button>
+                            <button type="button"
+                                class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all"
+                                href="/store"><a href="/shop">ZRUŠIŤ</a></button>
+                        </div>
+                    </form>
+                </div>
+                <aside class="lg:w-96 md:w-8/12 w-full">
+                    <div
+                        class="flex mr-10 my-10 flex-col lg:h-auto h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6  overflow-y-auto p-12 shadow-custom shadow-light-purple rounded-[3rem]">
                         <div>
                             <p class="lg:text-4xl text-3xl font-black  text-white">Prepočet ceny</p>
-                           
+
                             <div class="flex items-center justify-between pt-16">
                                 <p class="text-base leading-none text-white ">Cena bez DPH</p>
                                 <p class="text-base leading-none text-white ">900 €</p>
@@ -183,46 +186,53 @@
                                 <p class="text-2xl leading-normal text-white">Spolu</p>
                                 <p class="text-2xl font-bold leading-normal text-right text-white">905 €</p>
                             </div>
-                        
+
                         </div>
                         <div>
                             <form method="POST" action="/submit-registration">
                                 <div class="flex items-center mb-4">
-                                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="h-4 text-blue-600 bg-gray-100 border-gray-300">
-                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Osobný odber</label>
+                                    <input id="default-radio-1" type="radio" value="" name="default-radio"
+                                        class="h-4 text-blue-600 bg-gray-100 border-gray-300">
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Osobný
+                                        odber</label>
                                     <p class="text-base leading-none ml-auto text-white text-right">0 €</p>
                                 </div>
-                            
+
                                 <div class="flex items-center mb-4">
-                                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
-                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Slovenská pošta</label>
+                                    <input id="default-radio-1" type="radio" value="" name="default-radio"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Slovenská
+                                        pošta</label>
                                     <p class="text-base leading-none ml-auto text-white text-right">8 €</p>
                                 </div>
                                 <div class="flex items-center mb-4">
-                                    <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
-                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-white">Packeta</label>
+                                    <input id="default-radio-1" type="radio" value="" name="default-radio"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 ">
+                                    <label for="default-radio-1"
+                                        class="ms-2 text-sm font-medium text-white">Packeta</label>
                                     <p class="text-base leading-none ml-auto text-white text-right">8 €</p>
                                 </div>
-                                
-                
-                                <button onclick="" class="leading-none w-full py-5 bg-purple text-white rounded-3xl">Pokračovať</button>
+
+
+                                <button onclick=""
+                                    class="leading-none w-full py-5 bg-purple text-white rounded-3xl">Pokračovať</button>
                             </form>
 
                         </div>
                     </div>
-                </div>
+                </aside>
             </div>
-       
-      
-    </div>
 
 
-</main>
+        </div>
+
+
+    </main>
 
 
 
 
-   
+
 </body>
 
 </html>

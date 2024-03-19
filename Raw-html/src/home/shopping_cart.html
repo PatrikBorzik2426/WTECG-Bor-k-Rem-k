@@ -14,7 +14,9 @@
     <header>
         <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
             <div>
-                <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+                <a href="./index.html">
+                    <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+                </a>
             </div>
             <div id="menuClose" class="hidden lg:hidden">
                 <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
@@ -25,25 +27,27 @@
 
             <div
                 class="text-light-green flex justify-end items-center gap-x-4 text-center w-7/12 min-w-fit max-lg:hidden">
-                <div class=" grid grid-cols-4 text-center w-7/12 min-w-fit">
-                    <a class="hover:font-bold cursor-pointer min-w-16">Home</a>
-                    <a class="hover:font-bold cursor-pointer">News</a>
-                    <a class="hover:font-bold cursor-pointer">Store</a>
-                    <a class="hover:font-bold cursor-pointer">Profile</a>
+                <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
+                    <a href="./index.html" class="hover:font-bold cursor-pointer min-w-16">Home</a>
+                    <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+                    <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
                 </div>
                 <div id="search-bar" class="w-1/3">
                     <input type="text"
                         class=" border-2 w-full h-8 border-light-green rounded-3xl bg-transparent focus:outline-none text-center"
                         placeholder="Search">
                 </div>
-                <img src='../svg/avatar.svg' class=" scale-150"> <!--TODO Zmeniť src za asset helper cez blade-->
+                <a href="./registration.html">
+                    <img src='../svg/avatar.svg' class=" scale-150">
+                    <!--TODO Zmeniť src za asset helper cez blade-->
+                </a>
                 <div id="cart" class=" flex justify-center items-baseline">
-                    <div class=" pt-6">
+                    <a href="./shopping_cart.html" class=" pt-6">
                         <img src='../svg/cart.svg' class=" scale-150">
                         <!--TODO Zmeniť src za asset helper cez blade-->
                         <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
                             0</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -54,18 +58,13 @@
                 placeholder="Search">
             <a class="hover:font-bold cursor-pointer">Home</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-            <a class="hover:font-bold cursor-pointer">News</a>
-            <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
             <a class="hover:font-bold cursor-pointer">Store</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
             <a class="hover:font-bold cursor-pointer">Profile</a>
         </div>
     </header>
-
-    
     <main class="flex items-center h-full w-full scroll-smooth">
-        <div class="w-full h-full"
-            id="checkout">
+        <div class="w-full h-full" id="checkout">
             <div class="flex items-end lg:flex-row flex-col justify-end items-center" id="cart">
                 <div class="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-6 md:px-6 px-4 md:py-8 py-4  lg:h-screen h-auto"
                     id="scroll">
@@ -84,7 +83,7 @@
 
                         </div>
                     </div>
-                     <!-- Product  -->
+                    <!-- Product  -->
                     <div class="md:flex items-strech py-2 md:py-2 lg:py-2 ">
 
                         <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
@@ -92,25 +91,33 @@
                             <div class="flex items-center justify-between w-full pt-1">
                                 <p class="text-base font-black leading-none text-white align-middle">Mobil</p>
                                 <form class="relative flex items-center max-w-[8rem]">
-                                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
+                                    <button type="button" id="decrement-button"
+                                        data-input-counter-decrement="quantity-input"
+                                        class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
                                         <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 2">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M1 1h16" />
                                         </svg>
                                     </button>
-                                    <input type="text" id="quantity-input" class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 "required value="3" />
-                                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                        <svg class="w-3 h-2" aria-hidden="true"fill="none" viewBox="0 0 18 18">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                    <input type="text" id="quantity-input"
+                                        class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 " required
+                                        value="3" />
+                                    <button type="button" id="increment-button"
+                                        data-input-counter-increment="quantity-input"
+                                        class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                        <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 1v16M1 9h16" />
                                         </svg>
                                     </button>
                                 </form>
-                               
+
                                 <p class="text-base font-black leading-none text-white">200 €</p>
                             </div>
                         </div>
                     </div>
-                     <!-- Product -->
-                    
+                    <!-- Product -->
+
 
                     <div class="md:flex items-strech py-2 md:py-2 lg:py-2 ">
 
@@ -119,19 +126,27 @@
                             <div class="flex items-center justify-between w-full pt-1">
                                 <p class="text-base font-black leading-none text-white">Mobil</p>
                                 <form class="relative flex items-center max-w-[8rem]">
-                                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
+                                    <button type="button" id="decrement-button"
+                                        data-input-counter-decrement="quantity-input"
+                                        class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
                                         <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 2">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M1 1h16" />
                                         </svg>
                                     </button>
-                                    <input type="text" id="quantity-input" class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 "required value="3" />
-                                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                        <svg class="w-3 h-2" aria-hidden="true"fill="none" viewBox="0 0 18 18">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                    <input type="text" id="quantity-input"
+                                        class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 " required
+                                        value="3" />
+                                    <button type="button" id="increment-button"
+                                        data-input-counter-increment="quantity-input"
+                                        class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                        <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 1v16M1 9h16" />
                                         </svg>
                                     </button>
                                 </form>
-                               
+
                                 <p class="text-base font-black leading-none text-white">200 €</p>
                             </div>
                         </div>
@@ -141,7 +156,7 @@
 
 
 
-                      <!-- Product -->
+                    <!-- Product -->
                     <div class="md:flex items-center items-strech py-2 md:py-2 lg:py-2 ">
 
                         <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
@@ -149,19 +164,27 @@
                             <div class="flex justify-between w-full pt-1">
                                 <p class="text-base font-black leading-none text-white align-middle">Mobil</p>
                                 <form class="relative flex items-center max-w-[8rem]">
-                                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
+                                    <button type="button" id="decrement-button"
+                                        data-input-counter-decrement="quantity-input"
+                                        class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
                                         <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 2">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M1 1h16" />
                                         </svg>
                                     </button>
-                                    <input type="text" id="quantity-input" class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 "required value="3" />
-                                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                                        <svg class="w-3 h-2" aria-hidden="true"fill="none" viewBox="0 0 18 18">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                    <input type="text" id="quantity-input"
+                                        class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 " required
+                                        value="3" />
+                                    <button type="button" id="increment-button"
+                                        data-input-counter-increment="quantity-input"
+                                        class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                        <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 1v16M1 9h16" />
                                         </svg>
                                     </button>
                                 </form>
-                               
+
                                 <p class="text-base font-black leading-none text-white">200 €</p>
                             </div>
 
@@ -181,7 +204,7 @@
 
 
 
-                  <!-- Order data -->
+                <!-- Order data -->
                 <div class="lg:w-96 md:w-8/12 w-90% h-full mx-10">
                     <div
                         class="flex mx-auto mt-20 flex-col lg:h-auto h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6   shadow-custom shadow-light-purple rounded-[3rem]">
@@ -235,7 +258,7 @@
                                 </div>
 
 
-                                <button 
+                                <button
                                     class="leading-none w-full py-5 bg-purple text-white rounded-3xl">Pokračovať</button>
                             </form>
 

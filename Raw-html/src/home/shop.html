@@ -14,7 +14,9 @@
         <header>
             <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
                 <div>
-                    <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+                    <a href="./index.html">
+                        <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+                    </a>
                 </div>
                 <div id="menuClose" class="hidden lg:hidden">
                     <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
@@ -25,26 +27,28 @@
 
                 <div
                     class="text-light-green flex justify-end items-center gap-x-4 text-center w-7/12 min-w-fit max-lg:hidden">
-                    <div class=" grid grid-cols-4 text-center w-7/12 min-w-fit">
-                        <a class="hover:font-bold cursor-pointer min-w-16">Home</a>
-                        <a class="hover:font-bold cursor-pointer">News</a>
-                        <a class="hover:font-bold cursor-pointer">Store</a>
-                        <a class="hover:font-bold cursor-pointer">Profile</a>
+                    <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
+                        <a href="./index.html" class="hover:font-bold cursor-pointer min-w-16">Home</a>
+                        <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+                        <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
                     </div>
                     <div id="search-bar" class="w-1/3">
                         <input type="text"
                             class=" border-2 w-full h-8 border-light-green rounded-3xl bg-transparent focus:outline-none text-center"
                             placeholder="Search">
                     </div>
-                    <img src='../svg/avatar.svg' class=" scale-150"> <!--TODO Zmeniť src za asset helper cez blade-->
+                    <a href="./registration.html">
+                        <img src='../svg/avatar.svg' class=" scale-150">
+                        <!--TODO Zmeniť src za asset helper cez blade-->
+                    </a>
                     <div id="cart" class=" flex justify-center items-baseline">
-                        <div class=" pt-6">
+                        <a href="./shopping_cart.html" class=" pt-6">
                             <img src='../svg/cart.svg' class=" scale-150">
                             <!--TODO Zmeniť src za asset helper cez blade-->
                             <p
                                 class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
                                 0</p>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -54,8 +58,6 @@
                     class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
                     placeholder="Search">
                 <a class="hover:font-bold cursor-pointer">Home</a>
-                <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-                <a class="hover:font-bold cursor-pointer">News</a>
                 <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
                 <a class="hover:font-bold cursor-pointer">Store</a>
                 <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
@@ -69,14 +71,14 @@
         </div>
         <div
             class="grid grid-cols-3 max-sm:grid-cols-1 max-sm:gap-y-4 w-7/12 max-lg:w-8/12 max-md:w-10/12 mx-auto my-20 text-center text-light-green">
-            <a href="/home">
+            <a href="./index.html">
                 <div
                     class="flex justify-center items-center h-48 max-sm:h-24 w-10/12 max-xl:w-11/12 bg-light-purple mx-auto rounded-3xl">
                     <p>iOS</p>
                 </div>
                 <p>Produktov: xxxx</p>
             </a>
-            <a href="/home">
+            <a href="./index.html">
                 <div
                     class="flex justify-center items-center h-48 max-sm:h-24 w-10/12 max-xl:w-11/12 bg-light-purple mx-auto rounded-3xl">
                     <p>Android</p>
@@ -84,7 +86,7 @@
                 <p>Produktov: xxxx</p>
 
             </a>
-            <a href="/home">
+            <a href="./index.html">
                 <div
                     class="flex justify-center items-center h-48 max-sm:h-24 w-10/12 max-xl:w-11/12 bg-light-purple mx-auto rounded-3xl">
                     <p>Gadgets</p>
@@ -151,49 +153,66 @@
         </form>
 
         <div
-            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-16 max-md:gap-y-4 my-20">
+            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-8 max-md:gap-y-4 my-20">
             <!-- @foreach ($array as $item) -->
             <div class="flex flex-col">
-                <div
-                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
-                    <p class="text-white font-medium mt-2 text-lg">Iphone 14 PRO Max</p>
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Short word</p>
                     <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
-                </div>
-                <div id="priceHolder"
-                    class=" relative bottom-6 bg-light-purple text-light-green text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
-                    <a id="priceChange" class=" font-bold text-lg">1299,98 €</a>
-                </div>
+                </a>
+                <a id="priceChange" href="./shopping_cart.html"
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
             </div>
             <div class="flex flex-col">
-                <div
-                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
-                    <p class="text-white font-medium mt-2 text-lg">Iphone 14 PRO Max</p>
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Short word</p>
                     <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
-                </div>
-                <div class=" relative bottom-6 bg-light-purple text-center w-32 py-2 rounded-3xl mx-auto">
-                    <a class=" text-light-green font-bold text-lg">1299,98 €</a>
-                </div>
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
             </div>
             <div class="flex flex-col">
-                <div
-                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
-                    <p class="text-white font-medium mt-2 text-lg mx-5 max-w-fit text-center">Iphone 14 PRO Max</p>
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Short word</p>
                     <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
-                </div>
-                <div class=" relative bottom-6 bg-light-purple text-center w-32 py-2 rounded-3xl mx-auto">
-                    <a class=" text-light-green font-bold text-lg">1299,98 €</a>
-                </div>
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
             </div>
             <div class="flex flex-col">
-                <div
-                    class=" w-fit h-fit flex flex-col justify-start items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
-                    <p class="text-white font-medium mt-2 text-lg mx-5 max-w-fit text-center">Iphone 14 PRO Max</p>
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Short word</p>
                     <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
-                </div>
-                <div class=" relative bottom-6 bg-light-purple text-center w-32 py-2 rounded-3xl mx-auto">
-                    <a class=" text-light-green font-bold text-lg mx-5 max-w-fit text-center">1299,98 €</a>
-                </div>
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
             </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Short word</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+
+
+
             <!-- @endforeach -->
         </div>
     </main>

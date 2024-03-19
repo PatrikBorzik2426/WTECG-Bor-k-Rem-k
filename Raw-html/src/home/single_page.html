@@ -14,7 +14,9 @@
   <header>
     <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
       <div>
-        <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+        <a href="./index.html">
+          <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+        </a>
       </div>
       <div id="menuClose" class="hidden lg:hidden">
         <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
@@ -24,25 +26,27 @@
       </div>
 
       <div class="text-light-green flex justify-end items-center gap-x-4 text-center w-7/12 min-w-fit max-lg:hidden">
-        <div class=" grid grid-cols-4 text-center w-7/12 min-w-fit">
-          <a class="hover:font-bold cursor-pointer min-w-16">Home</a>
-          <a class="hover:font-bold cursor-pointer">News</a>
-          <a class="hover:font-bold cursor-pointer">Store</a>
-          <a class="hover:font-bold cursor-pointer">Profile</a>
+        <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
+          <a href="./index.html" class="hover:font-bold cursor-pointer min-w-16">Home</a>
+          <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+          <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
         </div>
         <div id="search-bar" class="w-1/3">
           <input type="text"
             class=" border-2 w-full h-8 border-light-green rounded-3xl bg-transparent focus:outline-none text-center"
             placeholder="Search">
         </div>
-        <img src='../svg/avatar.svg' class=" scale-150"> <!--TODO Zmeniť src za asset helper cez blade-->
+        <a href="./registration.html">
+          <img src='../svg/avatar.svg' class=" scale-150">
+          <!--TODO Zmeniť src za asset helper cez blade-->
+        </a>
         <div id="cart" class=" flex justify-center items-baseline">
-          <div class=" pt-6">
+          <a href="./shopping_cart.html" class=" pt-6">
             <img src='../svg/cart.svg' class=" scale-150">
             <!--TODO Zmeniť src za asset helper cez blade-->
             <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
               0</p>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -52,8 +56,6 @@
         class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
         placeholder="Search">
       <a class="hover:font-bold cursor-pointer">Home</a>
-      <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-      <a class="hover:font-bold cursor-pointer">News</a>
       <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
       <a class="hover:font-bold cursor-pointer">Store</a>
       <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
@@ -71,12 +73,10 @@
 
 
         <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden rounded-lg my-5">
-          <img src="../../../Img/mobil.jpg" alt="obrazok"
-            class="h-full w-full object-cover object-center">
+          <img src="../../../Img/mobil.jpg" alt="obrazok" class="h-full w-full object-cover object-center">
         </div>
         <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg my-5">
-          <img src="../../../Img/mobil.jpg" 
-            class="h-full w-full object-cover object-center">
+          <img src="../../../Img/mobil.jpg" class="h-full w-full object-cover object-center">
         </div>
       </div>
 
@@ -102,7 +102,7 @@
             </div>
           </div>
         </div>
-        
+
 
         <!-- Options -->
         <div class="mt-4 lg:row-span-3 lg:mt-0">
@@ -110,24 +110,29 @@
           <form class="mt-10 grid-cols-2">
             <form class="max-w-xs mx-auto">
               <div class="relative flex items-center max-w-[8rem]">
-                  <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
-                      <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 2">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
-                      </svg>
-                  </button>
-                  <input type="text" id="quantity-input" class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 "required value="3" />
-                  <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                      <svg class="w-3 h-2" aria-hidden="true"fill="none" viewBox="0 0 18 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                      </svg>
-                  </button>
+                <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input"
+                  class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
+                  <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 2">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M1 1h16" />
+                  </svg>
+                </button>
+                <input type="text" id="quantity-input"
+                  class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 " required value="3" />
+                <button type="button" id="increment-button" data-input-counter-increment="quantity-input"
+                  class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                  <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 1v16M1 9h16" />
+                  </svg>
+                </button>
               </div>
               <p class="mt-2 text-sm text-white">Vyber číslo medzi 0 a 999.</p>
-          </form>
+            </form>
             <button type="submit"
               class="mt-10 flex w-full items-center justify-center rounded-3xl border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Kúpiť</button>
           </form>
-           <!-- Stats -->
+          <!-- Stats -->
           <div class="mt-4">
             <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
               <li class="text-gray-400"><span class="text-white">Rozlíšenie: 1920x1080</span></li>
