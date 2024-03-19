@@ -61,71 +61,34 @@
     </div>
   </header>
   <main class="flex items-center w-full h-full">
-    <div class="pt-6 mt-8 w-full">
+    <div class="mt-4 w-full">
       <h1 class="text-3xl font-bold tracking-tight text-white sm:text-3xl text-center">Mobilný telefón</h1>
 
 
 
       <!-- Image gallery -->
-      <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div class="mx-auto mt-6 max-w-2xl sm:px-6  lg:grid lg:max-w-5xl lg:grid-cols-2 lg:gap-x-20 lg:px-8">
 
 
         <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden rounded-lg my-5">
-          <img src="../../../Img/mobil.jpg" alt="Model wearing plain white basic tee."
+          <img src="../../../Img/mobil.jpg" alt="obrazok"
             class="h-full w-full object-cover object-center">
         </div>
         <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg my-5">
-          <img src="../../../Img/mobil.jpg" alt="Model wearing plain white basic tee."
+          <img src="../../../Img/mobil.jpg" 
             class="h-full w-full object-cover object-center">
         </div>
       </div>
 
       <!-- Product info -->
       <div
-        class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+        class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid mx-30 lg:max-w-7xl lg:mx-40 lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
         <div class="lg:col-span-2 lg:pr-8">
-          <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Popis produktu</h1>
         </div>
-
-        <!-- Options -->
-        <div class="mt-4 lg:row-span-3 lg:mt-0">
-          <p class="text-3xl tracking-tight text-white">192 €</p>
-
-
-
-          <form class="mt-10 grid-col-2">
-
-
-            <form class="max-w-xs mx-auto">
-              <div class="relative flex items-center max-w-[8rem]">
-                  <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 border border-gray-300 rounded-s-3xl p-3 h-11 focus:bg-red ">
-                      <svg class="w-3 h-3" aria-hidden="true" fill="none" viewBox="0 0 18 2">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
-                      </svg>
-                  </button>
-                  <input type="text" id="quantity-input" class="bg-transparent  h-11 text-center text-white text-l  w-full py-2.5 "required value="3" />
-                  <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 border border-gray-300 rounded-e-full p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                      <svg class="w-3 h-3" aria-hidden="true"fill="none" viewBox="0 0 18 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                      </svg>
-                  </button>
-              </div>
-              <p class="mt-2 text-sm text-white">Vyber číslo medzi 0 a 999.</p>
-          </form>
-            <button type="submit"
-              class="mt-10 flex w-full items-center justify-center rounded-3xl border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Kúpiť</button>
-          </form>
-          <div class="mt-4">
-            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-white">Rozlíšenie: 1920x1080</span></li>
-              <li class="text-gray-400"><span class="text-white">Procesor: Intel i7 7200K</span></li>
-              <li class="text-gray-400"><span class="text-white">Ram: 4GB</span></li>
-              <li class="text-gray-400"><span class="text-white">Pripojenie: Wifi 5G</span></li>
-            </ul>
-          </div>
-        </div>
-
         <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8 lg:pt-6">
+          <div class="lg:col-span-2 lg:pr-8">
+            <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Popis produktu</h1>
+          </div>
           <!-- Description and details -->
           <div>
             <div class="space-y-6">
@@ -137,26 +100,44 @@
                 uhlopriečkou 6,5 palca. Vďaka rozlíšeniu 4K a živým farbám vám Mobil xx prináša neuveriteľne realistický
                 vizuálny zážitok pri sledovaní videí, prezeraní fotografií a hraní hier.</p>
             </div>
+          </div>
+        </div>
+        
 
-
-
-
+        <!-- Options -->
+        <div class="mt-4 lg:row-span-3 lg:mt-0">
+          <p class="text-3xl tracking-tight text-white">192 €</p>
+          <form class="mt-10 grid-cols-2">
+            <form class="max-w-xs mx-auto">
+              <div class="relative flex items-center max-w-[8rem]">
+                  <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
+                      <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 2">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                      </svg>
+                  </button>
+                  <input type="text" id="quantity-input" class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 "required value="3" />
+                  <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                      <svg class="w-3 h-2" aria-hidden="true"fill="none" viewBox="0 0 18 18">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                      </svg>
+                  </button>
+              </div>
+              <p class="mt-2 text-sm text-white">Vyber číslo medzi 0 a 999.</p>
+          </form>
+            <button type="submit"
+              class="mt-10 flex w-full items-center justify-center rounded-3xl border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Kúpiť</button>
+          </form>
+           <!-- Stats -->
+          <div class="mt-4">
+            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+              <li class="text-gray-400"><span class="text-white">Rozlíšenie: 1920x1080</span></li>
+              <li class="text-gray-400"><span class="text-white">Procesor: Intel i7 7200K</span></li>
+              <li class="text-gray-400"><span class="text-white">Ram: 4GB</span></li>
+              <li class="text-gray-400"><span class="text-white">Pripojenie: Wifi 5G</span></li>
+            </ul>
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
   </main>
 </body>
 
