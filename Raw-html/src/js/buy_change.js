@@ -1,7 +1,7 @@
-priceHolder.addEventListener("mousemove", function () {
+priceChange.addEventListener("mousemove", function () {
     price.textContent = "Kúpiť";
 });
 
-priceHolder.addEventListener("mouseleave", function () {
+priceChange.addEventListener("mouseleave", function () {
     price.textContent = "1299,98 €";
 });

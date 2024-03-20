@@ -25,7 +25,7 @@ fileInput.addEventListener('change', function(event) {
 
               const imageUrl = event.target.result;
               const imageElement = document.createElement('img');
-              imageElement.classList.add('scale-100')
+              imageElement.classList.add('scale-100','max-h-fit','rounded-lg')
               imageElement.src = imageUrl;
               imageContainer.appendChild(imageElement);
             };
