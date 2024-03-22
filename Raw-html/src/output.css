@@ -544,6 +544,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .relative {
   position: relative;
 }
@@ -867,6 +871,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-8 {
+  width: 2rem;
 }
 
 .min-w-16 {
@@ -2086,6 +2094,14 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 @media (min-width: 768px) {
+  .md\:w-7 {
+    width: 1.75rem;
+  }
+
+  .md\:w-7\/12 {
+    width: 58.333333%;
+  }
+
   .md\:space-x-10 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
     margin-right: calc(2.5rem * var(--tw-space-x-reverse));
@@ -2121,6 +2137,10 @@ input[type=number]::-webkit-inner-spin-button {
 
   .lg\:hidden {
     display: none;
+  }
+
+  .lg\:w-6\/12 {
+    width: 50%;
   }
 
   .lg\:max-w-5xl {
