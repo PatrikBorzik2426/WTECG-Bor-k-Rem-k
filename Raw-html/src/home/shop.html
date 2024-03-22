@@ -151,7 +151,14 @@
                 </div>
             </div>
         </form>
-
+        <form class=" flex items-center gap-4 w-8/12 mx-auto text-light-green -mb-8 mt-10 max-md:flex-col">
+            <label for="order_by" class=" text-xl font-bold">Zoradiť podľa: </label>
+            <select name="order_by" id="order_by" class="bg-transparent font-bold text-light-green">
+                <option value="all" class="bg-dark-purple">Cena vzostupne</option>
+                <option value="iOS" class="bg-dark-purple">Cena zostupne</option>
+                <option value="android" class="bg-dark-purple">Dostupnosti</option>
+            </select>
+        </form>
         <div
             class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-8 max-md:gap-y-4 my-20">
             <!-- @foreach ($array as $item) -->
@@ -216,9 +223,23 @@
             <!-- @endforeach -->
         </div>
     </main>
-    <footer class="bg-black text-light-green text-sm flex justify-between items-center w-8/12 mx-auto mb-4">
-        <p>©2024 Naša spoločnosť</p>
-        <div>
+    <div class="flex justify-center items-center gap-5 text-light-green mb-4">
+        <a>
+            <img src="../svg/arrow_left.svg">
+        </a>
+        <a href="" class=" underline underline-offset-4 cursor-pointer"> 1 </a>
+        <a href="" class=" underline underline-offset-4 cursor-pointer"> 2 </a>
+        <a href="" class=" underline underline-offset-4 cursor-pointer"> 3 </a>
+        <a href="" class=" underline underline-offset-4 cursor-pointer"> 4 </a>
+        <a href="" class=" underline underline-offset-4 cursor-pointer"> 5 </a>
+        <a>
+            <img src="../svg/arrow_right.svg">
+        </a>
+    </div>
+    <footer
+        class="bg-black text-light-green text-sm flex justify-between items-start w-8/12 mx-auto mb-4 max-md:flex-col max-md:gap-y-4">
+        <p class="mx-auto">©2024 Naša spoločnosť</p>
+        <div class="mx-auto">
             <p>Telefón: +421900000000</p>
             <p>Adresa: Bratislava 345</p>
         </div>
