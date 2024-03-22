@@ -9,7 +9,7 @@
 
 </head>
 
-<body class="bg-gradient-to-b min-h-screen from-dark-purple to-black via-black font-manrope">
+<body class="bg-gradient-to-b min-h-screen from-dark-purple to-black via-black font-manrope min-w-80">
     <header>
         <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
             <div>
@@ -44,7 +44,8 @@
                     <a href="./shopping_cart.html" class=" pt-6">
                         <img src='../svg/cart.svg' class=" scale-150">
                         <!--TODO Zmeniť src za asset helper cez blade-->
-                        <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+                        <p
+                            class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
                             0</p>
                     </a>
                 </div>
@@ -55,16 +56,16 @@
             <input type="text"
                 class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
                 placeholder="Search">
-            <a class="hover:font-bold cursor-pointer">Home</a>
+            <a href="./index.html" class="hover:font-bold cursor-pointer">Home</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-            <a class="hover:font-bold cursor-pointer">Store</a>
+            <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-            <a class="hover:font-bold cursor-pointer">Profile</a>
+            <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
         </div>
     </header>
     <main class="flex max-lg:items-center w-8/12 mx-auto mt-10 max-lg:mt-0 max-lg:flex-col max-sm:w-10/12">
         <aside
-            class=" w-fit min-w-48 h-fit grid grid-cols-1 max-lg:grid-cols-3 max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
+            class=" w-fit min-w-48 h-fit grid grid-cols-1 max-lg:grid-cols-2 max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
             <h3 class=" text-center font-bold text-2xl max-lg:hidden">Menu</h3>
             <!-- <div class="flex justify-between items-center max-lg:justify-center">
                 <a class="text-md hover:font-bold"> Nastavenia </a>
@@ -80,7 +81,7 @@
                 <img src="../svg/inventory.svg" class="max-lg:hidden">
             </div>
             <a href="./shop.html"
-                class="w-full h-fit text-center border-2 mt-4 px-4 py-2 max-lg:col-start-1 max-lg:col-span-3 max-lg:py-0 max-lg:mt-0 rounded-full hover:bg-light-green hover:font-extrabold hover:text-dark-purple">Odhlásiť</a>
+                class="w-full h-fit text-center border-2 mt-4 px-4 py-2 max-lg:col-start-1 max-lg:col-span-2 max-lg:py-0 max-lg:mt-0 rounded-full hover:bg-light-green hover:font-extrabold hover:text-dark-purple">Odhlásiť</a>
         </aside>
         <div class="mx-auto w-8/12 h-fit max-lg:w-9/12 max-sm:w-full mb-10">
             <h1 class="text-center text-3xl font-bold text-light-green mb-10">Detail produktu</h1>
@@ -107,7 +108,7 @@
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="price" name="price" value="" tabindex="5">
                 </div>
-                <div class="grid grid-cols-2 gap-x-4 col-start-2 max-lg:col-start-1 row-start-1 max-lg:row-start-6">
+                <div class="grid grid-cols-2 gap-x-4 col-start-2 max-lg:col-start-1 row-start-1 max-lg:row-start-auto">
                     <label for="paramter">Parametre</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="paramter" name="parameter" value="" tabindex="7">
@@ -115,7 +116,7 @@
                         id="paramter" name="parameter" value="" tabindex="7">
                 </div>
                 <div id="photosHolder"
-                    class="bg-white max-h-none max-lg: mt-2 rounded-lg row-span-3 row-start-2 col-start-2 max-lg:col-start-1 max-lg:row-start-7">
+                    class="bg-white max-h-none max-lg: mt-2 rounded-lg row-span-3 row-start-2 col-start-2 max-lg:col-start-1 max-lg:row-start-auto">
                     <input id="fileInput" class="hidden opacity-100 w-full h-full cursor-pointer" type="file"
                         accept="image/jpeg, image/png" multiple="true">
                     <label for="fileInput"
@@ -124,25 +125,19 @@
                         <p class="text-center text-dark-purple font-extrabold text-xl">Pridať obrázok/y</p>
                     </label>
                 </div>
-                <div id="imagePreview" class="grid grid-cols-4 col-start-2 rounded-lg pt-4 gap-x-2">
+                <div id="imagePreview"
+                    class="grid grid-cols-4 col-start-2 max-lg:col-start-1 rounded-lg pt-4 gap-x-2 max-">
 
                 </div>
-                <div class=" flex gap-4  col-span-2 max-lg:col-span-1 mt-8 max-lg:mx-auto">
-                    <a href=""
-                        class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green text-center">Vytvoriť</a>
+                <div class=" flex gap-4 col-span-2 max-lg:col-span-1 mt-8 max-lg:mx-auto">
+                    <button type="submit"
+                        class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green text-center">Vytvoriť</button>
                     <a href="./admin.html"
                         class=" border-2 border-red-500 text-red-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-red-500 hover:text-light-green text-center">Späť</a>
                 </div>
             </form>
         </div>
     </main>
-    <footer class="bg-black text-light-green text-sm flex justify-between items-center w-8/12 mx-auto mb-4">
-        <p>©2024 Naša spoločnosť</p>
-        <div>
-            <p>Telefón: +421900000000</p>
-            <p>Adresa: Bratislava 345</p>
-        </div>
-    </footer>
     <!-- {{ $array->links() }} -->
 </body>
 

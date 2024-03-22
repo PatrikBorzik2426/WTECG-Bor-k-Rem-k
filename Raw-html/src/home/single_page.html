@@ -9,7 +9,7 @@
 
 </head>
 
-<body class="bg-gradient-to-b from-dark-purple to-black via-black">
+<body class="bg-gradient-to-b from-dark-purple to-black via-black font-manrope min-w-80">
   <!-- COMPONENT - HEADER -->
   <header>
     <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
@@ -55,104 +55,70 @@
       <input type="text"
         class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
         placeholder="Search">
-      <a class="hover:font-bold cursor-pointer">Home</a>
+      <a href="./index.html" class="hover:font-bold cursor-pointer">Home</a>
       <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-      <a class="hover:font-bold cursor-pointer">Store</a>
+      <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
       <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-      <a class="hover:font-bold cursor-pointer">Profile</a>
+      <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
     </div>
   </header>
-  <main class="flex items-center w-full h-full">
+  <main class="w-full min-h-screen max-h-full -mt-5 pt-10">
     <div class="mt-4 w-full">
       <h1 class="text-3xl font-bold tracking-tight text-white sm:text-3xl text-center">Mobilný telefón</h1>
 
-
-
       <!-- Image gallery -->
-      <div class="mx-auto mt-6 max-w-2xl sm:px-6  lg:grid lg:max-w-5xl lg:grid-cols-2 lg:gap-x-20 lg:px-8">
-
-
-        <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden rounded-lg my-5">
-          <img src="../../../Img/mobil.jpg" alt="obrazok" class="h-full w-full object-cover object-center">
-        </div>
-        <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg my-5">
-          <img src="../../../Img/mobil.jpg" class="h-full w-full object-cover object-center">
-        </div>
+      <div class="flex w-3/4 max-w-fit mx-auto mt-8 gap-8 max-lg:flex-col">
+        <img src="../../../Img/mobil.jpg" alt="obrazok" class="h-full w-full object-cover object-center rounded-3xl">
+        <img src="../../../Img/mobil.jpg" class="h-full w-full object-cover object-center rounded-3xl">
       </div>
 
       <!-- Product info -->
-      <div
-        class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid mx-30 lg:max-w-7xl lg:mx-40 lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-        <div class="lg:col-span-2 lg:pr-8">
-        </div>
-        <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8 lg:pt-6">
-          <div class="lg:col-span-2 lg:pr-8">
-            <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Popis produktu</h1>
-          </div>
+      <div class="grid grid-cols-2 gap-x-10 mt-10 w-8/12 mx-auto max-lg:grid-cols-1">
+        <div class="text-white">
+          <h2 class="text-2xl mb-4 font-semibold sm:text-3xl">Popis produktu</h2>
           <!-- Description and details -->
-          <div>
-            <div class="space-y-6">
-              <p class="text-base text-white">Mobil xx je inovatívny mobilný telefón navrhnutý pre tých, ktorí hľadajú
-                spojenie medzi výkonom a eleganciou. S plynulým skleneným dizajnom a špičkovými technológiami, prináša
-                tento telefón revolučný zážitok z používania.
-              <h1 class="text-2xl text-white">Brilantný displej:</h1>
-              <p class="text-base text-white">Užite si každý detail na jasnom a pôsobivom Super AMOLED displeji s
-                uhlopriečkou 6,5 palca. Vďaka rozlíšeniu 4K a živým farbám vám Mobil xx prináša neuveriteľne realistický
-                vizuálny zážitok pri sledovaní videí, prezeraní fotografií a hraní hier.</p>
-            </div>
-          </div>
+          <p class="text-base">Mobil xx je inovatívny mobilný telefón navrhnutý pre tých, ktorí hľadajú
+            spojenie medzi výkonom a eleganciou. S plynulým skleneným dizajnom a špičkovými technológiami, prináša
+            tento telefón revolučný zážitok z používania.
+          <h1 class="text-2xl font-semibold mb-4 mt-4">Brilantný displej:</h1>
+          <p class="text-base">Užite si každý detail na jasnom a pôsobivom Super AMOLED displeji s
+            uhlopriečkou 6,5 palca. Vďaka rozlíšeniu 4K a živým farbám vám Mobil xx prináša neuveriteľne realistický
+            vizuálny zážitok pri sledovaní videí, prezeraní fotografií a hraní hier.</p>
         </div>
-
-
         <!-- Options -->
-        <div class="mt-4 lg:row-span-3 lg:mt-0">
-          <p class="text-3xl tracking-tight text-white">192 €</p>
-          <form class="mt-10 grid-cols-2">
-            <form class="max-w-xs mx-auto">
-              <div class="relative flex items-center max-w-[8rem]">
-                <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input"
-                  class="bg-gray-100 border border-gray-300 rounded-s-3xl p-2 h-6 focus:bg-red ">
-                  <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 2">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M1 1h16" />
-                  </svg>
-                </button>
-                <input type="text" id="quantity-input"
-                  class="bg-transparent  h-6 text-center text-white text-l  w-full py-3 " required value="3" />
-                <button type="button" id="increment-button" data-input-counter-increment="quantity-input"
-                  class="bg-gray-100 border border-gray-300 rounded-e-full p-2 h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none">
-                  <svg class="w-3 h-2" aria-hidden="true" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 1v16M1 9h16" />
-                  </svg>
-                </button>
-              </div>
-              <p class="mt-2 text-sm text-white">Vyber číslo medzi 0 a 999.</p>
-            </form>
-            <a href="./shopping_cart.html">
-              <button type="submit"
-                class="mt-10 flex w-full items-center justify-center rounded-full border border-transparent bg-light-purple px-8 py-3 text-base font-medium text-white hover:bg-light-green hover:text-dark-purple hover:font-bold">Kúpiť
-              </button>
+        <div class=" text-white max-lg:mt-10">
+          <h2 class="text-2xl mb-4 font-semibold text-white sm:text-3xl">Cena</h2>
+          <h3 class="text-4xl font-bold mb-8 max-lg:text-ce">1999,99 €</h3>
+          <div class="flex gap-x-4 w-fit mb-4 max-sm:flex-col max-sm:gap-y-4">
+            <div class="mx-auto my-auto">
+              <button class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
+              <input type="number" name="quantity" id="quantity" min="1" max="100" value="1"
+                class=" appearance-none bg-transparent text-center focus:outline-none">
+              <button class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
+            </div>
+            <a href="./shopping_cart.html"
+              class="bg-light-purple text-light-green font-bold text-md text-center w-fit h-fit py-2 px-10 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+              Pridať do košíka
             </a>
-          </form>
-          <!-- Stats -->
-          <div class="mt-4">
-            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-white">Rozlíšenie: 1920x1080</span></li>
-              <li class="text-gray-400"><span class="text-white">Procesor: Intel i7 7200K</span></li>
-              <li class="text-gray-400"><span class="text-white">Ram: 4GB</span></li>
-              <li class="text-gray-400"><span class="text-white">Pripojenie: Wifi 5G</span></li>
-            </ul>
+          </div>
+          <div class="mt-10">
+            <h3 class="text-2xl font-semibold mb-2">Params</h3>
+            <hr class="mb-2">
+            <p class="font-medium text-lg">Farba: <span class="font-light">Sivá</span></p>
+            <p class="font-medium text-lg">Rozlíšenie: <span class="font-light">1920x1080</span></p>
+            <p class="font-medium text-lg">Procesor: <span class="font-light">Exinos 2GHz</span></p>
+            <p class="font-medium text-lg">RAM: <span class="font-light">8GB</span></p>
           </div>
         </div>
       </div>
   </main>
 </body>
-<footer class="bg-black text-light-green text-sm flex justify-between items-center w-8/12 mx-auto mb-4">
-  <p>©2024 Naša spoločnosť</p>
-  <div>
-      <p>Telefón: +421900000000</p>
-      <p>Adresa: Bratislava 345</p>
+<footer
+  class="bg-black text-light-green text-sm flex justify-between items-start w-8/12 mx-auto mb-4 max-md:flex-col max-md:gap-y-4">
+  <p class="mx-auto">©2024 Naša spoločnosť</p>
+  <div class="mx-auto">
+    <p>Telefón: +421900000000</p>
+    <p>Adresa: Bratislava 345</p>
   </div>
 </footer>
 

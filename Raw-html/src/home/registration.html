@@ -9,7 +9,7 @@
 
 </head>
 
-<body class="bg-gradient-to-b from-dark-purple to-black  font-manrope">
+<body class="bg-gradient-to-b from-dark-purple to-black  font-manrope min-w-80">
     <header>
         <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
             <div>
@@ -44,7 +44,8 @@
                     <a href="./shopping_cart.html" class=" pt-6">
                         <img src='../svg/cart.svg' class=" scale-150">
                         <!--TODO Zmeniť src za asset helper cez blade-->
-                        <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+                        <p
+                            class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
                             0</p>
                     </a>
                 </div>
@@ -55,11 +56,11 @@
             <input type="text"
                 class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
                 placeholder="Search">
-            <a class="hover:font-bold cursor-pointer">Home</a>
+            <a href="./index.html" class="hover:font-bold cursor-pointer">Home</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-            <a class="hover:font-bold cursor-pointer">Store</a>
+            <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
             <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-            <a class="hover:font-bold cursor-pointer">Profile</a>
+            <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
         </div>
     </header>
     <main class="flex items-center h-screen -mt-16 max-sm:-mt-4">
@@ -160,13 +161,14 @@
             </form>
         </div>
     </main>
-    <footer class="bg-black text-light-green text-sm flex justify-between items-center w-8/12 mx-auto mb-4">
-        <p>©2024 Naša spoločnosť</p>
-        <div>
-            <p>Telefón: +421900000000</p>
-            <p>Adresa: Bratislava 345</p>
-        </div>
-    </footer>
+    <footer
+    class="bg-black text-light-green text-sm flex justify-between items-start w-8/12 mx-auto mb-4 max-md:flex-col max-md:gap-y-4">
+    <p class="mx-auto">©2024 Naša spoločnosť</p>
+    <div class="mx-auto">
+        <p>Telefón: +421900000000</p>
+        <p>Adresa: Bratislava 345</p>
+    </div>
+</footer>
 </body>
 
 <script src="../js/navbar.js"></script>

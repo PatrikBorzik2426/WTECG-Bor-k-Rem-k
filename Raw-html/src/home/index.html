@@ -9,7 +9,7 @@
 
 </head>
 
-<body class="bg-black font-manrope">
+<body class="bg-black font-manrope min-w-80">
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
         <header>
             <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
@@ -57,28 +57,27 @@
                 <input type="text"
                     class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
                     placeholder="Search">
-                <a class="hover:font-bold cursor-pointer">Home</a>
+                <a href="./index.html" class="hover:font-bold cursor-pointer">Home</a>
                 <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-                <a class="hover:font-bold cursor-pointer">Store</a>
+                <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
                 <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-                <a class="hover:font-bold cursor-pointer">Profile</a>
+                <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
             </div>
         </header>
         <div
             class="max-sm:grid-cols-1 max-sm:gap-y-4 w-7/12 max-lg:w-8/12 max-md:w-10/12 mx-auto my-20 text-center text-light-green">
-            <a href="/Raw-html/src/home/shop.html">
-                <div class="flex justify-center items-center h-48 max-sm:h-24 w-10/12 max-xl:w-11/12 bg-light-purple mx-auto rounded-3xl"
+            <a href="./single_page.html">
+                <div class="flex justify-center items-center h-fit min-h-48 max-sm:h-24 w-10/12 max-xl:w-11/12 bg-light-purple mx-auto rounded-3xl"
                     style="background-image: url('../img/mobil.jpg')">
-                    <button class="border-spacing-10 w-60 border-2 border-black text-black rounded-3xl"> Zoznam všetkých
-                        produktov</button>
+                    <button
+                        class="bg-light-purple text-light-green font-bold text-lg text-center w-fit h-12 py-2 px-10 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                        Žhavá novinka
+                    </button>
                 </div>
-
             </a>
-
-
         </div>
         <div class="flex flex-col items-center mt-12 text-light-green">
-            <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl">Populárne Apple produkty</h1>
+            <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl max-sm:text-center">Populárne Apple produkty</h1>
 
         </div>
 
@@ -138,7 +137,7 @@
 
         </div>
         <div class="flex flex-col items-center mt-12 text-light-green">
-            <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl">Populárne Android produkty</h1>
+            <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl max-sm:text-center">Populárne Android produkty</h1>
         </div>
 
 
@@ -190,7 +189,7 @@
                     1299,98 €
                 </a>
             </div>
-         
+
             <!-- @endforeach -->
         </div>
         <div class="flex flex-col items-center mt-12 text-light-green">
@@ -226,13 +225,14 @@
             <!-- @endforeach -->
         </div>
     </main>
-    <footer class="bg-black text-light-green text-sm flex justify-between items-center w-8/12 mx-auto mb-4">
-        <p>©2024 Naša spoločnosť</p>
-        <div>
-            <p>Telefón: +421900000000</p>
-            <p>Adresa: Bratislava 345</p>
-        </div>
-    </footer>
+    <footer
+    class="bg-black text-light-green text-sm flex justify-between items-start w-8/12 mx-auto mb-4 max-md:flex-col max-md:gap-y-4">
+    <p class="mx-auto">©2024 Naša spoločnosť</p>
+    <div class="mx-auto">
+        <p>Telefón: +421900000000</p>
+        <p>Adresa: Bratislava 345</p>
+    </div>
+</footer>
     <!-- {{ $array->links() }} -->
 </body>
 
