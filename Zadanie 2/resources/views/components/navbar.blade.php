@@ -1,6 +1,6 @@
 <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
     <div>
-        <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+        <h1 class=" text-light-green text-2xl font-extrabold">uPhone</h1>
     </div>
     <div id="menuClose" class="hidden lg:hidden">
         <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
