@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->count(10)->create();
+        Product::factory()->count(50)->create();
 
         $this->command->info('Product table seeded');
     }

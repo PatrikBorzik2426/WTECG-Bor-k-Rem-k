@@ -1,11 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./resources/**/*.blade.php",
-    "./resources/**/*.js",
-    "./resources/**/**/*.php",
-
-  ],
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
       boxShadow: {
@@ -39,4 +34,3 @@ export default {
     require('tailwindcss-animated')
   ],
 }
-

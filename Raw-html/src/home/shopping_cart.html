@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Košík</title>
+    <link href="../output.css" rel="stylesheet">
+
+</head>
+
+<body class=" text-manrope bg-gradient-to-b from-dark-purple to-black  font-manrope min-w-80">
+    <header>
+        <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
+            <div>
+                <a href="./index.html">
+                    <h1 class=" text-light-green text-2xl font-extrabold">E-SHOP</h1>
+                </a>
+            </div>
+            <div id="menuClose" class="hidden lg:hidden">
+                <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
+            </div>
+            <div id="menuToggle" class="hidden max-lg:block lg:hidden">
+                <span class="text-right text-light-green font-semibold cursor-pointer">&#9776;</span>
+            </div>
+
+            <div
+                class="text-light-green flex justify-end items-center gap-x-4 text-center w-7/12 min-w-fit max-lg:hidden">
+                <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
+                    <a href="./index.html" class="hover:font-bold cursor-pointer min-w-16">Home</a>
+                    <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+                    <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
+                </div>
+                <div id="search-bar" class="w-1/3">
+                    <input type="text"
+                        class=" border-2 w-full h-8 border-light-green rounded-3xl bg-transparent focus:outline-none text-center"
+                        placeholder="Search">
+                </div>
+                <a href="./registration.html">
+                    <img src='../svg/avatar.svg' class=" scale-150">
+                    <!--TODO Zmeniť src za asset helper cez blade-->
+                </a>
+                <div id="cart" class=" flex justify-center items-baseline">
+                    <a href="./shopping_cart.html" class=" pt-6">
+                        <img src='../svg/cart.svg' class=" scale-150">
+                        <!--TODO Zmeniť src za asset helper cez blade-->
+                        <p
+                            class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+                            0</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="menu"
+            class="hidden flex flex-col items-center text-center text-dark-purple bg-light-green gap-y-2 py-2 lg:hidden">
+            <input type="text"
+                class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
+                placeholder="Search">
+            <a href="./index.html" class="hover:font-bold cursor-pointer">Home</a>
+            <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+            <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+            <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+            <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
+        </div>
+    </header>
+
+    <main
+        class="flex justify-center items-start h-screen gap-x-32 mx-auto mt-40 max-lg:gap-x-10 max-sm:flex-col max-sm:mt-12 max-sm:h-full">
+        <div class="w-5/12 text-light-green max-sm:w-10/12 max-sm:mx-auto mb-12">
+            <h2 class="text-4xl font-bold mb-10">Nákupný košík</h2>
+            <form class="grid grid-cols-3 gap-y-4">
+                <h3 class="text-lg font-medium">Názov</h3>
+                <h3 class="text-lg font-medium text-center">Kusy</h3>
+                <h3 class="text-lg font-medium text-right">Cena</h3>
+
+                <p class="font-light">Celý názov produktu</p>
+                <div class="mx-auto my-auto">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
+                    <input type="number" name="quantity" id="quantity" min="1" max="100" value="1"
+                        class=" appearance-none bg-transparent text-center focus:outline-none">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
+                </div>
+                <p class="text-right font-bold my-auto">500 €</p>
+
+                <p class="font-light">Celý názov produktu</p>
+                <div class="mx-auto my-auto">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
+                    <input type="number" name="quantity" id="quantity" min="1" max="100" value="1"
+                        class=" appearance-none bg-transparent text-center focus:outline-none">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
+                </div>
+                <p class="text-right font-bold my-auto">500 €</p>
+
+                <p class="font-light">Celý názov produktu</p>
+                <div class="mx-auto my-auto">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
+                    <input type="number" name="quantity" id="quantity" min="1" max="100" value="1"
+                        class=" appearance-none bg-transparent text-center focus:outline-none">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
+                </div>
+                <p class="text-right font-bold my-auto">500 €</p>
+
+                <p class="font-light">Celý názov produktu</p>
+                <div class="mx-auto my-auto">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
+                    <input type="number" name="quantity" id="quantity" min="1" max="100" value="1"
+                        class=" appearance-none bg-transparent text-center focus:outline-none">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
+                </div>
+                <p class="text-right font-bold my-auto">500 €</p>
+
+                <p class="font-light">Celý názov produktu</p>
+                <div class="mx-auto my-auto">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
+                    <input type="number" name="quantity" id="quantity" min="1" max="100" value="1"
+                        class=" appearance-none bg-transparent text-center focus:outline-none">
+                    <button class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
+                </div>
+                <p class="text-right font-bold my-auto">500 €</p>
+            </form>
+            <div>
+
+            </div>
+        </div>
+        <aside
+            class=" h-10/12 text-light-green shadow-custom shadow-light-purple rounded-3xl p-10 max-sm:mb-16 max-sm:mx-auto">
+            <h2 class="text-3xl text-center font-semibold mb-4">
+                Prepočet ceny
+            </h2>
+            <div class="grid grid-cols-2">
+                <p>Cena bez DPH</p>
+                <p class="text-right">1000,50 €</p>
+                <p>Cena s DPH</p>
+                <p class="text-right">1200,50 €</p>
+                <p>Doprava</p>
+                <p class="text-right">0 €</p>
+
+            </div>
+            <hr class="mt-8 mb-4">
+            <div class="grid grid-cols-2 font-bold mb-4">
+                <p>Spolu</p>
+                <p class="text-right">0 €</p>
+            </div>
+            <div>
+                <form class=" flex flex-col gap-y-2">
+                    <h2 class="text-3xl text-center font-semibold my-4">
+                        Doprava
+                    </h2>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label for="store" class="text-light">Osobný odber</label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label name="store" class="text-light">Slovenská pošta</label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label name="store" class="text-light">Packeta</label>
+                    </div>
+
+                    <h2 class="text-3xl text-center font-semibold my-4">
+                        Platba
+                    </h2>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label for="store" class="text-light">Dobierka</label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label name="store" class="text-light">Kartou online</label>
+                    </div>
+                  
+                </form>
+            </div>
+            <div class="w-full flex justify-center items-center mt-8 h-8">
+                <a href="./create_order.html"
+                    class=" w-full py-2 bg-light-purple text-center rounded-full hover:bg-light-green hover:text-dark-purple hover:font-bold">
+                    Pokračovať
+                </a>
+            </div>
+        </aside>
+    </main>
+    <footer
+    class="bg-black text-light-green text-sm flex justify-between items-start w-8/12 mx-auto mb-4 max-md:flex-col max-md:gap-y-4">
+    <p class="mx-auto">©2024 Naša spoločnosť</p>
+    <div class="mx-auto">
+        <p>Telefón: +421900000000</p>
+        <p>Adresa: Bratislava 345</p>
+    </div>
+</footer>
+</body>
+
+<script src="../js/navbar.js"></script>
+
+</html>

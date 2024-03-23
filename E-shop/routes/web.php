@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\v1\ProductController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ use App\Http\Controllers\v1\UserController;
 //! dd() - function for debbuging  in Laravel
 //! ddd() - function for debbuging  in Laravel on deeper level
 
-Route::get('/all_users', [UserController::class, 'index']); # This is the correct way to use controllers
+Route::get('/shop', [ProductController::class, 'index']); # This is the correct way to use controllers
 
 Route::get('/', function () {
     return view('home');
@@ -38,3 +39,15 @@ Route::get('/posts/{id}', function ($id) {
 Route::get('/search', function (Request $request) {
     dd($request->name);
 });
+
+Route::get('/registration', function () {
+    return view('registration');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/submit-registration', [UserController::class, 'registration']);
+
+Route::post('/submit-login', [UserController::class, 'login']);
