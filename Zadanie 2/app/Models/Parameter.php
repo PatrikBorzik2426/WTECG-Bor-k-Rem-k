@@ -14,7 +14,7 @@ class Parameter extends Model
     public function parameter()
     {
         return [
-            $this->hasOne(Product::class),
+            $this->belongsToMany(ParameterProduct::class),
         ];
     }
 }

@@ -19,7 +19,6 @@ class ProductFactory extends Factory
     {
         $faker = Faker::create();
 
-
         return [
             'name' => $faker->unique()->word,
             'description' => $faker->text,

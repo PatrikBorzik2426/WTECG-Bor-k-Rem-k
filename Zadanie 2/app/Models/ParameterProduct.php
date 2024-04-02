@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class ParameterProduct extends Model
 {
     use HasFactory;
 
     const UPDATED_AT = null;
 
-    public function order()
+    public function parameterProduct()
     {
         return [
-            $this->hasOne(User::class),
-            $this->hasOne(ShoppingSession::class)
+            $this->hasOne(Product::class),
+            $this->hasOne(Parameter::class)
         ];
     }
 }

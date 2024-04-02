@@ -15,7 +15,7 @@ class Product extends Model
     {
         return [
             $this->belongsTo(CartItem::class),
-            $this->belongsToMany(Parameter::class)
+            $this->belongsToMany(ParameterProduct::class)
         ];
     }
 }
