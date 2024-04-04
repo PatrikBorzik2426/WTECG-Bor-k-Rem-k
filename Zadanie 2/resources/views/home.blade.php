@@ -9,14 +9,224 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="">
-    <div class=" bg-gradient-to-b from-dark-purple to-black h-screen">
-        <x-navbar />
-    </div>
+<body class="bg-black font-manrope min-w-80">
+    <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
+        <header>
+            <div class="w-8/12 h-16 mx-auto bg-transparent font-manrope flex justify-between items-center">
+                <div>
+                    <a href="./index.html">
+                        <h1 class=" text-light-green text-2xl font-extrabold">uPhone</h1>
+                    </a>
+                </div>
+                <div id="menuClose" class="hidden lg:hidden">
+                    <span class="text-right text-light-green font-medium text-4xl cursor-pointer">&times;</span>
+                </div>
+                <div id="menuToggle" class="hidden max-lg:block lg:hidden">
+                    <span class="text-right text-light-green font-semibold cursor-pointer">&#9776;</span>
+                </div>
 
-    <div>
+                <div
+                    class="text-light-green flex justify-end items-center gap-x-4 text-center w-7/12 min-w-fit max-lg:hidden">
+                    <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
+                        <a href="./index.html" class="hover:font-bold cursor-pointer min-w-16">Home</a>
+                        <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+                        <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
+                    </div>
+                    <div id="search-bar" class="w-1/3">
+                        <input type="text"
+                            class=" border-2 w-full h-8 border-light-green rounded-3xl bg-transparent focus:outline-none text-center"
+                            placeholder="Search">
+                    </div>
+                    <a href="./registration.html">
+                        <img src='../svg/avatar.svg' class=" scale-150">
+                        <!--TODO Zmeniť src za asset helper cez blade-->
+                    </a>
+                    <div id="cart" class=" flex justify-center items-baseline">
+                        <a href="./shopping_cart.html" class=" pt-6">
+                            <img src='../svg/cart.svg' class=" scale-150">
+                            <!--TODO Zmeniť src za asset helper cez blade-->
+                            <p
+                                class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+                                0</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="menu"
+                class="hidden flex flex-col items-center text-center text-dark-purple bg-light-green gap-y-2 py-2 lg:hidden">
+                <input type="text"
+                    class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
+                    placeholder="Search">
+                <a href="./index.html" class="hover:font-bold cursor-pointer">Home</a>
+                <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+                <a href="./shop.html" class="hover:font-bold cursor-pointer">Store</a>
+                <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+                <a href="./profile.html" class="hover:font-bold cursor-pointer">Profile</a>
+            </div>
+        </header>
+        <div
+            class="max-sm:grid-cols-1 max-sm:gap-y-4 w-7/12 max-lg:w-8/12 max-md:w-10/12 mx-auto my-20 text-center text-light-green">
+            <a href="./single_page.html">
+                <div class="flex justify-center items-center h-fit min-h-48 max-sm:h-24 w-10/12 max-xl:w-11/12 bg-light-purple mx-auto rounded-3xl"
+                    style="background-image: url('../img/mobil.jpg')">
+                    <button
+                        class="bg-light-purple text-light-green font-bold text-lg text-center w-fit h-12 py-2 px-10 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                        Žhavá novinka
+                    </button>
+                </div>
+            </a>
+        </div>
+        <div class="flex flex-col items-center mt-12 text-light-green">
+            <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl max-sm:text-center">Populárne Apple produkty</h1>
 
-    </div>
+        </div>
+
+
+
+        <div
+            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-16 max-md:gap-y-4 my-20">
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Iphone</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a id="priceChange" href="./shopping_cart.html"
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Iphone</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a id="priceChange" href="./shopping_cart.html"
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Iphone</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a id="priceChange" href="./shopping_cart.html"
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Iphone</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a id="priceChange" href="./shopping_cart.html"
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+        </div>
+
+
+
+        </div>
+        <div class="flex flex-col items-center mt-12 text-light-green">
+            <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl max-sm:text-center">Populárne Android produkty</h1>
+        </div>
+
+
+
+        <div
+            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-16 max-md:gap-y-4 my-20">
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Android</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a id="priceChange" href="./shopping_cart.html"
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Android</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Android</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Android</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+        </div>
+        <div class="flex flex-col items-center mt-12 text-light-green">
+            <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl">Nové produkty</h1>
+        </div>
+
+
+
+        <div
+            class="grid grid-cols-2 max-xl:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-1 lg:w-6/12 md:w-7/12 w-8/12 mx-auto gap-x-12 gap-y-16 max-md:gap-y-4 my-20 mx">
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Android</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+            <div class="flex flex-col">
+                <a href="./single_page.html"
+                    class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                    <p class="text-white font-medium mt-2 px-6 text-lg text-center">Android</p>
+                    <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                </a>
+                <a
+                    class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+                    1299,98 €
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer
+        class="bg-black text-light-green text-sm flex justify-between items-start w-8/12 mx-auto mb-4 max-md:flex-col max-md:gap-y-4">
+        <p class="mx-auto">©2024 Naša spoločnosť</p>
+        <div class="mx-auto">
+            <p>Telefón: +421900000000</p>
+            <p>Adresa: Bratislava 345</p>
+        </div>
+    </footer>
 </body>
 
 </html>

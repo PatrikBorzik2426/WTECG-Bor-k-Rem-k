@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('login')->unique();
-            $table->string('password');
-            $table->string('name')->nullable(true);
-            $table->string('surname')->nullable(true);
-            $table->string('email')->unique();
-            $table->string('address')->nullable(true);
-            $table->string('phone_number')->nullable(true)->unique();
-            $table->timestamp('created_at');
+            $table->string('login', 64)->unique()->nullable(false);
+            $table->binary('password')->nullable(false);
+            $table->string('name', 35)->nullable(true);
+            $table->string('surname', 35)->nullable(true);
+            $table->string('email', 254)->unique();
+            $table->string('address', 175)->nullable(true);
+            $table->string('postal_code', 11)->nullable(true);
+            $table->string('phone_number', 15)->nullable(true)->unique();
+            $table->timestamp('created_at')->useCurrent();
             $table->boolean('admin')->default(false);
-            $table->string('postal_code')->nullable(true);
         });
     }
 

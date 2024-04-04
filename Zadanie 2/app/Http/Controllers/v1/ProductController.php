@@ -29,7 +29,13 @@ class ProductController extends Controller
             $array = DB::table('products')->where('category', 2)->orderBy('price', 'asc')->paginate($n);
         } else {
             $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
-        }
+        };
+
+        foreach ($array as $index => $element) {
+            $imageUrl = decrypt(stream_get_contents($element->image));
+            $element->image = $imageUrl;
+            $array[$index] = $element;
+        };
 
         return view('shop', [
             'array' => $array,
