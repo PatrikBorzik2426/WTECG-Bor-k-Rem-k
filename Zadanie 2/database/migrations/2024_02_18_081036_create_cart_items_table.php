@@ -14,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('session_id');
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('quantity');
-            $table->timestamp('created_at');
+            $table->unsignedInteger('session_id')->nullable(false);
+            $table->unsignedInteger('product_id')->nullable(false);
+            $table->unsignedInteger('quantity')->nullable(false);
+            $table->timestamp('created_at')->useCurrent();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('session_id')->references('id')->on('shopping_sessions')->onDelete('cascade');

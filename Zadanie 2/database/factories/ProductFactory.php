@@ -18,6 +18,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         $faker = Faker::create();
+        $image = $faker->imageUrl(640, 480, 'cats', true);
 
         return [
             'name' => $faker->unique()->word,
@@ -25,7 +26,7 @@ class ProductFactory extends Factory
             'category' => $faker->randomElement([0, 1, 2]),
             'price' => $faker->randomFloat(2, 0, 1000),
             'quantity' => $faker->numberBetween(0, 100),
-            'image' => $faker->imageUrl(640, 480, 'cats', true),
+            'image' => encrypt($image),
             'created_at' => $faker->dateTimeBetween('-1 year', 'now')
         ];
     }
