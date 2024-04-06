@@ -18,8 +18,6 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $parameter = $request->input('parameter');
-
         $n = 20;
 
         $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
@@ -46,7 +44,7 @@ class ProductController extends Controller
 
         return view('shop', [
             'array_products' => $whole_products,
-            'parameter' => $parameter
+            'pagination' => $array
         ]);
     }
 
@@ -80,9 +78,15 @@ class ProductController extends Controller
     public function singlePage($id)
     {
         $product = Product::find($id);
+        $images = Image::where('product_id', $id)->take(2)->get();
+
+        foreach($images as $image) {
+            $image->link = decrypt(stream_get_contents($image->link));
+        }
 
         return view('single-page', [
-            'product' => $product
+            'product' => $product,
+            'images' => $images
         ]);
     }
 

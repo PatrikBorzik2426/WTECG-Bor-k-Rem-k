@@ -111,7 +111,7 @@
             @foreach ($array_products as $index => $item)
                 <div class="flex flex-col">
                     <!--TODO upraviť linky na základe parametra-->
-                    <a href="./single_page.html"
+                    <a href="/single-page/{{ $item['id'] }}"
                         class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
                         <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item['name'] }}</p>
                         <img src="{{ $item['image'] }}" class=" mb-8 scale-[80%] rounded-2xl">
@@ -123,6 +123,7 @@
                 </div>
             @endforeach
         </div>
+        {{ $pagination->links() }}
     </main>
 </body>
 
