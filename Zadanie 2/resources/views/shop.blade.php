@@ -10,6 +10,7 @@
 </head>
 
 <body class="bg-black font-manrope min-w-80">
+    <h1>{{ auth()->user()->name }}</h1>
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
         <header>
             <x-navbar />
@@ -108,7 +109,7 @@
         </form>
         <div
             class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-8 max-md:gap-y-4 my-20">
-            @foreach ($array as $item)
+            @foreach ($array_products as $index => $item)
                 <div class="flex flex-col">
                     <!--TODO upraviť linky na základe parametra-->
                     <a href="./single_page.html"
@@ -116,7 +117,7 @@
                         <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item->name }}</p>
                         <img src="{{ $item->image }}" class=" mb-8 scale-[80%] rounded-2xl">
                     </a>
-                    <a id="priceChange" href="./shopping_cart.html"
+                    <a id="priceChange{{ $index }}" href="./shopping_cart.html"
                         class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
                         {{ $item->price }} €
                     </a>
@@ -124,7 +125,7 @@
             @endforeach
         </div>
     </main>
-    {{ $array->links() }}
+    {{ $array_products->links() }}
 </body>
 
 </html>

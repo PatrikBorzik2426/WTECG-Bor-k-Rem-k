@@ -9,36 +9,54 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gradient-to-b from-dark-purple to-black font-manrope">
-    <header>
+<body class="bg-gradient-to-b h-screen from-dark-purple to-black font-manrope flex flex-col justify-between">
+    <header class=" content-start">
         <x-navbar />
     </header>
-    <main class="flex items-center h-screen -mt-16">
+    <main class="flex justify-center items-center h-full">
         <div
-            class="flex flex-col items-center p-12 max-lg:p-6 text-light-green max-xl:w-8/12 max-sm:w-10/12 w-6/12 mx-auto shadow-custom shadow-light-purple rounded-[3rem]">
-            <div class="text-center mb-12 animate-jump-in max-sm:mb-2">
-                <h1 class=" font-bold text-2xl mb-2 max-sm:text-lg">Registračný formulár</h1>
-                <p class=" font-light max-sm:text-sm">Zjednodušte si nakupovanie a uchovajte si vaše informácie na ďalší
+            class="flex flex-col items-center p-12 max-lg:p-6 text-light-green max-h-fit max-lg:mt-4 max-xl:w-8/12 max-sm:w-10/12 w-6/12 mx-auto shadow-custom shadow-light-purple rounded-[3rem]">
+            <div class="text-center mb-12 animate-jump-in max-lg:mb-0">
+                <h1 class=" font-bold text-2xl mb-2 max-sm:text-lg max-lg:mb-0">Registračný formulár</h1>
+                <p class=" font-light max-lg:hidden">Zjednodušte si nakupovanie a uchovajte si vaše informácie na ďalší
                     nákup!</p>
             </div>
             @if ($errors->any())
                 {{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
             @endif
             <form method="POST" action="/submit-registration"
-                class="grid grid-cols-2 max-lg:grid-cols-1 w-10/12 max-lg:w-full h-full gap-x-12">
+                class="grid max-h-[75vh] grid-cols-2 max-lg:mt-4 max-lg:grid-cols-1 w-10/12 max-lg:w-full gap-x-12 overflow-auto">
                 {{-- Security feature --}}
                 @csrf
 
-                <div>
-                    <label for="name">Login</label><br>
+                <div class="col-start-1 row-start-1">
+                    <label for="login">Login</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="name" name="name" value="{{ old('name') }}" tabindex="1" />
-                    @error('name')
+                        id="login" name="login" value="{{ old('login') }}" tabindex="1" />
+                    @error('login')
                         <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
                     @enderror
                 </div>
-                <div>
+                <div class="col-start-2 max-lg:col-start-1">
+                    <label for="first_name">Krstné meno</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="first_name" name="first_name" value="{{ old('first_name') }}" tabindex="4">
+                    @error('first_name')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="col-start-2 max-lg:col-start-1">
+                    <label for="last_name">Priezvisko</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="last_name" name="last_name" value="{{ old('last_name') }}" tabindex="4">
+                    @error('last_name')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="col-start-2 max-lg:col-start-1">
                     <label for="city">Mesto</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="city" name="city" value="{{ old('city') }}" tabindex="4">
@@ -48,7 +66,7 @@
                     @enderror
                 </div>
 
-                <div>
+                <div class="col-start-1 row-start-2">
                     <label for="password">Heslo</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="password"
                         id="password" name="password" tabindex="2">
@@ -57,7 +75,7 @@
                             {{ $message }}</p>
                     @enderror
                 </div>
-                <div>
+                <div class="col-start-2 max-lg:col-start-1">
                     <label for="address">Adresa</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="address" name="address" value="{{ old('address') }}" tabindex="5">
@@ -66,7 +84,7 @@
                             {{ $message }}</p>
                     @enderror
                 </div>
-                <div>
+                <div class="col-start-1 row-start-3">
                     <label for="email">Email</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
                         id="email" name="email" value="{{ old('email') }}" tabindex="3">
@@ -75,7 +93,7 @@
                             {{ $message }}</p>
                     @enderror
                 </div>
-                <div>
+                <div class="col-start-2 max-lg:col-start-1">
                     <label for="postal_code">PSČ</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="postal_code" name="postal_code" value="{{ old('postal_code') }}" tabindex="6">
@@ -84,7 +102,7 @@
                             {{ $message }}</p>
                     @enderror
                 </div>
-                <div class=" col-start-2 max-lg:col-start-1">
+                <div class="col-start-2 max-lg:col-start-1">
                     <label for="phone">Tel. číslo</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="phone" name="phone" value="{{ old('phone') }}" tabindex="7">
@@ -102,7 +120,8 @@
                         <span>OBCHOD</span>
                     </a>
                 </div>
-                <div class="flex justify-start items-end font-medium text-light-purple underline max-lg:justify-center">
+                <div
+                    class="flex justify-start items-end font-medium text-light-purple underline max-lg:justify-center">
                     <a href="" class="hover:text-light-green">Už som
                         zaregistrovaný/á</a><!--TODO Dorobiť link na login -->
                 </div>

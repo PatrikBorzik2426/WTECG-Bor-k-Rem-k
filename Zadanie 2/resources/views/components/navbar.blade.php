@@ -25,12 +25,10 @@
             </div>
             <a href="./registration.html">
                 <img src="{{ asset('img/svg/avatar.svg') }}" class=" scale-150">
-                <!--TODO Zmeniť src za asset helper cez blade-->
             </a>
             <div id="cart" class=" flex justify-center items-baseline">
                 <a href="./shopping_cart.html" class=" pt-6">
                     <img src='{{ asset('img/svg/cart.svg') }}' class=" scale-150">
-                    <!--TODO Zmeniť src za asset helper cez blade-->
                     <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
                         0</p>
                 </a>

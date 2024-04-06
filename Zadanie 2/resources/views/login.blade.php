@@ -19,14 +19,14 @@
                 <h1 class=" font-bold text-2xl mb-2">Prihlasovací formulár</h1>
                 <p class=" font-light">Prihlás sa a pokračujte v nákupe!</p>
             </div>
-            <form method="POST" action="/submit-login" class="flex flex-col w-full h-full gap-x-12">
+            <form method="POST" action="/login-submit" class="flex flex-col w-full h-full gap-x-12">
                 {{-- Security feature --}}
                 @csrf
 
                 <div>
-                    <label for="name">Login</label><br>
+                    <label for="login">Login</label><br>
                     <input class="w-full h-10 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="name" name="name" value="{{ old('name') }}" tabindex="1" />
+                        id="login" name="login" value="{{ old('login') }}" tabindex="1" />
                 </div>
 
                 <div>

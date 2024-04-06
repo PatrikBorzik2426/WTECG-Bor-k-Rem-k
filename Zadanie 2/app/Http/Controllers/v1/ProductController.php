@@ -38,7 +38,7 @@ class ProductController extends Controller
         };
 
         return view('shop', [
-            'array' => $array,
+            'array_products' => $array,
             'parameter' => $parameter
         ]);
     }
