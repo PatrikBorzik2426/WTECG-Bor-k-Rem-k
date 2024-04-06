@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use Illuminate\Http\Response;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,10 +24,28 @@ class ProductController extends Controller
 
         $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
 
-        dd($array);
+        $whole_products = [];
+
+        foreach ($array as $index => $element) {
+
+            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+
+            $data = [
+                'id' => $element->id,
+                'name' => $element->name,
+                'description' => $element->description,
+                'category' => $element->category,
+                'price' => $element->price,
+                'quantity' => $element->quantity,
+                'image' => decrypt(stream_get_contents($image->link)),
+                'created_at' => $element->created_at
+            ];
+
+            array_push($whole_products, $data);
+        }
 
         return view('shop', [
-            'array_products' => $array,
+            'array_products' => $whole_products,
             'parameter' => $parameter
         ]);
     }
