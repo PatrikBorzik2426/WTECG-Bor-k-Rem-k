@@ -6,20 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = 'pgsql';
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 70)->nullable(false);
-            $table->string('description', 280)->nullable(false);
-            $table->unsignedInteger('category')->nullable(false);
-            $table->float('price')->nullable(false);
-            $table->unsignedInteger('quantity')->nullable(false);
+            $table->unsignedBigInteger('product_id');
+            $table->binary('link')->nullable(false);
+            $table->boolean('main')->default(false);
             $table->timestamp('created_at')->useCurrent();
+
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('images');
     }
 };

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,25 +22,49 @@ class ProductController extends Controller
 
         $n = 20;
 
-        if ($parameter == '0') {
-            $array = DB::table('products')->where('category', 0)->orderBy('price', 'asc')->paginate($n);
-        } else if ($parameter == '1') {
-            $array = DB::table('products')->where('category', 1)->orderBy('price', 'asc')->paginate($n);
-        } else if ($parameter == '2') {
-            $array = DB::table('products')->where('category', 2)->orderBy('price', 'asc')->paginate($n);
-        } else {
-            $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
-        };
+        $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
 
-        foreach ($array as $index => $element) {
-            $imageUrl = decrypt(stream_get_contents($element->image));
-            $element->image = $imageUrl;
-            $array[$index] = $element;
-        };
+        dd($array);
 
         return view('shop', [
             'array_products' => $array,
             'parameter' => $parameter
+        ]);
+    }
+
+    public function searchUpProduct(Request $request)
+    {
+        $productName = $request->input('search');
+        $productName = $productName;
+
+        $products = Product::where('name', 'like', '%' . $productName . '%')->get();
+        $products = $products->toArray();
+
+        $jsonArray = [];
+
+        foreach ($products as $index => $element) {
+            $jsonArray[$index] = [
+                'id' => $element['id'],
+                'name' => $element['name'],
+                'description' => $element['description'],
+                'category' => $element['category'],
+                'price' => $element['price'],
+                'quantity' => $element['quantity'],
+                'image' => decrypt(stream_get_contents($element['image'])),
+                'created_at' => $element['created_at']
+            ];
+        };
+
+        return response()->json($jsonArray);
+    }
+
+
+    public function singlePage($id)
+    {
+        $product = Product::find($id);
+
+        return view('single-page', [
+            'product' => $product
         ]);
     }
 

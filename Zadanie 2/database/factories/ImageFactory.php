@@ -8,7 +8,7 @@ use Faker\Factory as Faker;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class ProductFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,13 +18,12 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         $faker = Faker::create();
+        $image = $faker->imageUrl(640, 480, 'cats', true);
 
         return [
-            'name' => $faker->unique()->word,
-            'description' => $faker->text,
-            'category' => $faker->randomElement([0, 1, 2]),
-            'price' => $faker->randomFloat(2, 0, 1000),
-            'quantity' => $faker->numberBetween(0, 100),
+            'product_id' => $faker->numberBetween(1, 10),
+            'link' => encrypt($image),
+            'main' =>  $faker->boolean,
             'created_at' => $faker->dateTimeBetween('-1 year', 'now')
         ];
     }

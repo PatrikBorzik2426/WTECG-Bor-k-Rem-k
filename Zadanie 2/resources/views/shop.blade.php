@@ -10,7 +10,6 @@
 </head>
 
 <body class="bg-black font-manrope min-w-80">
-    <h1>{{ auth()->user()->name }}</h1>
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
         <header>
             <x-navbar />
@@ -108,7 +107,7 @@
             </select>
         </form>
         <div
-            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-8 max-md:gap-y-4 my-20">
+            class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-8 max-md:gap-y-4 my-20 z-0">
             @foreach ($array_products as $index => $item)
                 <div class="flex flex-col">
                     <!--TODO upraviť linky na základe parametra-->

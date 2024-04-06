@@ -10,7 +10,14 @@
 </head>
 
 <body class="bg-black font-manrope">
-
+    @if ($errors->any())
+        <div
+            class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
+            <p>
+                Prihlásenie prebehlo <strong>neúspešne</strong> !
+            </p>
+        </div>
+    @endif
     <div
         class="flex max-xl:flex-col items-center justify-center bg-gradient-to-b from-dark-purple to-black h-screen gap-20">
         <div
@@ -38,7 +45,7 @@
                     <button type="submit"
                         class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
                         PRIHLÁSIŤ SA</button>
-                    <a href="./shop.html"
+                    <a href="/shop"
                         class=" flex items-center justify-center w-full h-8 bg-light-green font-bold hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
                         <span>OBCHOD</span>
                     </a>

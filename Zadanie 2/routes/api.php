@@ -22,6 +22,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
 
-    Route::post('auth/registration', [UserController::class, 'registration']);
-    Route::post('auth/login', [UserController::class, 'login']);
+    Route::get('/search/products', [ProductController::class, 'searchUpProduct']);
 });

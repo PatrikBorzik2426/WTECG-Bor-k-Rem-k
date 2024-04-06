@@ -27,12 +27,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-//TODO Vymazať slúži iba na učenie
-
-Route::get('/hello', function () {
-    return response('Hello, World!', 200);
-})->middleware(['auth:sanctum', 'abilities:check-status,regularRegistered']);;
-
 Route::get('/posts/{id}', function ($id) {
     return response('Hello, World ' . $id, 200);
 })->where('id', '[0-9]+');;
@@ -49,7 +43,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::post('/logout', [UserController::class, 'logout']);
 
-Route::post('/login-submit',[UserController::class, 'login']);  
+Route::post('/login-submit', [UserController::class, 'login']);
 
-Route::post('/submit-registration',[UserController::class, 'registration']);
+Route::post('/registration-submit', [UserController::class, 'registration']);
+
+Route::get('/single-page/{id}', [ProductController::class, 'singlePage']);

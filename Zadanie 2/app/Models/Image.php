@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Image extends Model
 {
     use HasFactory;
 
     const UPDATED_AT = null;
 
-    public function product()
+    public function image()
     {
         return [
-            $this->belongsTo(CartItem::class),
-            $this->belongsToMany(ParameterProduct::class),
-            $this->belongsToMany(Image::class)
+            $this->hasOne(Product::class),
         ];
     }
 }

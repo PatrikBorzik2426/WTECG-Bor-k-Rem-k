@@ -88,10 +88,8 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/shop');
-        } else {
-            // Authentication failed
-            return back();
+
+            return Redirect::to('/');
         }
     }
 

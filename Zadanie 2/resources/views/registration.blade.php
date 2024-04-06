@@ -13,6 +13,14 @@
     <header class=" content-start">
         <x-navbar />
     </header>
+    @if ($errors->has('500'))
+        <div
+            class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
+            <p>
+                {{ $errors }}
+            </p>
+        </div>
+    @endif
     <main class="flex justify-center items-center h-full">
         <div
             class="flex flex-col items-center p-12 max-lg:p-6 text-light-green max-h-fit max-lg:mt-4 max-xl:w-8/12 max-sm:w-10/12 w-6/12 mx-auto shadow-custom shadow-light-purple rounded-[3rem]">
@@ -21,10 +29,7 @@
                 <p class=" font-light max-lg:hidden">Zjednodušte si nakupovanie a uchovajte si vaše informácie na ďalší
                     nákup!</p>
             </div>
-            @if ($errors->any())
-                {{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
-            @endif
-            <form method="POST" action="/submit-registration"
+            <form method="POST" action="/registration-submit"
                 class="grid max-h-[75vh] grid-cols-2 max-lg:mt-4 max-lg:grid-cols-1 w-10/12 max-lg:w-full gap-x-12 overflow-auto">
                 {{-- Security feature --}}
                 @csrf
@@ -115,14 +120,14 @@
                 <div class="flex gap-x-4 mt-8 max-lg:w-8/12 max-lg:mx-auto max-lg:mb-3 max-sm:flex-col max-sm:gap-y-4">
                     <button type="submit"
                         class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">REGISTROVAŤ</button>
-                    <a href="./shop.html"
+                    <a href="/shop.html"
                         class=" flex items-center justify-center w-full h-8 bg-light-green font-bold hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
                         <span>OBCHOD</span>
                     </a>
                 </div>
                 <div
                     class="flex justify-start items-end font-medium text-light-purple underline max-lg:justify-center">
-                    <a href="" class="hover:text-light-green">Už som
+                    <a href="/login" class="hover:text-light-green">Už som
                         zaregistrovaný/á</a><!--TODO Dorobiť link na login -->
                 </div>
             </form>
