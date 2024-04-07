@@ -26,13 +26,13 @@ searchInput.addEventListener('input', () => {
                     let productDiv = document.createElement('div');
                     productDiv.classList.add('flex','justify-between');
                     productDiv.innerHTML = `
-                        <p>${product.name}</p>
+                        <a href="/single-page/${product.id}" class=" hover:font-bold">${product.name}</a>
                         <p>${product.price} €</p>
                     `;
                     searchResultsHolder.appendChild(productDiv);
                 });
 
-                if (data.length === 0) {
+                if (data.length === 0 || productDiv.innerHTML === '') {
                     let productDiv = document.createElement('div');
                     productDiv.innerHTML = `
                         <p>No results found</p>
@@ -44,9 +44,12 @@ searchInput.addEventListener('input', () => {
             .catch(error => {
                 console.error(error);
             });
-    },50);
+    },500);
 });
 
 searchInput.addEventListener('focusout', () => {
-    searchResults.classList.add('hidden');
+    searchInput.value = '';
+    setTimeout(function(){
+        searchResults.classList.add('hidden');
+    },500);
 });

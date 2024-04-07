@@ -98,7 +98,7 @@
                 </div>
             </div>
         </form>
-        <form class=" flex items-center gap-4 w-8/12 mx-auto text-light-green -mb-8 mt-10 max-md:flex-col">
+        <form id="productsDisplayStart" class=" flex items-center gap-4 w-8/12 mx-auto text-light-green -mb-8 mt-10 max-md:flex-col">
             <label for="order_by" class=" text-xl font-bold">Zoradiť podľa: </label>
             <select name="order_by" id="order_by" class="bg-transparent font-bold text-light-green">
                 <option value="all" class="bg-dark-purple">Cena vzostupne</option>

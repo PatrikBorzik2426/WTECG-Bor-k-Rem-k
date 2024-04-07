@@ -53,7 +53,11 @@ class ProductController extends Controller
         $productName = $request->input('search');
         $productName = $productName;
 
-        $products = Product::where('name', 'like', '%' . $productName . '%')->get();
+        $products = Product::selectRaw('*, word_similarity(name, \'' . $productName . '\') as sim')
+            ->where('name', 'ilike', '%' . $productName . '%')
+            ->orderByRaw('sim DESC')
+            ->get();
+
         $products = $products->toArray();
 
         $jsonArray = [];
@@ -62,12 +66,7 @@ class ProductController extends Controller
             $jsonArray[$index] = [
                 'id' => $element['id'],
                 'name' => $element['name'],
-                'description' => $element['description'],
-                'category' => $element['category'],
                 'price' => $element['price'],
-                'quantity' => $element['quantity'],
-                'image' => decrypt(stream_get_contents($element['image'])),
-                'created_at' => $element['created_at']
             ];
         };
 
@@ -80,7 +79,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $images = Image::where('product_id', $id)->take(2)->get();
 
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $image->link = decrypt(stream_get_contents($image->link));
         }
 

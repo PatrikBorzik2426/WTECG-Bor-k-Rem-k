@@ -8,8 +8,11 @@
     - [UML class diagram dátového modelu](#uml-class-diagram-dátového-modelu)
   - [Databázová štruktúra](#databázová-štruktúra)
     - [Datatypes](#datatypes)
+    - [Databázové rozšírenia](#databázové-rozšírenia)
   - [Implementácia](#implementácia)
     - [Autorizácia](#autorizácia)
+    - [Vendor changes](#vendor-changes)
+      - [Pagination tailwind customization](#pagination-tailwind-customization)
 - [Responzívne šablóny - frontend](#responzívne-šablóny---frontend)
   - [Rozdelenie](#rozdelenie)
 
@@ -86,11 +89,22 @@ Technológia databázového systému použitá pri našom projekte je Postgresql
 - **parameter_name** - VARCHAR(30) Vychádzajúc z najdlhšieho parametru z Alza.sk
 - **parameter_value** - VARCHAR(150) Najdlhší parameter v kategórií telefóny na Alza.sk
 
+### Databázové rozšírenia
+```SQL
+CREATE EXTENSION pg_trgm;
+
+select *, word_similarity(name, '%a%') as sim from "products" where "name"::text ilike '%a%' order by sim DESC
+```
 
 ## Implementácia
 
 ### Autorizácia
-Laravel Sanctum
+Basic Laravel authorization
+
+### Vendor changes
+
+#### Pagination tailwind customization
+Simplification of the looks with specific link to the start of the product display
 
 # Responzívne šablóny - frontend
 ## Rozdelenie

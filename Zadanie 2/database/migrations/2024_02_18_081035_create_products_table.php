@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 70)->nullable(false);
+            $table->string('name', 70)->nullable(false); #TODO ZMENIŤ NA TRUE V PRODUKCIÍ ->unique(false)
             $table->string('description', 280)->nullable(false);
             $table->unsignedInteger('category')->nullable(false);
             $table->float('price')->nullable(false);
