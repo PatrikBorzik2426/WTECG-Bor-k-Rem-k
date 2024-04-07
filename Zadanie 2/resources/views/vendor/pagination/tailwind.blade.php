@@ -1,7 +1,20 @@
+@php
+    $wholeUrl = request()->fullUrl();
+
+    $urlParts = explode('?', $wholeUrl);
+
+    if (count($urlParts) > 1) {
+        $no_page_params = $urlParts[1];
+        $no_page_params = preg_replace('/page=\d+/', '', $no_page_params);
+        $no_page_params = '&' . $no_page_params;
+    } else {
+        $no_page_params = '';
+    }
+@endphp
+
 @if ($paginator->hasPages())
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
         <div class="flex justify-center w-full mb-4">
-
             <div class=" text-light-green">
                 <span class="relative z-0 inline-flex rtl:flex-row-reverse shadow-sm rounded-md">
                     {{-- Previous Page Link --}}
@@ -18,7 +31,7 @@
                             </span>
                         </span>
                     @else
-                        <a href="{{ $paginator->previousPageUrl() }}#productsDisplayStart" rel="prev"
+                        <a href="{{ $paginator->previousPageUrl() }}{{ $no_page_params }}" rel="prev"
                             class="relative inline-flex items-center px-2 py-2 text-sm font-medium rounded-l-md leading-5  focus:z-10 focus:outline-none "
                             aria-label="{{ __('pagination.previous') }}">
                             <svg class="w-5 h-5" fill="#E0F0EA" viewBox="0 0 20 20">
@@ -48,7 +61,7 @@
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium cursor-default leading-5 underline">{{ $page }}</span>
                                     </span>
                                 @else
-                                    <a href="{{ $url }}#productsDisplayStart"
+                                    <a href="{{ $url }}{{ $no_page_params }}"
                                         class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5focus:z-10 focus:outline-none  "
                                         aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                                         {{ $page }}
@@ -60,7 +73,7 @@
 
                     {{-- Next Page Link --}}
                     @if ($paginator->hasMorePages())
-                        <a href="{{ $paginator->nextPageUrl() }}#productsDisplayStart" rel="next"
+                        <a href="{{ $paginator->nextPageUrl() }}{{ $no_page_params }}" rel="next"
                             class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium #E0F0EA r  rounded-r-md leading-5  focus:z-10 focus:outline-none  "
                             aria-label="{{ __('pagination.next') }}">
                             <svg class="w-5 h-5" fill="#E0F0EA" viewBox="0 0 20 20">

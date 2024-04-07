@@ -20,13 +20,14 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         $faker = Faker::create();
-        $image = $faker->imageUrl(640, 480, 'cats', true);
+
+        $imagePath = $faker->imageUrl(640, 640); // Generates a random image file with specific dimensions
 
         self::$productId++; // Increment the product_id
 
         return [
             'product_id' => self::$productId,
-            'link' => encrypt($image),
+            'link' => encrypt('https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png'),
             'main' =>  true,
             'created_at' => $faker->dateTimeBetween('-1 year', 'now')
         ];

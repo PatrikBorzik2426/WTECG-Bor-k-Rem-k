@@ -22,6 +22,12 @@ class ParameterSeeder extends Seeder
             ['parameter' => 'size', 'value' => 'small'],
             ['parameter' => 'size', 'value' => 'medium'],
             ['parameter' => 'size', 'value' => 'large'],
+            ['parameter' => 'material', 'value' => 'cotton'],
+            ['parameter' => 'material', 'value' => 'polyester'],
+            ['parameter' => 'material', 'value' => 'wool'],
+            ['parameter' => 'brand', 'value' => 'iPhone'],
+            ['parameter' => 'brand', 'value' => 'Samsung'],
+            ['parameter' => 'brand', 'value' => 'Huawei']
             // Add more parameters as needed
         ];
 

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('parameters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('parameter', 30)->nullable(false);
-            $table->string('value', 150)->nullable(false);
+            $table->string('value', 150)->nullable(false)->unique();
         });
     }
 
