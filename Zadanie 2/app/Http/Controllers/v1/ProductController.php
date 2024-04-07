@@ -18,9 +18,31 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request) {
+            $order_by = $request->order_by;
+        } else {
+            $order_by = '';
+        }
+
         $n = 20;
 
-        $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
+        if ($request->order_by) {
+            switch ($request->order_by) {
+                case "ascPrice":
+                    $array = DB::table('products')->orderBy('price', 'asc')->paginate($n);
+                    break;
+                case "descPrice":
+                    $array = DB::table('products')->orderBy('price', 'desc')->paginate($n);
+                    break;
+                case "availability":
+                    $array = DB::table('products')->orderBy('quantity', 'desc')->paginate($n);
+                    break;
+                default:
+                    $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
+            }
+        } else {
+            $array = DB::table('products')->orderBy('created_at', 'asc')->paginate($n);
+        }
 
         $whole_products = [];
 
@@ -44,7 +66,8 @@ class ProductController extends Controller
 
         return view('shop', [
             'array_products' => $whole_products,
-            'pagination' => $array
+            'pagination' => $array,
+            'order_by' => $order_by
         ]);
     }
 
@@ -89,6 +112,9 @@ class ProductController extends Controller
         ]);
     }
 
+    public function shopFilter()
+    {
+    }
     /**
      * Show the form for creating a new resource.
      */

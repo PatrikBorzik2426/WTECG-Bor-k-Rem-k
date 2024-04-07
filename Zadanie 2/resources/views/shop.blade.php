@@ -98,12 +98,21 @@
                 </div>
             </div>
         </form>
-        <form id="productsDisplayStart" class=" flex items-center gap-4 w-8/12 mx-auto text-light-green -mb-8 mt-10 max-md:flex-col">
+        <form id="productsDisplayStart" method="get" action="/shop"
+            class=" flex items-center gap-4 w-8/12 mx-auto text-light-green -mb-8 mt-10 max-md:flex-col">
             <label for="order_by" class=" text-xl font-bold">Zoradiť podľa: </label>
             <select name="order_by" id="order_by" class="bg-transparent font-bold text-light-green">
-                <option value="all" class="bg-dark-purple">Cena vzostupne</option>
-                <option value="iOS" class="bg-dark-purple">Cena zostupne</option>
-                <option value="android" class="bg-dark-purple">Dostupnosti</option>
+                <option value="" class="hidden bg-dark-purple" @if ( $order_by ==='') selected @endif >
+                    Vyberte zoradenie
+                </option>
+                <option value="ascPrice" class="bg-dark-purple" @if ( $order_by ==='ascPrice') selected @endif>
+                    Cena vzostupne
+                </option>
+                <option value="dscPrice" class="bg-dark-purple" @if ( $order_by ==='dscPrice') selected @endif>
+                    Cena zostupne
+                </option>
+                <option value="availability" class="bg-dark-purple" @if ( $order_by ==='availability') selected @endif>
+                    Dostupnosti</option>
             </select>
         </form>
         <div
@@ -128,4 +137,4 @@
 </body>
 
 </html>
-<script src="{{ asset('js/slider_value.js') }}"></script>
+<script src="{{ asset('js/shop_filter.js') }}"></script>
