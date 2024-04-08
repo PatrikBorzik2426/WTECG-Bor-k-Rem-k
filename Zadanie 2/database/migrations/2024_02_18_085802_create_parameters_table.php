@@ -14,11 +14,8 @@ return new class extends Migration
     {
         Schema::create('parameters', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('product_id');
-            $table->string('parameter');
-            $table->string('value');
-
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->string('parameter', 30)->nullable(false);
+            $table->string('value', 150)->nullable(false)->unique();
         });
     }
 

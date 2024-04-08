@@ -8,6 +8,10 @@ use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -30,39 +34,74 @@ class UserController extends Controller
     {
         $validationOfData = $request->validate(
             [
-                'name' => 'required|string|max:20|unique:users,login',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|string|min:8',
-                'address' => 'string|max:255',
-                'city' => 'string|max:100',
-                'postal_code' => 'string|digits:5',
-                'phone' => 'string|max:20'
+                'login' => 'required|max:64|unique:users,login',
+                'email' => 'required|email|max:254|unique:users,email',
+                'password' => 'required|min:8|regex:/[!@#$%^&*()\-+=\[\]{};:",.<>\/?]/',
+                'address' => 'max:255',
+                'city' => 'max:100',
+                'postal_code' => 'nullable|digits:5',
+                'phone' => 'max:20',
+                'first_name' => 'max:35',
+                'last_name' => 'max:35'
             ],
             [
-                'name.required' => 'Name is required',
-                'email.required' => 'Email is required',
-                'password.required' => 'Password is required',
-                'address.string' => 'Address must be a string',
-                'city.string' => 'City must be a string',
-                'postal_code.string' => 'Postal code must be a number',
-                'phone.string' => 'Phone must be a string'
+                'login.required' => 'Prihlásenie je povinné',
+                'email.required' => 'E-mail je povinný',
+                'password.required' => 'Heslo je povinné',
+                'password.regex' => 'Heslo musí obsahovať aspoň jeden špeciálny znak',
+                'password.min' => 'Heslo musí mať aspoň 8 znakov',
             ]
         );
 
+        if (isset($validationOfData['phone'])) {
+            $validationOfData['phone'] = str_replace(' ', '', $validationOfData['phone']); //Odstrazenie medzier v tele
+        }
 
         $user = User::create([
-            'login' => $validationOfData['name'],
+            'login' => $validationOfData['login'],
             'email' => $validationOfData['email'],
-            'password' => bcrypt($validationOfData['password'])
+            'password' => Hash::make($validationOfData['password']),
+            'address' => $validationOfData['address'] ?? null,
+            'postal_code' => $validationOfData['postal_code'] ?? null,
+            'city' => $validationOfData['city'] ?? null,
+            'phone' => $validationOfData['phone'] ?? null,
+            'first_name' => $validationOfData['first_name'] ?? null,
+            'last_name' => $validationOfData['last_name'] ?? null
         ]);
 
-        return response()->json(
-            [
-                'token' => $user->createToken('eshop')->plainTextToken,
-                'message' => 'Registration successful! You are now logged in.'
-            ],
-            200
-        );
+        return view('login', [
+            'message' => 'Registrácia prebehla úspešne'
+        ]);
+    }
+
+    public function login(Request $request)
+    {
+        $validationOfData = $request->validate([
+            'login' => 'required',
+            'password' => 'required'
+        ], [
+            'login.required' => 'Prihlásenie je povinné',
+            'password.required' => 'Heslo je povinné'
+        ]);
+
+        $credentials = $request->only('login', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return Redirect::to('/');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return Redirect::to('/');
     }
 
     /**

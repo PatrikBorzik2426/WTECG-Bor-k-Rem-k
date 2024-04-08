@@ -1,4 +1,5 @@
-# Projekt z predmetu WTECH 
+# Projekt z predmetu WTECH
+
 - [Projekt z predmetu WTECH](#projekt-z-predmetu-wtech)
   - [Téma zadania - všoebecný zámer](#téma-zadania---všoebecný-zámer)
     - [Technologický predpoklad](#technologický-predpoklad)
@@ -8,29 +9,35 @@
     - [UML class diagram dátového modelu](#uml-class-diagram-dátového-modelu)
   - [Databázová štruktúra](#databázová-štruktúra)
     - [Datatypes](#datatypes)
+    - [Databázové rozšírenia](#databázové-rozšírenia)
   - [Implementácia](#implementácia)
     - [Autorizácia](#autorizácia)
+    - [Vendor changes](#vendor-changes)
+      - [Pagination tailwind customization](#pagination-tailwind-customization)
 - [Responzívne šablóny - frontend](#responzívne-šablóny---frontend)
   - [Rozdelenie](#rozdelenie)
 
 ## Téma zadania - všoebecný zámer
-Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, ktorá bude simulovať e-shop v oblasti predaja elektroniky, presnejšie sa budeme venovať mobilným telefónom. 
+
+Vzájomnou dohodou sme došli k finálnej téme, budeme vytvárať stránku, ktorá bude simulovať e-shop v oblasti predaja elektroniky, presnejšie sa budeme venovať mobilným telefónom.
 
 Nižšie pod špecifikáciou témy sú technologické predpoklad vyobrazené v jednoduchom prehľade, detailnejšie sa venujem jednotlivým postupom, konfiguráciám a implementáciám v praktickej časti aplikovania softvérového riešenia.
 
 ### Technologický predpoklad
+
 - Frontend styling - **Tailwind**
 - Backend - **Laravel**
 - Docker (Databáza) - **Docker Postgres**
 
 ## Dizajn - figma TODO tracker
+
 - [x] Navigačné menu
   - [x] Search bar
 - [x] Homepage
 - [x] Obchodná časť
   - [x] Kategórie (katalóg)
   - [x] List (page)
-  - [x] Single (page) 
+  - [x] Single (page)
 - [x] Košík
   - [x] Produkty
   - [x] Doprava
@@ -43,6 +50,7 @@ Nižšie pod špecifikáciou témy sú technologické predpoklad vyobrazené v j
   - [x] Admin
 
 ### Skice extra large
+
 V tejto časti by sme si radi zadefinovali všeobecnú štruktúru dizajnu, teda jednotnotný postup, ktorý bude dodržovaný pri dizajnovaní stránky. Používame softvér Figma, kde sme si vytvorili zdieľaný projekt, následne si vytvoríme všeobecnú stránku s elementami a tie budeme používať pri tvorbe celého dizajnu.
 
 - tlačidlá
@@ -62,17 +70,20 @@ Farebná paleta: https://colors.muz.li/palette/e0f0ea/95adbe/574f7d/503a65/3c2a4
 ![Figma šablóny](./Zadanie%201/img/figma/Single%20page.jpg)
 ![Figma šablóny](./Zadanie%201/img/figma/User%20screen.jpg)
 
-
 ### Responzivné šablóny
 
 ### UML class diagram dátového modelu
+
 Na vytváranie fyzického modelu používame stránku [dbdiagram](https://dbdiagram.io/d)
 
 ![UML Diagram](./Zadanie%201/img/fyzicky_model.svg)
 
 ## Databázová štruktúra
+
 Technológia databázového systému použitá pri našom projekte je Postgresql. Na vytvorenie testovaích dát do databázy používame Faker library.
+
 ### Datatypes
+
 - **email** - VARCHAR(254), [standard-PATH](https://www.rfc-editor.org/rfc/rfc5321.html#section-4.5.3.1)
 - **login** - VARCHAR(64), [standard-LOCAL_PART](https://www.rfc-editor.org/rfc/rfc5321.html#section-4.5.3.1)
 - **password** - BYTEA (hash)
@@ -86,14 +97,30 @@ Technológia databázového systému použitá pri našom projekte je Postgresql
 - **parameter_name** - VARCHAR(30) Vychádzajúc z najdlhšieho parametru z Alza.sk
 - **parameter_value** - VARCHAR(150) Najdlhší parameter v kategórií telefóny na Alza.sk
 
+### Databázové rozšírenia
+
+```SQL
+CREATE EXTENSION pg_trgm;
+
+select *, word_similarity(name, '%a%') as sim from "products" where "name"::text ilike '%a%' order by sim DESC
+```
 
 ## Implementácia
 
 ### Autorizácia
-Laravel Sanctum
+
+Basic Laravel authorization
+
+### Vendor changes
+
+#### Pagination tailwind customization
+
+Simplification of the looks with specific link to the start of the product display
 
 # Responzívne šablóny - frontend
+
 ## Rozdelenie
+
 - admin-prduct-detail -> Patrik
 - admin -> Patrik
 - profile -> Patrik
@@ -106,3 +133,4 @@ Laravel Sanctum
 - single-page -> Filip
 - footer -> Patrik
 - header -> Patrik
+http://127.0.0.1:8000/shop?maxPrice=243&maxPrice=243&category0=Samsung&category1=blue&category2=polyester&category3=small&order_by=dscPrice

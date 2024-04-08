@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\v1\UserController;
+use Illuminate\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +21,11 @@ use App\Http\Controllers\v1\UserController;
 //! dd() - function for debbuging  in Laravel
 //! ddd() - function for debbuging  in Laravel on deeper level
 
-Route::get('/shop', [ProductController::class, 'index']); # This is the correct way to use controllers
+Route::get('/shop', [ProductController::class, 'index'])->name('shop'); # This is the correct way to use controllers
 
 Route::get('/', function () {
     return view('home');
-});
-
-//TODO Vymazať slúži iba na učenie
-
-Route::get('/hello', function () {
-    return response('Hello, World!', 200);
-});
+})->name('home');
 
 Route::get('/posts/{id}', function ($id) {
     return response('Hello, World ' . $id, 200);
@@ -48,6 +43,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::post('/submit-registration', [UserController::class, 'registration']);
+Route::post('/logout', [UserController::class, 'logout']);
 
-Route::post('/submit-login', [UserController::class, 'login']);
+Route::post('/login-submit', [UserController::class, 'login']);
+
+Route::post('/registration-submit', [UserController::class, 'registration']);
+
+Route::get('/single-page/{id}', [ProductController::class, 'singlePage']);

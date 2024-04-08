@@ -2,22 +2,21 @@
 
 namespace Database\Factories;
 
+use App\Models\ParameterProduct;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Factory as Faker;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ParameterProduct>
- */
 class ParameterProductFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = ParameterProduct::class;
+
     public function definition(): array
     {
+        $faker = Faker::create();
+
         return [
-            //
+            'parameter_id' => $faker->numberBetween(1, 12),
+            'product_id' => $faker->numberBetween(1, 50)
         ];
     }
 }
