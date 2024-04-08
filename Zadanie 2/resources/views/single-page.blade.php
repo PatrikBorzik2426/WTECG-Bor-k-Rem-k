@@ -37,14 +37,14 @@
                 <!-- Options -->
                 <div class=" text-white max-lg:mt-10">
                     <h2 class="text-2xl mb-4 font-semibold text-white sm:text-3xl">Cena</h2>
-                    <h3 class="text-4xl font-bold mb-8 max-lg:text-ce">{{ $product->price }} €</h3>
+                    <h3 class="text-4xl font-bold mb-8 max-lg:text-ce">{{ number_format($product->price, 2) }} €</h3>
                     <div class="flex gap-x-4 w-fit mb-4 max-sm:flex-col max-sm:gap-y-4">
                         <div class="mx-auto my-auto">
-                            <button
+                            <button id="decrementQuantity"
                                 class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
-                            <input type="number" name="quantity" id="quantity" min="1" max="100"
+                            <input type="number" name="quantityValue" id="quantityValue" min="1" max="100"
                                 value="1" class=" appearance-none bg-transparent text-center focus:outline-none">
-                            <button
+                            <button id="incrementQuantity"
                                 class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
                         </div>
                         <a href="./shopping_cart.html"
@@ -53,16 +53,31 @@
                         </a>
                     </div>
                     <div class="mt-10">
-                        <h3 class="text-2xl font-semibold mb-2">Params</h3>
+                        <h3 class="text-2xl font-semibold mb-2">Parameters</h3>
                         <hr class="mb-2">
-                        <p class="font-medium text-lg">Farba: <span class="font-light">Sivá</span></p>
-                        <p class="font-medium text-lg">Rozlíšenie: <span class="font-light">1920x1080</span></p>
-                        <p class="font-medium text-lg">Procesor: <span class="font-light">Exinos 2GHz</span></p>
-                        <p class="font-medium text-lg">RAM: <span class="font-light">8GB</span></p>
+                        @foreach ($parameters as $index => $parameter_array)
+                            @if ($index === 0)
+                                <p class="text-xl font-semibold">{{ ucfirst($parameter_array->parameter) }} :
+                            @endif
+
+                            @if ($index === 0 || $temp_param === $parameter_array->parameter)
+                                <span class="text-lg font-light">{{ ucfirst($parameter_array->value) }} &nbsp; |
+                                    &nbsp; </span>
+                            @else
+                                </p>
+                                <p class="text-xl font-semibold">{{ ucfirst($parameter_array->parameter) }} :
+                                    @if ($index === count($parameters) - 1)
+                                        <span class="text-lg font-light">{{ ucfirst($parameter_array->value) }} &nbsp; |
+                                            &nbsp; </span>
+                                    @endif
+                            @endif
+
+                            <span class="hidden">{{ $temp_param = $parameter_array->parameter }}</span>
+                        @endforeach
                     </div>
                 </div>
-            </div>
     </main>
 </body>
+<script src="{{ asset('js/quantity_change.js') }}"></script>
 
 </html>

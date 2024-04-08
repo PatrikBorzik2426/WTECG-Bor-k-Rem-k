@@ -104,6 +104,24 @@ class UserController extends Controller
         return Redirect::to('/');
     }
 
+    public function temporaryAccount(Request $request)
+    {
+        $full_url = $request->fullUrl();
+
+        dd($full_url);
+
+        $user = User::create([
+            'login' => null,
+            'email' => null,
+            'password' => null,
+            'temporary' => true
+        ]);
+
+        $user = Auth::login($user);
+
+        return view('profile');
+    }
+
     /**
      * Store a newly created resource in storage.
      */

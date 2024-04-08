@@ -29,7 +29,8 @@
             <div id="cart" class=" flex justify-center items-baseline">
                 <a href="/shopping-cart" class=" pt-6">
                     <img src='{{ asset('img/svg/cart.svg') }}' class=" scale-150">
-                    <p class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+                    <p id="numberOfCartItem"
+                        class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
                         0</p>
                 </a>
             </div>
