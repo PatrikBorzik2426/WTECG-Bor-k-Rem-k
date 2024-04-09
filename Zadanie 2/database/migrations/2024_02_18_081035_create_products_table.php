@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('description', 280)->nullable(false);
             $table->unsignedInteger('category')->nullable(false);
             $table->float('price')->nullable(false);
-            $table->unsignedInteger('quantity')->nullable(false);
             $table->timestamp('created_at')->useCurrent();
         });
     }

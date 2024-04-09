@@ -48,10 +48,8 @@
                                 @foreach ($all_parameters as $index => $element)
                                     @if ($element->parameter === $unique_parameter->parameter)
                                         <option value="{{ $element->value }}" class="bg-dark-purple"
-                                            @if (count($all_query_parameters) > 1) 
-                                                @if ($element->value === $all_query_parameters[$key + 1]) 
-                                                    selected 
-                                                @endif
+                                            @if (count($all_query_parameters) > 1) @if ($element->value === $all_query_parameters[$key + 1]) 
+                                                    selected @endif
                                             @endif>
                                             {{ ucfirst($element->value) }}
                                         </option>
@@ -83,9 +81,6 @@
                     <option value="dscPrice" class="bg-dark-purple" @if ($order_by === 'dscPrice') selected @endif>
                         Cena zostupne
                     </option>
-                    <option value="availability" class="bg-dark-purple"
-                        @if ($order_by === 'availability') selected @endif>
-                        Dostupnosti</option>
                 </select>
             </div>
 
@@ -100,7 +95,13 @@
                         <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item['name'] }}</p>
                         <img src="{{ $item['image'] }}" class=" mb-8 scale-[80%] rounded-2xl">
                     </a>
-                    <a id="priceChange{{ $index }}" href="./shopping_cart.html"
+                    <a id="priceChange{{ $index }}" href="
+                    @auth
+                        
+                    @else
+                        api/v1/temporary_account
+                    @endauth
+                    "
                         class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
                         {{ number_format($item['price'], 2) }} €
                     </a>

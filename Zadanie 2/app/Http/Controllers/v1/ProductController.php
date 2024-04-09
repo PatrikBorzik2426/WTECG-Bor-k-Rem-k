@@ -80,8 +80,6 @@ class ProductController extends Controller
                 $query->orderBy('price');
             } elseif ($orderBy === 'dscPrice') {
                 $query->orderByDesc('price');
-            } elseif ($orderBy === 'availability') {
-                $query->orderBy('quantity');
             } // Add more conditions for other sorting options if needed
         }
 
@@ -100,7 +98,6 @@ class ProductController extends Controller
                 'description' => $element->description,
                 'category' => $element->category,
                 'price' => $element->price,
-                'quantity' => $element->quantity,
                 'image' => decrypt(stream_get_contents($image->link)),
                 'created_at' => $element->created_at
             ];
@@ -151,6 +148,14 @@ class ProductController extends Controller
     public function singlePage($id)
     {
         $product = Product::find($id);
+        $parameterProducts = ParameterProduct::where('product_id', $id)->get();
+        $parameters = [];
+
+        foreach ($parameterProducts as $parameterProduct) {
+            $parameter = Parameter::where('id', $parameterProduct->parameter_id)->first();
+            array_push($parameters, $parameter);
+        }
+
         $images = Image::where('product_id', $id)->take(2)->get();
 
         foreach ($images as $image) {
@@ -159,7 +164,8 @@ class ProductController extends Controller
 
         return view('single-page', [
             'product' => $product,
-            'images' => $images
+            'images' => $images,
+            'parameters' => $parameters
         ]);
     }
 
