@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\ProductController;
+use App\Http\Controllers\v1\ShoppingSessionController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,8 +19,6 @@ use Illuminate\Routing\Router;
 |
 */
 
-//! dd() - function for debbuging  in Laravel
-//! ddd() - function for debbuging  in Laravel on deeper level
 
 Route::get('/shop', [ProductController::class, 'index'])->name('shop'); # This is the correct way to use controllers
 
@@ -31,10 +30,6 @@ Route::get('/posts/{id}', function ($id) {
     return response('Hello, World ' . $id, 200);
 })->where('id', '[0-9]+');;
 
-Route::get('/search', function (Request $request) {
-    dd($request->name);
-});
-
 Route::get('/registration', function () {
     return view('registration');
 });
@@ -43,10 +38,16 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth');
+
+Route::get('/logout', [UserController::class, 'logout']);
 
 Route::post('/login-submit', [UserController::class, 'login']);
 
 Route::post('/registration-submit', [UserController::class, 'registration']);
 
 Route::get('/single-page/{id}', [ProductController::class, 'singlePage']);
+
+Route::get('/cart', [ShoppingSessionController::class, 'cart']);
+
+Route::get('/temporary_account',[UserController::class, 'temporaryAccount']);

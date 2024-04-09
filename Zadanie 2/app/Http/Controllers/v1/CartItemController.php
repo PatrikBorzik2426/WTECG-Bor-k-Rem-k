@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Http\Requests\StoreCartItemRequest;
 use App\Http\Requests\UpdateCartItemRequest;
+use Illuminate\Http\Request;
 
 class CartItemController extends Controller
 {
@@ -20,9 +21,15 @@ class CartItemController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $all_parameters = $request->all();
+
+        CartItem::create([
+            'product_id' => $all_parameters['product_id'],
+            'session_id' => $all_parameters['shopping_session_id'],
+            'quantity' => $all_parameters['quantity']
+        ]);
     }
 
     /**

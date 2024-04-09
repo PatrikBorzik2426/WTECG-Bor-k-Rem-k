@@ -27,7 +27,7 @@
                 <img src="{{ asset('img/svg/avatar.svg') }}" class=" cursor-pointer scale-150">
             </div>
             <div id="cart" class=" flex justify-center items-baseline">
-                <a href="/shopping-cart" class=" pt-6">
+                <a href="/cart" class=" pt-6">
                     <img src='{{ asset('img/svg/cart.svg') }}' class=" scale-150">
                     <p id="numberOfCartItem"
                         class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
@@ -66,7 +66,7 @@
                         class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
                         Login
                     </a>
-                    <a href="/register"
+                    <a href="/registration"
                         class=" w-32 px-2 border-dark-purple border-2 rounded-lg hover:bg-dark-purple hover:text-light-green hover:font-bold">
                         Register
                     </a>

@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Redirect;
 
+use App\Http\Controllers\v1\ShoppingSessionController;
+use App\Models\CartItem;
+use App\Models\ShoppingSession;
+use App\Models\Product;
+
 class UserController extends Controller
 {
     /**
@@ -106,22 +111,57 @@ class UserController extends Controller
 
     public function temporaryAccount(Request $request)
     {
-        $full_url = $request->fullUrl();
+        if (!auth()->check()){
 
-        dd($full_url);
+            $full_url = $request->fullUrl();
+            
+            $user = User::create([
+                'login' => null,
+                'email' => null,
+                'password' => null,
+                'temporary' => true
+            ]);
+            
+            Auth::login($user);
+            
+            $shopping_session = new ShoppingSessionController();
+            $shopping_session->create($request);
+        }
+            
+        $my_session = ShoppingSession::where('user_id', auth()->id())->first();
 
-        $user = User::create([
-            'login' => null,
-            'email' => null,
-            'password' => null,
-            'temporary' => true
+        $all_cart_items = CartItem::where('session_id', $my_session->id)->get();
+
+        $all_product_names = [];
+        $all_product_prices = [];
+        $all_product_quantities = [];
+        $total_price = 0;
+
+        foreach ($all_cart_items as $cart_item) {
+            $product_id = $cart_item->product_id;
+            $product = Product::where('id', $product_id)->first();
+            array_push($all_product_names, $product->name);
+            array_push($all_product_prices, $product->price);
+            array_push($all_product_quantities, $cart_item->quantity);
+
+            $total_price += $product->price * $cart_item->quantity;
+        }
+
+        $total_price_taxed = $total_price * 1.2;
+        
+        return view('shopping-cart', [
+            'product_names' => $all_product_names,
+            'product_prices' => $all_product_prices,
+            'product_quantities' => $all_product_quantities,
+            'total_price' => $total_price,
+            'total_price_taxed' => $total_price_taxed
         ]);
-
-        $user = Auth::login($user);
-
-        return view('profile');
     }
 
+    public function profile()
+    {
+        return view('profile');
+    }
     /**
      * Store a newly created resource in storage.
      */

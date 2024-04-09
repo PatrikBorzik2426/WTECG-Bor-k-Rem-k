@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ShoppingSession;
 use App\Http\Requests\StoreShoppingSessionRequest;
 use App\Http\Requests\UpdateShoppingSessionRequest;
+use Illuminate\Http\Request;
 
 class ShoppingSessionController extends Controller
 {
@@ -18,12 +19,28 @@ class ShoppingSessionController extends Controller
         //
     }
 
+    public function cart()
+    {
+        return view('shopping-cart');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $all_parameters=$request->all();
+
+        $new_session=ShoppingSession::create([
+            'user_id' => auth()->id(),
+            'total' => $all_parameters['price'],
+        ]);
+
+        $request->merge(['shopping_session_id' => $new_session->id] );
+
+        $cart_item = new CartItemController();
+
+        $cart_item->create($request);
     }
 
     /**

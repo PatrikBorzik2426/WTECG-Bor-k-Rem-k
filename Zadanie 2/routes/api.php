@@ -21,7 +21,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1'], function () {
-
     Route::get('/search/products', [ProductController::class, 'searchUpProduct']);
-    Route::get('/temporary_account',[UserController::class, 'temporaryAccount']);
 });
