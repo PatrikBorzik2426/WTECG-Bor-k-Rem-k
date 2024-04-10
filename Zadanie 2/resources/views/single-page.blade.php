@@ -9,75 +9,148 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-black font-manrope min-w-80">
-    <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
-        <header>
-            <x-navbar />
-        </header>
-        <div class="mt-4 w-full">
-            <h1 class="text-3xl font-bold tracking-tight text-white sm:text-3xl text-center">{{ $product->name }}</h1>
-
-            <!-- Image gallery -->
-            <div class="flex w-4/12 justify-center items-center max-w-fit mx-auto mt-8 gap-8 max-lg:flex-col">
-                <img src="{{ $images[0]->link }}" alt="obrazok1"
-                    class="h-full w-full object-cover object-center rounded-3xl">
-                <img src="{{ $images[0]->link }}" alt="obrazok2"
-                    class="h-full w-full object-cover object-center rounded-3xl">
+<body class="bg-gradient-to-b from-dark-purple to-black  font-manrope min-w-80">
+    <main
+        class="flex justify-center items-start h-screen gap-x-40 mx-auto mt-32 max-lg:gap-x-10 max-sm:flex-col max-sm:mt-12 max-sm:h-full">
+        <div
+            class="flex flex-col items-center max-sm:mx-auto p-12 max-lg:p-6 text-light-green max-xl:w-5/12 max-sm:w-10/12 w-4/12 max-sm:mb-16 shadow-custom shadow-light-purple rounded-[3rem]">
+            <div class="text-center mb-12 animate-jump-in max-sm:mb-2">
+                <h1 class=" font-bold text-2xl mb-2 max-sm:text-lg">Faktúračné údaje</h1>
+                <p class=" font-light max-sm:text-sm">Formulár obsahujúci všetky potrebné údaje na korektné odoslanie
+                    objednávky!</p>
             </div>
+            <!-- @if ($errors->any())
+            {{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
+            @endif -->
+            <form method="POST" action="/submit-registration"
+                class="flex flex-col max-lg:grid-cols-1 w-10/12 max-lg:w-full h-full gap-x-12">
+                <!-- {{-- Security feature --}} -->
+                <!-- @csrf -->
 
-            <!-- Product info -->
-            <div class="grid grid-cols-2 gap-x-10 mt-10 w-8/12 mx-auto max-lg:grid-cols-1 mb-10">
-                <div class="text-white">
-                    <h2 class="text-2xl mb-4 font-semibold sm:text-3xl">Popis produktu</h2>
-                    <!-- Description and details -->
-                    <p class="text-base">
-                        {{ $product->description }}
-                    </p>
+                <div>
+                    <label for="city">Mesto</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text" id="city"
+                        name="city" value="" tabindex="4">
+                    <!-- @error('city')
+                    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                        {{ $message }}</p>
+                    @enderror -->
                 </div>
-                <!-- Options -->
-                <div class=" text-white max-lg:mt-10">
-                    <h2 class="text-2xl mb-4 font-semibold text-white sm:text-3xl">Cena</h2>
-                    <h3 class="text-4xl font-bold mb-8 max-lg:text-ce">{{ number_format($product->price, 2) }} €</h3>
-                    <div class="flex gap-x-4 w-fit mb-4 max-sm:flex-col max-sm:gap-y-4">
-                        <div class="mx-auto my-auto">
-                            <button id="decrementQuantity"
-                                class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
-                            <input type="number" name="quantityValue" id="quantityValue" min="1" max="100"
-                                value="1" class=" appearance-none bg-transparent text-center focus:outline-none">
-                            <button id="incrementQuantity"
-                                class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
-                        </div>
-                        <a href="./shopping_cart.html"
-                            class="bg-light-purple text-light-green font-bold text-md text-center w-fit h-fit py-2 px-10 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
-                            Pridať do košíka
-                        </a>
-                    </div>
-                    <div class="mt-10">
-                        <h3 class="text-2xl font-semibold mb-2">Parameters</h3>
-                        <hr class="mb-2">
-                        @foreach ($parameters as $index => $parameter_array)
-                            @if ($index === 0)
-                                <p class="text-xl font-semibold">{{ ucfirst($parameter_array->parameter) }} :
-                            @endif
 
-                            @if ($index === 0 || $temp_param === $parameter_array->parameter)
-                                <span class="text-lg font-light">{{ ucfirst($parameter_array->value) }} &nbsp; |
-                                    &nbsp; </span>
-                            @else
-                                </p>
-                                <p class="text-xl font-semibold">{{ ucfirst($parameter_array->parameter) }} :
-                                    @if ($index === count($parameters) - 1)
-                                        <span class="text-lg font-light">{{ ucfirst($parameter_array->value) }} &nbsp; |
-                                            &nbsp; </span>
-                                    @endif
-                            @endif
-
-                            <span class="hidden">{{ $temp_param = $parameter_array->parameter }}</span>
-                        @endforeach
-                    </div>
+                <div>
+                    <label for="address">Adresa</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="address" name="address" value="" tabindex="5">
+                    <!-- @error('address')
+                    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                        {{ $message }}</p>
+                    @enderror -->
                 </div>
+                <div>
+                    <label for="email">Email</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
+                        id="email" name="email" value="" tabindex="3">
+                    <!-- @error('email')
+                    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                        {{ $message }}</p>
+                    @enderror -->
+                </div>
+                <div>
+                    <label for="postal_code">PSČ</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="postal_code" name="postal_code" value="" tabindex="6">
+                    <!-- @error('postal_code')
+                    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                        {{ $message }}</p>
+                    @enderror -->
+                </div>
+                <div class=" col-start-2 max-lg:col-start-1">
+                    <label for="phone">Tel. číslo</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="phone" name="phone" value="" tabindex="7">
+                    <!-- @error('phone')
+                    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                        {{ $message }}</p>
+                    @enderror -->
+                </div>
+
+                <div class="flex gap-x-4 mt-8 max-lg:w-8/12 max-lg:mx-auto max-lg:mb-3 max-sm:flex-col max-sm:gap-y-4">
+                    <button type=""
+                        class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
+                        OBJEDNAŤ
+                    </button>
+                    <a href="./shopping_cart.html"
+                        class=" flex items-center justify-center w-full h-8 bg-light-green font-bold hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
+                        SPÄŤ
+                    </a>
+                </div>
+
+            </form>
+        </div>
+        <aside
+            class=" h-10/12 text-light-green shadow-custom shadow-light-purple rounded-3xl p-10 max-sm:mb-16 max-sm:mx-auto">
+            <h2 class="text-3xl text-center font-semibold mb-4">
+                Prepočet ceny
+            </h2>
+            <div class="grid grid-cols-2">
+                <p>Cena bez DPH</p>
+                <p class="text-right">1000,50 €</p>
+                <p>Cena s DPH</p>
+                <p class="text-right">1200,50 €</p>
+                <p>Doprava</p>
+                <p class="text-right">0 €</p>
+
+            </div>
+            <hr class="mt-8 mb-4">
+            <div class="grid grid-cols-2 font-bold mb-4">
+                <p>Spolu</p>
+                <p class="text-right">0 €</p>
+            </div>
+            <div>
+                <form class=" flex flex-col gap-y-2">
+                    <h2 class="text-3xl text-center font-semibold my-4">
+                        Doprava
+                    </h2>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label for="store" class="text-light">Osobný odber</label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label name="store" class="text-light">Slovenská pošta</label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label name="store" class="text-light">Packeta</label>
+                    </div>
+
+                    <h2 class="text-3xl text-center font-semibold my-4">
+                        Platba
+                    </h2>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store2" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label for="store2" class="text-light">Dobierka</label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <input type="radio" name="store2" value="Submit"
+                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
+                        <label name="store2" class="text-light">Kartou online</label>
+                    </div>
+
+                </form>
+            </div>
+            <div class="w-full flex justify-center items-center mt-8 h-8">
+                <a href="./create_order.html"
+                    class=" w-full py-2 bg-light-purple text-center rounded-full hover:bg-light-green hover:text-dark-purple hover:font-bold">
+                    Objednať
+                </a>
+            </div>
+        </aside>
     </main>
 </body>
-<script src="{{ asset('js/quantity_change.js') }}"></script>
 
 </html>

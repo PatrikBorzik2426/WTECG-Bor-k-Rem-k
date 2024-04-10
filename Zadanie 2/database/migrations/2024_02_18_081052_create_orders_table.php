@@ -16,6 +16,8 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable(false);
             $table->unsignedInteger('shopping_session_id')->nullable(false);
+            $table->unsignedInteger("payment_method")->nullable(false);
+            $table->unsignedInteger("delivery_method")->nullable(false);
             $table->integer('status')->default(0);
             $table->timestamp('created_at')->nullable(false);
 

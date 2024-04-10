@@ -5,13 +5,14 @@
         <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item['name'] }}</p>
         <img src="{{ $item['image'] }}" class=" mb-8 scale-[80%] rounded-2xl">
     </a>
-    <a id="priceChange{{ $index }}"
-        href="
-    @auth
-@else
-        /temporary_account?price={{ number_format($item['price'], 2) }}&quantity=1&product_id={{ $item['id'] }} @endauth
-    "
-        class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
-        {{ number_format($item['price'], 2) }} €
-    </a>
+    <form action="/cart" method="get" class="mx-auto">
+        @csrf
+        <input class="hidden" name="price" id="price" value="{{ number_format($item['price'], 2) }}">
+        <input class="hidden" name="quantity" id="quantity" value="1">
+        <input class="hidden" name="product_id" id="product_id" value="{{ $item['id'] }}">
+        <button id="priceChange{{ $index }}" type="submit"
+            class=" relative bottom-6 bg-light-purple text-light-green font-bold text-lg text-center w-32 py-2 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
+            {{ number_format($item['price'], 2) }} €
+        </button>
+    </form>
 </div>

@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\v1\ProductController;
 use App\Http\Controllers\v1\ShoppingSessionController;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\v1\UserController;
-use Illuminate\Routing\Router;
+use App\Http\Controllers\v1\CartItemController;
+use App\Http\Controllers\v1\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +47,8 @@ Route::post('/registration-submit', [UserController::class, 'registration']);
 
 Route::get('/single-page/{id}', [ProductController::class, 'singlePage']);
 
-Route::get('/cart', [ShoppingSessionController::class, 'cart']);
+Route::get('/cart', [UserController::class, 'temporaryAccount']);
 
-Route::get('/temporary_account',[UserController::class, 'temporaryAccount']);
+Route::get('/cart-items/count', [CartItemController::class, 'numberOfItems']);
+
+Route::get('/process-order', [OrderController::class, 'processOrder']);

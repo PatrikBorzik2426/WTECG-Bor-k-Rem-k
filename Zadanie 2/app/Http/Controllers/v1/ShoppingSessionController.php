@@ -29,18 +29,18 @@ class ShoppingSessionController extends Controller
      */
     public function create(Request $request)
     {
-        $all_parameters=$request->all();
+        $all_parameters = $request->all();
 
-        $new_session=ShoppingSession::create([
+        $new_session = ShoppingSession::create([
             'user_id' => auth()->id(),
-            'total' => $all_parameters['price'],
+            'total' => $all_parameters['price'] ?? 0,
         ]);
 
-        $request->merge(['shopping_session_id' => $new_session->id] );
+        $session_id = $new_session->id;
 
         $cart_item = new CartItemController();
 
-        $cart_item->create($request);
+        $cart_item->create($request, $session_id);
     }
 
     /**

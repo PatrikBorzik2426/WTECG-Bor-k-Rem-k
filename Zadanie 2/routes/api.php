@@ -22,4 +22,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
     Route::get('/search/products', [ProductController::class, 'searchUpProduct']);
+    Route::put('/cart-items/update-quantity', [CartItemController::class, 'updateQuantity']);
 });

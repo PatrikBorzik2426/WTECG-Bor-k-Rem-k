@@ -33,5 +33,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-product', function (User $user) {
             return (bool) $user->admin;
         });
+
+        Gate::define('temporary-login', function (User $user) {
+            return (bool) $user->temporary;
+        });
     }
 }

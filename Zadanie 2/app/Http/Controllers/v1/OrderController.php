@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -16,6 +17,25 @@ class OrderController extends Controller
     public function index()
     {
         //
+    }
+
+    public function processOrder(Request $request)
+    {
+        $validator = $request->validate([
+            'pickUp' => 'required',
+            'pickUpPayment' => 'required',
+            'totalPriceInputFinal' => 'required | min:0',
+        ], [
+            'pickUp.required' => 'Vyberte spôsob doručenia!',
+            'pickUpPayment.required' => 'Vyberte spôsob platby!',
+        ]);
+
+        return (view('order', [
+            'taxLessPrice' => $request->taxLessPriceInput,
+            'totalPrice' => $request->totalPriceInputFinal,
+            'taxedPrice' => $request->taxedPriceInput,
+
+        ]));
     }
 
     /**
