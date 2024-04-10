@@ -30,12 +30,33 @@ class OrderController extends Controller
             'pickUpPayment.required' => 'Vyberte spôsob platby!',
         ]);
 
-        return (view('order', [
+        return (view('process-order', [
             'taxLessPrice' => $request->taxLessPriceInput,
             'totalPrice' => $request->totalPriceInputFinal,
-            'taxedPrice' => $request->taxedPriceInput,
+            'taxedPrice' => $request->totalTaxedPriceInput,
 
         ]));
+    }
+
+    public function createOrder(Request $request)
+    {
+        $validator = $request->validate([
+            'first_name' => 'required | max:35',
+            'last_name' => 'required | max:35',
+            'email' => 'required | email | max:254',
+            'address' => 'required | max:175',
+            'postal_code' => 'required | digits:5',
+            'phone' => 'required | max:15',
+        ], [
+            'first_name.required' => 'Meno je povinné',
+            'last_name.required' => 'Priezvisko je povinné',
+            'email.required' => 'Email je povinný',
+            'email.email' => 'Email musí byť platný',
+            'address.required' => 'Adresa je povinná',
+            'postal_code.required' => 'PSČ je povinné',
+            'postal_code.digits' => 'PSČ musí obsahovať 5 čísel',
+            'phone.required' => 'Telefónne číslo je povinné',
+        ]);
     }
 
     /**

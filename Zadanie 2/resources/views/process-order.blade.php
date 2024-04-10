@@ -14,32 +14,88 @@
         <x-navbar />
     </header>
     <main
-        class="flex justify-center items-start gap-x-32 mx-auto pt-20 max-sm:pt-10 max-lg:gap-x-10 max-sm:flex-col max-sm:h-full">
-        <div class="w-5/12 text-light-green max-sm:w-10/12 max-sm:mx-auto mb-12">
-            <h2 class="text-4xl font-bold mb-10">Nákupný košík</h2>
-            <form class="grid grid-cols-3 gap-y-4">
-                <h3 class="text-lg font-medium">Názov</h3>
-                <h3 class="text-lg font-medium text-center">Kusy</h3>
-                <h3 class="text-lg font-medium text-right">Cena (ks)</h3>
+        class="flex justify-center items-start h-fit gap-x-40 mx-auto mt-10 max-lg:gap-x-10 max-sm:flex-col max-sm:mt-12 max-sm:h-full">
+        <div
+            class="flex flex-col items-center max-sm:mx-auto p-12 max-lg:p-6 text-light-green max-xl:w-5/12 max-sm:w-10/12 w-4/12 max-sm:mb-16 shadow-custom shadow-light-purple rounded-[3rem]">
+            <div class="text-center mb-12 animate-jump-in max-sm:mb-2">
+                <h1 class=" font-bold text-2xl mb-2 max-sm:text-lg">Faktúračné údaje</h1>
+                <p class=" font-light max-sm:text-sm">Formulár obsahujúci všetky potrebné údaje na korektné odoslanie
+                    objednávky!</p>
+            </div>
+            <!-- @if ($errors->any())
+{{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
+@endif -->
+            <form method="POST" action="/submit-registration"
+                class="flex flex-col max-lg:grid-cols-1 w-10/12 max-lg:w-full max-h-full gap-x-12 overflow-auto">
+                @csrf
+                <div>
+                    <label for="city">Krstné meno</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="first_name" name="first_name" value="" tabindex="1">
+                    <!-- @error('first_name')
+    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                                                            {{ $message }}</p>
+@enderror -->
+                </div>
+                <div>
+                    <label for="city">Priezvisko</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="last_name" name="last_name" value="" tabindex="2">
+                    <!-- @error('last_name')
+    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                                                            {{ $message }}</p>
+@enderror -->
+                </div>
 
-                @auth
-                    @foreach ($product_names as $index => $product_name)
-                        <input type="number" name="cartItemId{{ $index }}" id="cartItemId{{ $index }}"
-                            value={{ $cart_items[$index] }} class="hidden">
-                        <p class="font-light">{{ $product_name }}</p>
-                        <div class="mx-auto my-auto">
-                            <button id="decrementQuantity{{ $index }}" type="button"
-                                class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
-                            <input type="number" name="quantity{{ $index }}" id="quantity{{ $index }}"
-                                min="1" max="100" value="{{ $product_quantities[$index] }}"
-                                class=" appearance-none bg-transparent text-center focus:outline-none">
-                            <button id="incrementQuantity{{ $index }}" type="button"
-                                class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
-                        </div>
-                        <p class="text-right font-bold my-auto">
-                            {{ ucfirst(number_format($product_prices[$index], 2, ',', ' ')) }} €</p>
-                    @endforeach
-                @endauth
+                <div>
+                    <label for="address">Adresa</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="address" name="address" value="" tabindex="4">
+                    <!-- @error('address')
+    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                                                            {{ $message }}</p>
+@enderror -->
+                </div>
+                <div>
+                    <label for="email">Email</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
+                        id="email" name="email" value="" tabindex="5">
+                    <!-- @error('email')
+    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                                                            {{ $message }}</p>
+@enderror -->
+                </div>
+                <div>
+                    <label for="postal_code">PSČ</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="postal_code" name="postal_code" value="" tabindex="6">
+                    <!-- @error('postal_code')
+    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                                                            {{ $message }}</p>
+@enderror -->
+                </div>
+                <div class=" col-start-2 max-lg:col-start-1">
+                    <label for="phone">Tel. číslo</label><br>
+                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                        id="phone" name="phone" value="" tabindex="7">
+                    <!-- @error('phone')
+    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                                                            {{ $message }}</p>
+@enderror -->
+                </div>
+
+                <div class="flex gap-x-4 mt-8 max-lg:w-8/12 max-lg:mx-auto max-lg:mb-3 max-sm:flex-col max-sm:gap-y-4">
+                    <button type=""
+                        class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
+                        OBJEDNAŤ
+                    </button>
+                    <a href="./shopping_cart.html"
+                        class=" flex items-center justify-center w-full h-8 bg-light-green font-bold hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
+                        SPÄŤ
+                    </a>
+                </div>
+
+            </form>
         </div>
         <aside
             class=" h-10/12 text-light-green shadow-custom shadow-light-purple rounded-3xl p-10 max-sm:mb-16 max-sm:mx-auto">
@@ -47,61 +103,20 @@
                 Prepočet ceny
             </h2>
             <div class="grid grid-cols-2">
-                <p id="taxLessPrice">Cena bez DPH</p>
-                <p class="text-right">{{ number_format($total_price, 2, ',', ' ') }} €</p>
+                <p>Cena bez DPH</p>
+                <p class="text-right">{{ number_format($taxLessPrice, 2, ',', ' ') }} €</p>
                 <p>Cena s DPH</p>
-                <p class="text-right" id="preTotalPrice">{{ number_format($total_price_taxed, 2, ',', ' ') }} €</p>
-                <p>Doprava</p>
-                <p class="text-right" id="transportPrice">0 €</p>
-
+                <p class="text-right">{{ number_format($taxedPrice, 2, ',', ' ') }} €</p>
             </div>
             <hr class="mt-8 mb-4">
             <div class="grid grid-cols-2 font-bold mb-4">
                 <p>Spolu</p>
-                <p class="text-right" id="finalPrice">0 €</p>
-            </div>
-            <div>
-                <form class=" flex flex-col gap-y-2">
-                    <input class="hidden" name="totalTaxedPriceInput" value="{{ $total_price_taxed }}">
-                    <h2 class="text-3xl text-center font-semibold my-4">
-                        Doprava
-                    </h2>
-                    <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="localPickup" id="transport1" value="transport1"
-                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
-                        <label for="localPickup" class="text-light">Osobný odber</label>
-                    </div>
-                    <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="skPost" id="transport2" value="transport2"
-                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
-                        <label name="skPost" class="text-light">Slovenská pošta</label>
-                    </div>
-                    <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="packeta" id="transport3" value="transport3"
-                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
-                        <label name="packeta" class="text-light">Packeta</label>
-                    </div>
-
-                    <h2 class="text-3xl text-center font-semibold my-4">
-                        Platba
-                    </h2>
-                    <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="pickUpPayment" id="payment1" value="payment1"
-                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
-                        <label for="pickUpPayment" class="text-light">Dobierka</label>
-                    </div>
-                    <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="store2" id="payment2" value="payment2"
-                            class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
-                        <label name="store2" class="text-light">Kartou online</label>
-                    </div>
-
-                </form>
+                <p class="text-right">{{ number_format($totalPrice, 2, ',', ' ') }} €</p>
             </div>
             <div class="w-full flex justify-center items-center mt-8 h-8">
                 <a href="./create_order.html"
                     class=" w-full py-2 bg-light-purple text-center rounded-full hover:bg-light-green hover:text-dark-purple hover:font-bold">
-                    Pokračovať
+                    Objednať
                 </a>
             </div>
         </aside>
