@@ -113,12 +113,10 @@
                 <p>Spolu</p>
                 <p class="text-right">{{ number_format($totalPrice, 2, ',', ' ') }} €</p>
             </div>
-            <div class="w-full flex justify-center items-center mt-8 h-8">
                 <a href="./create_order.html"
                     class=" w-full py-2 bg-light-purple text-center rounded-full hover:bg-light-green hover:text-dark-purple hover:font-bold">
                     Objednať
                 </a>
-            </div>
         </aside>
     </main>
 </body>

@@ -24,18 +24,21 @@ class OrderController extends Controller
         $validator = $request->validate([
             'pickUp' => 'required',
             'pickUpPayment' => 'required',
-            'totalPriceInputFinal' => 'required | min:0',
+            'totalPriceInputFinal' => 'required ',
         ], [
             'pickUp.required' => 'Vyberte spôsob doručenia!',
             'pickUpPayment.required' => 'Vyberte spôsob platby!',
         ]);
 
-        return (view('process-order', [
-            'taxLessPrice' => $request->taxLessPriceInput,
-            'totalPrice' => $request->totalPriceInputFinal,
-            'taxedPrice' => $request->totalTaxedPriceInput,
-
-        ]));
+        if ($request->totalPriceInputFinal > 10) {
+            return (view('process-order', [
+                'taxLessPrice' => $request->taxLessPriceInput,
+                'totalPrice' => $request->totalPriceInputFinal,
+                'taxedPrice' => $request->totalTaxedPriceInput,
+            ]));
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function createOrder(Request $request)

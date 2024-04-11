@@ -46,12 +46,11 @@ class UserController extends Controller
                 'login' => 'required|max:64|unique:users,login',
                 'email' => 'required|email|max:254|unique:users,email',
                 'password' => 'required|min:8|regex:/[!@#$%^&*()\-+=\[\]{};:",.<>\/?]/',
-                'address' => 'max:255',
-                'city' => 'max:100',
-                'postal_code' => 'nullable|digits:5',
-                'phone' => 'max:20',
-                'first_name' => 'max:35',
-                'last_name' => 'max:35'
+                'address' => 'required | max:255',
+                'postal_code' => 'required | nullable|digits:5',
+                'phone' => 'required | max:20',
+                'first_name' => 'required | max:35',
+                'last_name' => 'required | max:35'
             ],
             [
                 'login.required' => 'Prihlásenie je povinné',
@@ -72,7 +71,6 @@ class UserController extends Controller
             'password' => Hash::make($validationOfData['password']),
             'address' => $validationOfData['address'] ?? null,
             'postal_code' => $validationOfData['postal_code'] ?? null,
-            'city' => $validationOfData['city'] ?? null,
             'phone' => $validationOfData['phone'] ?? null,
             'first_name' => $validationOfData['first_name'] ?? null,
             'last_name' => $validationOfData['last_name'] ?? null
@@ -99,6 +97,10 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             return Redirect::to('/');
+        } else {
+            return view('login', [
+                'data' => $validationOfData
+            ]);
         }
     }
 
