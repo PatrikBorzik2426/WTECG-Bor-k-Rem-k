@@ -39,10 +39,12 @@
                     <h2 class="text-2xl mb-4 font-semibold text-white sm:text-3xl">Cena</h2>
                     <h3 class="text-4xl font-bold mb-8 max-lg:text-ce">{{ number_format($product->price, 2) }} €</h3>
                     <div class="flex gap-x-4 w-fit mb-4 max-sm:flex-col max-sm:gap-y-4">
+                        <input class="hidden" name="price" value="{{ $product->price }}">
+                        <input class="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="mx-auto my-auto">
                             <button id="decrementQuantity" type="button"
                                 class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
-                            <input type="number" name="quantityValue" id="quantityValue" min="1" max="100"
+                            <input type="number" name="quantity" id="quantityValue" min="1" max="100"
                                 value="1" class=" appearance-none bg-transparent text-center focus:outline-none">
                             <button id="incrementQuantity" type="button"
                                 class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
