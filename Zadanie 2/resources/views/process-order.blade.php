@@ -14,7 +14,7 @@
         <x-navbar />
     </header>
     <main
-        class="flex justify-center items-start h-fit gap-x-40 mx-auto mt-10 max-lg:gap-x-10 max-sm:flex-col max-sm:mt-12 max-sm:h-full">
+        class="flex justify-center items-start h-fit gap-x-20 mx-auto mt-10 max-lg:gap-x-10 max-sm:flex-col max-sm:mt-12 max-sm:h-full">
         <div
             class="flex flex-col items-center max-sm:mx-auto p-12 max-lg:p-6 text-light-green max-xl:w-5/12 max-sm:w-10/12 w-4/12 max-sm:mb-16 shadow-custom shadow-light-purple rounded-[3rem]">
             <div class="text-center mb-12 animate-jump-in max-sm:mb-2">
@@ -22,70 +22,92 @@
                 <p class=" font-light max-sm:text-sm">Formulár obsahujúci všetky potrebné údaje na korektné odoslanie
                     objednávky!</p>
             </div>
-            <!-- @if ($errors->any())
-{{-- TODO Vytvoriť notification button pre zobrazenie chybových hlásení --}}
-@endif -->
-            <form method="POST" action="/submit-registration"
-                class="flex flex-col max-lg:grid-cols-1 w-10/12 max-lg:w-full max-h-full gap-x-12 overflow-auto">
+            <form method="POST" action="/create-order"
+                class="flex flex-col max-h-[55vh] max-lg:grid-cols-1 w-10/12 max-lg:w-full gap-x-12 overflow-auto">
                 @csrf
+                <input type="hidden" name="pickUpPayment" value="{{ $pickUpPayment }}">
+                <input type="hidden" name="pickUp" value="{{ $pickUp }}">
                 <div>
                     <label for="city">Krstné meno</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="first_name" name="first_name" value="" tabindex="1">
-                    <!-- @error('first_name')
-    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
-                                                            {{ $message }}</p>
-@enderror -->
+                        id="first_name" name="first_name"
+                        value="
+                        @if (isset($user_data)) {{ $user_data['name'] }} @endif
+                        "
+                        tabindex="1">
+                    @error('first_name')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="city">Priezvisko</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="last_name" name="last_name" value="" tabindex="2">
-                    <!-- @error('last_name')
-    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
-                                                            {{ $message }}</p>
-@enderror -->
+                        id="last_name" name="last_name"
+                        value="
+                        @if (isset($user_data)) {{ $user_data['surname'] }} @endif
+                        "
+                        tabindex="2">
+                    @error('last_name')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="address">Adresa</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="address" name="address" value="" tabindex="4">
-                    <!-- @error('address')
-    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
-                                                            {{ $message }}</p>
-@enderror -->
+                        id="address" name="address"
+                        value="
+                        @if (isset($user_data)) {{ $user_data['address'] }} @endif
+                        "
+                        tabindex="4">
+                    @error('address')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="email">Email</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="email"
-                        id="email" name="email" value="" tabindex="5">
-                    <!-- @error('email')
-    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
-                                                            {{ $message }}</p>
-@enderror -->
+                        id="email" name="email"
+                        value="
+                        @if (isset($user_data)) {{ $user_data['email'] }} @endif
+                        "
+                        tabindex="5">
+                    @error('email')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="postal_code">PSČ</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="postal_code" name="postal_code" value="" tabindex="6">
-                    <!-- @error('postal_code')
-    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
-                                                            {{ $message }}</p>
-@enderror -->
+                        id="postal_code" name="postal_code"
+                        value="
+                        @if (isset($user_data)) {{ $user_data['postal_code'] }} @endif
+                        "
+                        tabindex="6">
+                    @error('postal_code')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
                 <div class=" col-start-2 max-lg:col-start-1">
                     <label for="phone">Tel. číslo</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="phone" name="phone" value="" tabindex="7">
-                    <!-- @error('phone')
-    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
-                                                            {{ $message }}</p>
-@enderror -->
+                        id="phone" name="phone"
+                        value="
+                        @if (isset($user_data)) {{ $user_data['phone_number'] }} @endif
+                        ">
+                    @error('phone')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="flex gap-x-4 mt-8 max-lg:w-8/12 max-lg:mx-auto max-lg:mb-3 max-sm:flex-col max-sm:gap-y-4">
-                    <button type=""
+                    <button type="submit"
                         class="w-full h-8 bg-light-green font-bold text-center hover:bg-transparent hover:border-2 hover:border-light-green hover:text-light-green text-dark-purple rounded-xl transition-all">
                         OBJEDNAŤ
                     </button>
@@ -94,8 +116,6 @@
                         SPÄŤ
                     </a>
                 </div>
-
-            </form>
         </div>
         <aside
             class=" h-10/12 text-light-green shadow-custom shadow-light-purple rounded-3xl p-10 max-sm:mb-16 max-sm:mx-auto">
@@ -113,14 +133,14 @@
                 <p>Spolu</p>
                 <p class="text-right">{{ number_format($totalPrice, 2, ',', ' ') }} €</p>
             </div>
-                <a href="./create_order.html"
-                    class=" w-full py-2 bg-light-purple text-center rounded-full hover:bg-light-green hover:text-dark-purple hover:font-bold">
-                    Objednať
-                </a>
+            <button type="submit"
+                class=" w-full py-2 bg-light-purple text-center rounded-full hover:bg-light-green hover:text-dark-purple hover:font-bold">
+                Objednať
+            </button>
         </aside>
+        </form>
     </main>
 </body>
-<script src="{{ asset('js/quantity_change_shop.js') }}"></script>
-<script src="{{ asset('js/update_shopping_items_number.js') }}"></script>
+<script src="{{ asset('js/trim_inputs.js') }}"></script>
 
 </html>

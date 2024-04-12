@@ -16,7 +16,7 @@
             <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
                 <a href="/" class="hover:font-bold cursor-pointer min-w-16">Domov</a>
                 <a href="/shop" class="hover:font-bold cursor-pointer">Obchod</a>
-                <a href="/profile" class="hover:font-bold cursor-pointer">O nás</a>
+                <a href="/about_us" class="hover:font-bold cursor-pointer">O nás</a>
             </div>
             <div id="search-bar" class="w-1/3">
                 <input id="searchBarInput" type="text"

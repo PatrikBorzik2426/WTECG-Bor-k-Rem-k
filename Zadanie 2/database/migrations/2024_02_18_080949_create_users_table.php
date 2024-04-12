@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('email', 254)->unique()->nullable(true);
             $table->string('address', 175)->nullable(true);
             $table->string('postal_code', 11)->nullable(true);
-            $table->string('phone_number', 15)->nullable(true)->unique();
+            $table->string('phone_number', 20)->nullable(true)->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->boolean('admin')->default(false);
-            $table->boolean('temporary')->default(false);
+            $table->boolean('temporary');
         });
     }
 

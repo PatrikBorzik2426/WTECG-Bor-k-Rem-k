@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'address' => $faker->address,
             'phone_number' => Str::replace(' ', '', $faker->unique()->phoneNumber),
             'created_at' => $faker->dateTimeBetween('-1 year', 'now'),
+            'temporary' => false
         ];
     }
 }

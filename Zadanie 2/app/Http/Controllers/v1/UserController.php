@@ -18,6 +18,7 @@ use App\Http\Controllers\v1\ShoppingSessionController;
 use App\Models\CartItem;
 use App\Models\ShoppingSession;
 use App\Models\Product;
+use App\Models\Order;
 use Exception;
 
 class UserController extends Controller
@@ -61,19 +62,16 @@ class UserController extends Controller
             ]
         );
 
-        if (isset($validationOfData['phone'])) {
-            $validationOfData['phone'] = str_replace(' ', '', $validationOfData['phone']); //Odstrazenie medzier v tele
-        }
-
         $user = User::create([
             'login' => $validationOfData['login'],
             'email' => $validationOfData['email'],
             'password' => Hash::make($validationOfData['password']),
-            'address' => $validationOfData['address'] ?? null,
-            'postal_code' => $validationOfData['postal_code'] ?? null,
-            'phone' => $validationOfData['phone'] ?? null,
-            'first_name' => $validationOfData['first_name'] ?? null,
-            'last_name' => $validationOfData['last_name'] ?? null
+            'address' => $validationOfData['address'],
+            'postal_code' => $validationOfData['postal_code'],
+            'phone_number' => $validationOfData['phone'],
+            'name' => $validationOfData['first_name'],
+            'surname' => $validationOfData['last_name'],
+            'temporary' => false
         ]);
 
         return view('login', [
@@ -125,15 +123,13 @@ class UserController extends Controller
         $authorized = auth()->check();
 
         if (!$authorized) {
-
-            $full_url = $request->fullUrl();
-
             $user = User::create([
                 'login' => null,
                 'email' => null,
                 'password' => null,
                 'temporary' => true
             ]);
+
 
             Auth::login($user);
 
@@ -204,6 +200,18 @@ class UserController extends Controller
 
     public function profile()
     {
+        $user_id = Auth::id();
+
+        $orders = Order::where('user_id', $user_id)->get();
+        $shopping_sessions = ShoppingSession::where('user_id', $user_id)->get();
+
+        foreach ($shopping_sessions as $session) {
+            $cart_items = CartItem::where('session_id', $session->id)->get();
+            $session['cart_items'] = $cart_items;
+
+            dd($cart_items);
+        }
+
         return view('profile');
     }
     /**

@@ -37,5 +37,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('temporary-login', function (User $user) {
             return (bool) $user->temporary;
         });
+
+        Gate::define('temporary-profile', function (User $user) {
+            if ($user->temporary == true) {
+                return redirect('/shop');
+            } else {
+                return (bool) true;
+            }
+        });
     }
 }

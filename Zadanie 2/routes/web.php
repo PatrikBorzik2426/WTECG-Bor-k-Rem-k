@@ -37,7 +37,7 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/profile', [UserController::class, 'profile'])->middleware('auth');
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth', 'can:temporary-profile');
 
 Route::get('/logout', [UserController::class, 'logout']);
 
@@ -51,4 +51,6 @@ Route::get('/cart', [UserController::class, 'temporaryAccount']);
 
 Route::get('/cart-items/count', [CartItemController::class, 'numberOfItems']);
 
-Route::get('/process-order', [OrderController::class, 'processOrder']);
+Route::get('/process-order', [OrderController::class, 'processOrder'])->middleware('auth');
+
+Route::post('/create-order', [OrderController::class, 'createOrder'])->middleware('auth');

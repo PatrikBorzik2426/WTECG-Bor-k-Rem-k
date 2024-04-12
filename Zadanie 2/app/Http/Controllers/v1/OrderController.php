@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ShoppingSession;
 
 class OrderController extends Controller
 {
@@ -31,10 +33,18 @@ class OrderController extends Controller
         ]);
 
         if ($request->totalPriceInputFinal > 10) {
+
+            if (Auth::check()) {
+                $user_data = Auth::user();
+            };
+
             return (view('process-order', [
                 'taxLessPrice' => $request->taxLessPriceInput,
                 'totalPrice' => $request->totalPriceInputFinal,
                 'taxedPrice' => $request->totalTaxedPriceInput,
+                'pickUp' => $request->pickUp,
+                'pickUpPayment' => $request->pickUpPayment,
+                'user_data' => $user_data
             ]));
         } else {
             return redirect()->back();
@@ -46,8 +56,8 @@ class OrderController extends Controller
         $validator = $request->validate([
             'first_name' => 'required | max:35',
             'last_name' => 'required | max:35',
-            'email' => 'required | email | max:254',
             'address' => 'required | max:175',
+            'email' => 'required | email | max:254',
             'postal_code' => 'required | digits:5',
             'phone' => 'required | max:15',
         ], [
@@ -60,6 +70,16 @@ class OrderController extends Controller
             'postal_code.digits' => 'PSČ musí obsahovať 5 čísel',
             'phone.required' => 'Telefónne číslo je povinné',
         ]);
+
+        $order = Order::create([
+            'user_id' => Auth::id(),
+            'shopping_session_id' => ShoppingSession::where('user_id', Auth::id())->first()->id,
+            'payment_method' => $request->pickUpPayment,
+            'delivery_method' => $request->pickUp,
+            'status' => 0
+        ]);
+
+        return redirect('/profile');
     }
 
     /**
