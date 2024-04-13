@@ -20,7 +20,7 @@ class OrderController extends Controller
     {
         //
     }
-
+    
     public function processOrder(Request $request)
     {
         $validator = $request->validate([

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCartItemRequest;
 use App\Http\Requests\UpdateCartItemRequest;
 use Illuminate\Http\Request;
 
+use App\Models\Order;
 use App\Models\ShoppingSession;
 
 class CartItemController extends Controller
@@ -44,15 +45,18 @@ class CartItemController extends Controller
 
         $user_id = auth()->id();
 
-        $user_session = ShoppingSession::where('user_id', $user_id)->first();
+        $user_session = ShoppingSession::where('user_id', $user_id)->orderBy('created_at', 'desc')->first();
 
-        $carItems = CartItem::where('session_id', $user_session->id)->get();
+        if (!Order::where("shopping_session_id", $user_session->id)->exists()) {
 
-        foreach ($carItems as $item) {
-            $numberOfItems += $item->quantity;
+            $carItems = CartItem::where('session_id', $user_session->id)->get();
+
+            foreach ($carItems as $item) {
+                $numberOfItems += $item->quantity;
+            }
+
+            return $numberOfItems;
         }
-
-        return $numberOfItems;
     }
 
     public function updateQuantity(Request $request)

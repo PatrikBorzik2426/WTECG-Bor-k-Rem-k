@@ -137,9 +137,9 @@ class UserController extends Controller
             $shopping_session->create($request);
         }
 
-        $my_session = ShoppingSession::where('user_id', auth()->id())->first();
+        $my_session = ShoppingSession::where('user_id', auth()->id())->orderBy('created_at', 'desc')->first();
 
-        if (!isset($my_session) && auth()->user()->temporary == false) {
+        if ((!isset($my_session) || Order::where("shopping_session_id", Auth::id())->exists()) && auth()->user()->temporary == false) {
             $shopping_session = new ShoppingSessionController();
             $shopping_session->create($request);
             $my_session = ShoppingSession::where('user_id', auth()->id())->first();
@@ -205,14 +205,26 @@ class UserController extends Controller
         $orders = Order::where('user_id', $user_id)->get();
         $shopping_sessions = ShoppingSession::where('user_id', $user_id)->get();
 
+        $all_cart_items = [];
+        $all_products = [];
+
+
         foreach ($shopping_sessions as $session) {
             $cart_items = CartItem::where('session_id', $session->id)->get();
-            $session['cart_items'] = $cart_items;
+            array_push($all_cart_items, $cart_items);
 
-            dd($cart_items);
+            foreach ($cart_items as $cart_item) {
+                $product = Product::where('id', $cart_item->product_id)->first();
+                array_push($all_products, $product);
+            }
         }
 
-        return view('profile');
+        return view('profile', [
+            'orders' => $orders,
+            'shopping_sessions' => $shopping_sessions,
+            'cart_items' => $all_cart_items,
+            'products' => $all_products
+        ]);
     }
     /**
      * Store a newly created resource in storage.
