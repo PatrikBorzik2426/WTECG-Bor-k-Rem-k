@@ -16,7 +16,7 @@
             <div class=" grid grid-cols-3 text-center w-7/12 min-w-fit max-w-sm">
                 <a href="/" class="hover:font-bold cursor-pointer min-w-16">Domov</a>
                 <a href="/shop" class="hover:font-bold cursor-pointer">Obchod</a>
-                <a href="/profile" class="hover:font-bold cursor-pointer">O nás</a>
+                <a href="/about_us" class="hover:font-bold cursor-pointer">O nás</a>
             </div>
             <div id="search-bar" class="w-1/3">
                 <input id="searchBarInput" type="text"
@@ -27,12 +27,24 @@
                 <img src="{{ asset('img/svg/avatar.svg') }}" class=" cursor-pointer scale-150">
             </div>
             <div id="cart" class=" flex justify-center items-baseline">
-                <a href="/shopping-cart" class=" pt-6">
-                    <img src='{{ asset('img/svg/cart.svg') }}' class=" scale-150">
-                    <p id="numberOfCartItem"
-                        class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
-                        0</p>
-                </a>
+                <form action="/cart" method="get">
+                    @csrf
+
+                    <button class=" pt-6" type="submit">
+                        <img src='{{ asset('img/svg/cart.svg') }}' class=" scale-150">
+                        @auth
+                            <p id="numberOfCartItemAuth"
+                                class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+                                0
+                            </p>
+                        @else
+                            <p id="numberOfCartItemZero"
+                                class=" relative bottom-2 left-2 bg-light-green text-dark-purple text-center rounded-full">
+                                0
+                            </p>
+                        @endauth
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -52,21 +64,32 @@
             <div
                 class="flex justify-between flex-col col-start-4 text-center w-full bg-light-green py-4 px-4 rounded-md">
                 @auth
-                    <p class="mb-2">Vitajte , <span class=" font-bold">{{ Auth::user()->login }}</span> !</p>
-                    <a href="/profile"
-                        class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
-                        Profile
-                    </a>
-                    <a href="/logout"
-                        class=" w-32 px-2 border-dark-purple border-2 rounded-lg hover:bg-dark-purple hover:text-light-green hover:font-bold">
-                        Logout
-                    </a>
+                    @cannot('temporary-login')
+                        <p class="mb-2">Vitajte , <span class=" font-bold">{{ Auth::user()->login }}</span> !</p>
+                        <a href="/profile"
+                            class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
+                            Profile
+                        </a>
+                        <a href="/logout"
+                            class=" w-32 px-2 border-dark-purple border-2 rounded-lg hover:bg-dark-purple hover:text-light-green hover:font-bold">
+                            Logout
+                        </a>
+                    @else
+                        <a href="/login"
+                            class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
+                            Login
+                        </a>
+                        <a href="/registration"
+                            class=" w-32 px-2 border-dark-purple border-2 rounded-lg hover:bg-dark-purple hover:text-light-green hover:font-bold">
+                            Register
+                        </a>
+                    @endcannot
                 @else
                     <a href="/login"
                         class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
                         Login
                     </a>
-                    <a href="/register"
+                    <a href="/registration"
                         class=" w-32 px-2 border-dark-purple border-2 rounded-lg hover:bg-dark-purple hover:text-light-green hover:font-bold">
                         Register
                     </a>

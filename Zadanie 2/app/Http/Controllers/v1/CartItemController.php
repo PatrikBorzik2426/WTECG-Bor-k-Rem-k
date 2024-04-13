@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Http\Requests\StoreCartItemRequest;
 use App\Http\Requests\UpdateCartItemRequest;
+use Illuminate\Http\Request;
+
+use App\Models\Order;
+use App\Models\ShoppingSession;
 
 class CartItemController extends Controller
 {
@@ -20,9 +24,55 @@ class CartItemController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, $session_id)
     {
-        //
+        $all_parameters = $request->all();
+
+        if (isset($all_parameters['product_id'])) {
+            if (!CartItem::where('product_id', $all_parameters['product_id'])->where('session_id', $session_id)->exists()) {
+                CartItem::create([
+                    'product_id' => $all_parameters['product_id'],
+                    'session_id' => $session_id,
+                    'quantity' => $all_parameters['quantity']
+                ]);
+            }
+        }
+    }
+
+    public function numberOfItems()
+    {
+        $numberOfItems = 0;
+
+        $user_id = auth()->id();
+
+        $user_session = ShoppingSession::where('user_id', $user_id)->orderBy('created_at', 'desc')->first();
+
+        if (!Order::where("shopping_session_id", $user_session->id)->exists()) {
+
+            $carItems = CartItem::where('session_id', $user_session->id)->get();
+
+            foreach ($carItems as $item) {
+                $numberOfItems += $item->quantity;
+            }
+
+            return $numberOfItems;
+        }
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        $all_parameters = $request->all();
+
+        $cart_item_id = $all_parameters['cart_item_id'];
+
+        $cart_item = CartItem::where('id', $cart_item_id)->first();
+
+        $cart_item->update([
+            'quantity' => $all_parameters['quantity']
+        ]);
+
+
+        return (response(["Message" => "Quantity updated"], 201));
     }
 
     /**

@@ -122,7 +122,6 @@ class ProductController extends Controller
     public function searchUpProduct(Request $request)
     {
         $productName = $request->input('search');
-        $productName = $productName;
 
         $products = Product::selectRaw('*, word_similarity(name, \'' . $productName . '\') as sim')
             ->where('name', 'ilike', '%' . $productName . '%')

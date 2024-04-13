@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $fillable = ['login', 'email', 'password', 'name', 'surname', 'address', 'phone_number'];
+    protected $fillable = ['login', 'email', 'password', 'name', 'surname', 'address', 'phone_number', 'postal_code', 'temporary', 'admin'];
 
     const UPDATED_AT = null;
 

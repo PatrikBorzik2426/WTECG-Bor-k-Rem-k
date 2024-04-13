@@ -9,6 +9,8 @@ class ShoppingSession extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id','total'];
+
     const UPDATED_AT = null;
 
     public function shoppingSession()

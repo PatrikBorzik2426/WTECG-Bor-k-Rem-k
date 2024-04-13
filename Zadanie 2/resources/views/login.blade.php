@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-black font-manrope">
-    @if ($errors->any())
+    @if (isset($data))
         <div
             class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
             <p>
@@ -29,7 +29,6 @@
             <form method="POST" action="/login-submit" class="flex flex-col w-full h-full gap-x-12">
                 {{-- Security feature --}}
                 @csrf
-
                 <div>
                     <label for="login">Login</label><br>
                     <input class="w-full h-10 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"

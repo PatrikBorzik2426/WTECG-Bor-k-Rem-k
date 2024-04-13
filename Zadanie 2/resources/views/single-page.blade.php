@@ -35,22 +35,24 @@
                     </p>
                 </div>
                 <!-- Options -->
-                <div class=" text-white max-lg:mt-10">
+                <form action="/cart" class=" text-white max-lg:mt-10">
                     <h2 class="text-2xl mb-4 font-semibold text-white sm:text-3xl">Cena</h2>
                     <h3 class="text-4xl font-bold mb-8 max-lg:text-ce">{{ number_format($product->price, 2) }} €</h3>
                     <div class="flex gap-x-4 w-fit mb-4 max-sm:flex-col max-sm:gap-y-4">
+                        <input class="hidden" name="price" value="{{ $product->price }}">
+                        <input class="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="mx-auto my-auto">
-                            <button id="decrementQuantity"
+                            <button id="decrementQuantity" type="button"
                                 class="bg-light-green text-dark-purple font-bold w-6 rounded-l-2xl -mr-[0.15rem]">-</button>
-                            <input type="number" name="quantityValue" id="quantityValue" min="1" max="100"
+                            <input type="number" name="quantity" id="quantityValue" min="1" max="100"
                                 value="1" class=" appearance-none bg-transparent text-center focus:outline-none">
-                            <button id="incrementQuantity"
+                            <button id="incrementQuantity" type="button"
                                 class="bg-light-green text-dark-purple font-bold w-6 rounded-r-2xl -ml-[1.15rem]">+</button>
                         </div>
-                        <a href="./shopping_cart.html"
+                        <button type="submit"
                             class="bg-light-purple text-light-green font-bold text-md text-center w-fit h-fit py-2 px-10 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
                             Pridať do košíka
-                        </a>
+                        </button>
                     </div>
                     <div class="mt-10">
                         <h3 class="text-2xl font-semibold mb-2">Parameters</h3>
@@ -67,7 +69,8 @@
                                 </p>
                                 <p class="text-xl font-semibold">{{ ucfirst($parameter_array->parameter) }} :
                                     @if ($index === count($parameters) - 1)
-                                        <span class="text-lg font-light">{{ ucfirst($parameter_array->value) }} &nbsp; |
+                                        <span class="text-lg font-light">{{ ucfirst($parameter_array->value) }} &nbsp;
+                                            |
                                             &nbsp; </span>
                                     @endif
                             @endif
@@ -75,7 +78,7 @@
                             <span class="hidden">{{ $temp_param = $parameter_array->parameter }}</span>
                         @endforeach
                     </div>
-                </div>
+            </div>
     </main>
 </body>
 <script src="{{ asset('js/quantity_change.js') }}"></script>
