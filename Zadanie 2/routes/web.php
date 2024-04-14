@@ -21,9 +21,7 @@ use App\Http\Controllers\v1\OrderController;
 
 Route::get('/shop', [ProductController::class, 'index'])->name('shop'); # This is the correct way to use controllers
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ProductController::class, 'homePage'])->name('home');
 
 Route::get('/posts/{id}', function ($id) {
     return response('Hello, World ' . $id, 200);

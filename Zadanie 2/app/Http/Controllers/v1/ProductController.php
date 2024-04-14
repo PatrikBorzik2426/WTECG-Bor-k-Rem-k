@@ -167,6 +167,36 @@ class ProductController extends Controller
             'parameters' => $parameters
         ]);
     }
+    public function homePage(){
+
+        $apple = Product::where('category','1')
+                              ->take(4)
+                              ->get();
+        foreach($apple as $element){
+            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $element['image']=decrypt(stream_get_contents($image->link));
+        }
+        $android = Product::where('category','0')
+                              ->take(4)
+                              ->get();
+        foreach($android as $element){
+            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $element['image']=decrypt(stream_get_contents($image->link));
+        }
+        $news = Product::orderBy('id','desc')
+                              ->take(2)
+                              ->get();
+        foreach($news as $element){
+            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $element['image']=decrypt(stream_get_contents($image->link));
+        }                          
+        return view('home')->with(
+            [    'apple' => $apple,
+                'android' => $android,
+                'news' => $news]
+        
+        );
+    }
 
     public function shopFilter()
     {

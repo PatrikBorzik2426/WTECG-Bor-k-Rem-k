@@ -86,7 +86,7 @@
         </form>
         <div
             class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 w-8/12 mx-auto gap-x-12 gap-y-8 max-md:gap-y-4 my-10 z-0">
-            @foreach ($array_products as $index => $item)
+            @foreach ($apple as $index => $item)
                 <x-shop-item :item="$item" :index="$index" />
             @endforeach
         </div>
