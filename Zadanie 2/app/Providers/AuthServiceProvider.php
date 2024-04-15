@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('temporary-profile', function (User $user) {
             if ($user->temporary == true) {
-                return redirect('/shop');
+                return (bool)false;
             } else {
                 return (bool) true;
             }

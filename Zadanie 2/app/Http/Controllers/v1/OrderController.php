@@ -20,7 +20,7 @@ class OrderController extends Controller
     {
         //
     }
-    
+
     public function processOrder(Request $request)
     {
         $validator = $request->validate([
@@ -71,9 +71,12 @@ class OrderController extends Controller
             'phone.required' => 'Telefónne číslo je povinné',
         ]);
 
+        $shopping_session = ShoppingSession::where('user_id', Auth::id())->orderby('created_at', 'desc')->first();
+        $shopping_session->updateTotal();
+
         $order = Order::create([
             'user_id' => Auth::id(),
-            'shopping_session_id' => ShoppingSession::where('user_id', Auth::id())->first()->id,
+            'shopping_session_id' => $shopping_session->id,
             'payment_method' => $request->pickUpPayment,
             'delivery_method' => $request->pickUp,
             'status' => 0

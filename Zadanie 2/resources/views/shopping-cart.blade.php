@@ -76,17 +76,17 @@
                             {{ $message }}</p>
                     @enderror
                     <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="pickUp" id="transport1" value="transport1"
+                        <input type="radio" name="pickUp" id="osobny_odber" value="osobny_odber"
                             class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
                         <label for="localPickup" class="text-light">Osobný odber</label>
                     </div>
                     <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="pickUp" id="transport2" value="transport2"
+                        <input type="radio" name="pickUp" id="SP" value="SP"
                             class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
                         <label name="skPost" class="text-light">Slovenská pošta</label>
                     </div>
                     <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="pickUp" id="transport3" value="transport3"
+                        <input type="radio" name="pickUp" id="packeta" value="packeta"
                             class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
                         <label name="packeta" class="text-light">Packeta</label>
                     </div>
@@ -100,12 +100,12 @@
                             {{ $message }}</p>
                     @enderror
                     <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="pickUpPayment" id="payment1" value="payment1"
+                        <input type="radio" name="pickUpPayment" id="dobierka" value="dobierka"
                             class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
                         <label for="pickUpPayment" class="text-light">Dobierka</label>
                     </div>
                     <div class="flex items-center justify-between additionalPaymentDiv">
-                        <input type="radio" name="pickUpPayment" id="payment2" value="payment2"
+                        <input type="radio" name="pickUpPayment" id="kartou_online" value="kartou_online"
                             class="radio-input appearance-none w-3 h-3 rounded-full bg-light-green checked:bg-dark-purple checked:border-light-green checked:border-2">
                         <label name="store2" class="text-light">Kartou online</label>
                     </div>
