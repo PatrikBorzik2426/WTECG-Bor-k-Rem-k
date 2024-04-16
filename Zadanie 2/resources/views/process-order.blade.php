@@ -9,14 +9,14 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class=" text-manrope bg-gradient-to-b from-dark-purple to-black h-screen max-sm:h-full font-manrope min-w-80">
+<body class=" text-manrope bg-gradient-to-b from-dark-purple to-black min-h-screen max-sm:h-full font-manrope min-w-80">
     <header>
         <x-navbar />
     </header>
     <main
         class="flex justify-center items-start h-fit gap-x-20 mx-auto mt-10 max-lg:gap-x-10 max-sm:flex-col max-sm:mt-12 max-sm:h-full">
         <div
-            class="flex flex-col items-center max-sm:mx-auto p-12 max-lg:p-6 text-light-green max-xl:w-5/12 max-sm:w-10/12 w-4/12 max-sm:mb-16 shadow-custom shadow-light-purple rounded-[3rem]">
+            class="flex mb-10 flex-col items-center max-sm:mx-auto p-12 max-lg:p-6 text-light-green max-xl:w-5/12 max-sm:w-10/12 w-4/12 max-sm:mb-16 shadow-custom shadow-light-purple rounded-[3rem]">
             <div class="text-center mb-12 animate-jump-in max-sm:mb-2">
                 <h1 class=" font-bold text-2xl mb-2 max-sm:text-lg">Faktúračné údaje</h1>
                 <p class=" font-light max-sm:text-sm">Formulár obsahujúci všetky potrebné údaje na korektné odoslanie

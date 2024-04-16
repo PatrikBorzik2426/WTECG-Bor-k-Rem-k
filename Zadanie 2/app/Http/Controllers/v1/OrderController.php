@@ -81,8 +81,14 @@ class OrderController extends Controller
             'delivery_method' => $request->pickUp,
             'status' => 0
         ]);
+        $user = Auth::user();
+        if ($user -> temporary){
+            return redirect('/logout');
 
+        }
+        else{
         return redirect('/profile');
+        }
     }
 
     /**
