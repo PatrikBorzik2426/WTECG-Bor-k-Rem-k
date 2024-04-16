@@ -82,24 +82,24 @@ quantityInputs.forEach(input => {
         input.checked=true;
 
         switch(input.value){
-            case "transport1":
+            case "osobny_odber":
                 additionalPrice+=0;
                 break;
-            case "transport2" :
+            case "SP" :
                 additionalPrice+=3.75;
                 transportElement.innerHTML="3,75 €";
 
                 break;
-            case "transport3" :
+            case "packeta" :
                 additionalPrice+=5.50;
                 transportElement.innerHTML="5,50 €";
 
                 break;
-            case "payment1" :
+            case "dobierka" :
                 additionalPrice+=2.00;
 
                 break;
-            case "payment2" :
+            case "kartou_online" :
                 additionalPrice+=0;
 
                 break;

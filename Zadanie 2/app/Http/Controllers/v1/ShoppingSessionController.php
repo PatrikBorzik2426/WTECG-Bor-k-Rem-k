@@ -42,6 +42,7 @@ class ShoppingSessionController extends Controller
 
         $cart_item->create($request, $session_id);
     }
+    
 
     /**
      * Store a newly created resource in storage.

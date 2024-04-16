@@ -4,6 +4,7 @@ const authPrice = document.getElementById('numberOfCartItemAuth');
 fetch('/cart-items/count',{method: 'GET'})
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         authPrice.innerHTML = data;
     });
 
@@ -12,6 +13,7 @@ buttons.forEach(button => {
         fetch('/cart-items/count',{method: 'GET'})
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             authPrice.innerHTML = data;
         });
     });

@@ -27,48 +27,75 @@
         <div class="w-full px-12 mx-auto flex flex-col gap-2 min-w-[46rem] max-lg:px-0 max-lg:min-w-0">
             <h1 class="text-center text-4xl text-light-green font-medium mb-10 max-md:mb-2 max-sm:text-3xl">Všetky
                 objednávky</h1>
-            @foreach ($orders as $order)
+            @foreach ($orders as $index => $order)
                 <div class="h-fit">
                     <div
                         class="flex justify-between items-center h-10 px-4 text-light-green bg-light-purple rounded-full z-0">
                         <div class="flex gap-2">
-                            <img id="additionalInfoButton" src="{{ asset('img/svg/expand.svg') }}"
+                            <img id="additionalInfoButton{{ $index }}" src="{{ asset('img/svg/expand.svg') }}"
                                 class="scale-100 cursor-pointer">
-                            <img id="additionalInfoCloseButton" src="{{ asset('img/svg/insert.svg') }}"
-                                class="scale-100 cursor-pointer hidden">
-                            <h3 class=" max-sm:text-sm">Objednávka č. 000000</h3>
+                            <img id="additionalInfoCloseButton{{ $index }}"
+                                src="{{ asset('img/svg/insert.svg') }}" class="scale-100 cursor-pointer hidden">
+                            <h3 class=" max-sm:text-sm">Objednávka č. {{ $index + 1 }}</h3>
                         </div>
                         <div class="flex justify-center items-center gap-4 max-sm:gap-2">
-                            <p class="max-lg:hidden">01.01.2024</p>
-                            <p class="max-lg:hidden">Slovenská pošta</p>
-                            <div class=" w-fit h-fit px-2 max-sm:px-0 items-center bg-green-600 rounded-full">
-                                <img src="{{ asset('img/svg/done.svg') }}" class="scale-75">
+                            <p class="max-lg:hidden">{{ date_format($order->created_at, 'd.m.20y') }}</p>
+                            <p class="max-lg:hidden">{{ $order->delivery_method }}</p>
+                            <div
+                                class=" w-fit h-fit px-2 max-sm:px-0 items-center @if ($order->status == 1) bg-green-600 @else bg-yellow-600 @endif rounded-full">
+                                @if ($order->status == 0)
+                                    <img src="{{ asset('img/svg/three_dots.svg') }}" class="scale-75">
+                                @elseif($order->status == 1)
+                                    <img src="{{ asset('img/svg/done.svg') }}" class="scale-75">
+                                @endif
                             </div>
-                            <p class=" font-bold max-sm:text-sm max-sm:w-full">1925,99 €</p>
+                            <p class=" font-bold max-sm:text-sm max-sm:w-full">{{ $shopping_sessions[$index]->total }}€
+                            </p>
                         </div>
                     </div>
-                    <div id="additionalInfo"
+                    <div id="additionalInfo{{ $index }}"
                         class=" grid grid-cols-2 h-fit pt-8 pb-4 px-4 text-dark-purple bg-light-green relative bottom-5 -z-10 rounded-b-2xl hidden">
                         <ul class="flex flex-col w-10/12">
                             <li class="flex justify-between mb-2 max-lg:flex-col">
-                                <h3 class=" font-bold">Číslo objednávky: <span>000000</span></h3>
+                                <h3 class=" font-bold">Číslo objednávky: <span>{{ $index + 1 }}</span></h3>
                             </li>
                             <li class="flex justify-between mb-2 max-lg:flex-col">
-                                Dátum objednávky: <span class="font-bold">01.01.2024</span>
+                                Dátum objednávky: <span
+                                    class="font-bold">{{ date_format($order->created_at, 'd.m.20y') }}</span>
                             </li>
                             <li class="flex justify-between mb-2 max-lg:flex-col">
-                                Doprava: <span class="font-bold">Slovenská pošta</span>
+                                Doprava: <span class="font-bold">{{ $order->delivery_method }}</span>
                             </li>
                             <li class="flex justify-between mb-2 max-lg:flex-col">
-                                Stav objednávky: <span class="font-bold">Odoslaná</span>
+                                Stav objednávky: <span class="font-bold">
+                                    @if ($order->status == 0)
+                                        Čaká na spracovanie
+                                    @elseif($order->status == 1)
+                                        Odoslaná
+                                    @endif
+                                </span>
                             </li>
                         </ul>
                         <ul>
-                            <li class="flex justify-between  max-sm:flex-col">1x Položka1 <span
-                                    class=" font-bold">255€</span></li>
+                            <input type="hidden" value="{{ $sum_of_order = 0 }}">
+                            @foreach ($cart_items as $cart_item)
+                                @foreach ($cart_item as $index_item => $inner_item)
+                                    @if ($inner_item->session_id == $shopping_sessions[$index]->id)
+                                        <li class="flex justify-between  max-sm:flex-col">{{ $inner_item->quantity }}x
+                                            {{ $products[$index_item]->name }}
+                                            <span
+                                                class=" font-bold">{{ $products[$index_item]->price * $inner_item->quantity }}
+                                                €</span>
+                                            <input type="hidden"
+                                                value="{{ $sum_of_order += $products[$index_item]->price * $inner_item->quantity }}">
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @endforeach
                         </ul>
                         <ul class=" col-start-2">
-                            <li class="flex justify-between">Sumár ceny: <span class=" font-bold">255€</span></li>
+                            <li class="flex justify-between">Sumár ceny: <span
+                                    class=" font-bold">{{ $sum_of_order }}€</span></li>
                         </ul>
                     </div>
                 </div>

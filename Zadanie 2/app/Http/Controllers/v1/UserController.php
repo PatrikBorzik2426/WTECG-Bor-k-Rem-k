@@ -139,10 +139,10 @@ class UserController extends Controller
 
         $my_session = ShoppingSession::where('user_id', auth()->id())->orderBy('created_at', 'desc')->first();
 
-        if ((!isset($my_session) || Order::where("shopping_session_id", Auth::id())->exists()) && auth()->user()->temporary == false) {
+        if (((!isset($my_session)) || Order::where("shopping_session_id", $my_session->id)->exists()) && auth()->user()->temporary == false) {
             $shopping_session = new ShoppingSessionController();
             $shopping_session->create($request);
-            $my_session = ShoppingSession::where('user_id', auth()->id())->first();
+            $my_session = ShoppingSession::where('user_id', auth()->id())->orderBy('created_at', 'desc')->first();
         }
 
         if ($authorized && $request->has('product_id')) {
