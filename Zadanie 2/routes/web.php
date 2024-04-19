@@ -30,12 +30,9 @@ Route::get('/posts/{id}', function ($id) {
 Route::get('/registration', function () {
     return view('registration');
 });
-Route::get('/admin', function () {
-    return view('admin');
-});
-Route::get('/admin_product', function () {
-    return view('admin_product_detail');
-});
+Route::get('/admin',[ProductController::class, 'admin']);
+
+Route::get('/admin_product/{id}',[ProductController::class, 'adminProduct']);
 
 Route::get('/login', function () {
     return view('login');

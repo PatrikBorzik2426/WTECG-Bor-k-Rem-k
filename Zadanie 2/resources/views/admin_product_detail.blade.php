@@ -18,10 +18,6 @@
         <aside
             class=" w-fit min-w-48 h-fit grid grid-cols-1 max-lg:grid-cols-2 max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
             <h3 class=" text-center font-bold text-2xl max-lg:hidden">Menu</h3>
-            <!-- <div class="flex justify-between items-center max-lg:justify-center">
-                <a class="text-md hover:font-bold"> Nastavenia </a>
-                <img src="../svg/settings.svg" class="max-lg:hidden">
-            </div> -->
             <div class="flex justify-between items-center max-lg:justify-center">
                 <a href="./profile.html" class="text-md hover:font-bold"> Objednávky </a>
                 <img src="{{ asset('img/svg/box.svg') }}" class="max-lg:hidden">
@@ -41,30 +37,34 @@
                 <div>
                     <label for="product_name">Meno produktu</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="product_name" name="name" value="" tabindex="1" />
+                        id="product_name" name="name" value="{{$product->name}}" tabindex="1" />
                 </div>
                 <div>
                     <label for="description">Opis produktu</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="description" name="city" value="" tabindex="4">
+                        id="description" name="city" value="{{$product->description}}" tabindex="4">
                 </div>
 
                 <div class="col-start-1">
                     <label for="category">Kategória</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="category" name="category" tabindex="2">
+                        id="category" name="category" value="{{$product->category}}" tabindex="2">
                 </div>
                 <div>
                     <label for="price">Cena</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="price" name="price" value="" tabindex="5">
+                        id="price" name="price" value="{{ number_format($product->price, 2) }} €" tabindex="5">
                 </div>
                 <div class="grid grid-cols-2 gap-x-4 col-start-2 max-lg:col-start-1 row-start-1 max-lg:row-start-auto">
                     <label for="paramter">Parametre</label><br>
-                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="paramter" name="parameter" value="" tabindex="7">
-                    <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="paramter" name="parameter" value="" tabindex="7">
+                    @foreach ($parameters as $index => $parameter_array)
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="paramter" name="parameter" value="{{ ucfirst($parameter_array->parameter) }}" tabindex="7">
+                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                                id="paramter" name="parameter" value="{{ ucfirst($parameter_array->value) }}" tabindex="7">
+                                    
+                           
+                        @endforeach
                 </div>
                 <div id="photosHolder"
                     class="bg-white max-h-none max-lg: mt-2 rounded-lg row-span-3 row-start-2 col-start-2 max-lg:col-start-1 max-lg:row-start-auto">
@@ -83,7 +83,7 @@
                 <div class=" flex gap-4 col-span-2 max-lg:col-span-1 mt-8 max-lg:mx-auto">
                     <button type="submit"
                         class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green text-center">Vytvoriť</button>
-                    <a href="./admin.html"
+                    <a href="../admin"
                         class=" border-2 border-red-500 text-red-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-red-500 hover:text-light-green text-center">Späť</a>
                 </div>
             </form>
@@ -91,7 +91,7 @@
     </main>
 </body>
 
-<script src="../js/navbar.js"></script>
+
 <script src="../js/display_img.js"></script>
 
 </html>
