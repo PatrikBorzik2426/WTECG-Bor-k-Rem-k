@@ -65,11 +65,20 @@
                 class="flex justify-between flex-col col-start-4 text-center w-full bg-light-green py-4 px-4 rounded-md">
                 @auth
                     @cannot('temporary-login')
-                        <p class="mb-2">Vitajte , <span class=" font-bold">{{ Auth::user()->login }}</span> !</p>
-                        <a href="/profile"
-                            class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
-                            Profile
-                        </a>
+                        <p class="mb-2">Vitajte, {{ Auth::user()->login }} <span class=" font-bold"> </span> !</p>
+                            @if(Auth::user()->admin)
+                                <a href="/admin"
+                                class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
+                                Profile
+                                </a>
+                            @else 
+                                <a href="/profile"
+                                class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
+                                Profile
+                                </a>
+                            
+                            @endif
+                        
                         <a href="/logout"
                             class=" w-32 px-2 border-dark-purple border-2 rounded-lg hover:bg-dark-purple hover:text-light-green hover:font-bold">
                             Logout

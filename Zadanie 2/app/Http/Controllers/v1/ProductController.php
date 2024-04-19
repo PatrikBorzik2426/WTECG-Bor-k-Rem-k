@@ -197,6 +197,52 @@ class ProductController extends Controller
         
         );
     }
+    public function adminProduct($id){
+        
+        $product = Product::find($id);
+        $parameterProducts = ParameterProduct::where('product_id', $id)->get();
+        $parameters = [];
+
+        foreach ($parameterProducts as $parameterProduct) {
+            $parameter = Parameter::where('id', $parameterProduct->parameter_id)->first();
+            array_push($parameters, $parameter);
+        }
+
+        $images = Image::where('product_id', $id)->take(2)->get();
+
+        foreach ($images as $image) {
+            $image->link = decrypt(stream_get_contents($image->link));
+        }
+
+
+
+        return view('admin_product_detail') -> with(
+           ['product'=>$product,
+            'parameters'=>$parameters,
+           ]
+           
+        );
+
+    }
+    public function admin(){
+        
+        $orderBy = '';
+        // Start building the base query
+        $sub_query_parameter_product = ParameterProduct::query();
+        $sub_query_parameter = Parameter::query();
+        $query = Product::query();
+        $products = Product::take(10)->get();
+
+       
+
+        
+
+       
+        return view('admin') -> with(
+        [ 'products' => $products,
+
+        ]);
+    }
 
     public function shopFilter()
     {

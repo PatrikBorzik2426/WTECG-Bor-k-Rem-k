@@ -32,27 +32,28 @@
             <h1 class="text-center text-4xl text-light-green font-medium mb-10 max-md:mb-6 max-sm:text-3xl">
                 Produkty
             </h1>
-            <form class="flex items-center text-light-green max-xl:grid max-xl:grid-col-2 gap-4 max-md:gap-8">
+            <form id="productDisplay" method="get" action="/admin" class="flex items-center text-light-green max-xl:grid max-xl:grid-col-2 gap-4 max-md:gap-8">
                 <div>
                     <label>ID: </label>
-                    <input type="text"
-                        class="border-2 border-light-green rounded-2xl px-2 bg-transparent focus:outline-none w-full mr-3">
+                    <input name="id" id="id" type="text"
+                        value="" class="border-2 border-light-green rounded-2xl px-2 bg-transparent focus:outline-none w-full mr-3">
                 </div>
                 <div>
                     <label>Názov: </label>
-                    <input type="text"
-                        class="border-2 border-light-green rounded-2xl px-2 bg-transparent focus:outline-none w-full mr-3">
+                    <input name="name" id="name" type="text"
+                         value="" class="border-2 border-light-green rounded-2xl px-2 bg-transparent focus:outline-none w-full mr-3">
                 </div>
                 <div>
                     <label class=" text-center px-2">Kategória: </label>
-                    <select class="appearance-none bg-transparent rounded-full mr-3 px-2">
+                    <select name="category" id="category" class="appearance-none bg-transparent rounded-full mr-3 px-2">
+                    
                         <option value="1" class="bg-dark-purple">Možnosť 1</option>
                         <option value="2" class="bg-dark-purple">Možnosť 2</option>
                         <option value="3" class="bg-dark-purple">Možnosť 3</option>
                         <option value="4" class="bg-dark-purple">Možnosť 4</option>
                     </select>
                 </div>
-                <button
+                <button type="submit"
                     class=" border-2 border-light-green w-32 py-1 rounded-full hover:font-bold hover:text-dark-purple hover:bg-light-green">Search</button>
             </form>
             <br>
@@ -78,20 +79,34 @@
                     </div>
                     <div class=" relative bottom-6 bg-transparent text-center w-9/12 py-1 mx-auto">
                         <div class="grid grid-cols-3">
-                            <a><img src="{{ asset('img/svg/pen.svg') }}" class="m-auto scale-125 bg-light-purple p-2 rounded-full"></a>
-                            <a><img src="{{ asset('img/svg/bin.svg') }}" class="m-auto scale-125 bg-light-purple p-2 rounded-full"></a>
+                            <a href='admin_product/2'><img src="{{ asset('img/svg/pen.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
+                            <a><img src="{{ asset('img/svg/bin.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
                             <input id="picker1" type="checkbox"
                                 class="appearance-none m-auto rounded-md border-[0.22rem] border-light-purple bg-light-green w-9 h-9 checked:bg-light-purple checked:border-light-green">
                         </div>
                     </div>
                 </div>  
+                @foreach ($products as $index => $item)
+                <div class="flex flex-col">
+                    <div
+                        class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
+                        <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item['name'] }}</p>
+                        <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                    </div>
+                    <div class=" relative bottom-6 bg-transparent text-center w-9/12 py-1 mx-auto">
+                        <div class="grid grid-cols-3">
+                            <a href="admin_product/{{$item['id']}}"><img src="{{ asset('img/svg/pen.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
+                            <a><img src="{{ asset('img/svg/bin.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
+                            <input id="picker1" type="checkbox"
+                                class="appearance-none m-auto rounded-md border-[0.22rem] border-light-purple bg-light-green w-9 h-9 checked:bg-light-purple checked:border-light-green">
+                        </div>
+                    </div>
+                </div>  
+                        
+                    @endforeach
             </form>
         </div>
     </main>
     
 </body>
-
-<script src="../js/navbar.js"></script>
-
-
 </html>
