@@ -32,6 +32,8 @@ Route::get('/registration', function () {
 });
 Route::get('/admin',[ProductController::class, 'admin']);
 
+Route::get('/admin/{id}',[ProductController::class, 'delete']);
+
 Route::get('/admin_product/{id}',[ProductController::class, 'adminProduct']);
 
 Route::get('/login', function () {

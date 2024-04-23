@@ -11,9 +11,9 @@
 
 <body class="bg-black font-manrope min-w-80">
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
-        <header>
-            <x-navbar />
-        </header>
+        
+        <x-navbar />
+       
         <div class="mt-4 w-full">
             <h1 class="text-3xl font-bold tracking-tight text-white sm:text-3xl text-center">{{ $product->name }}</h1>
 

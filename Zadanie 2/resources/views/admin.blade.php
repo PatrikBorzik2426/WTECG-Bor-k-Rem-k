@@ -9,9 +9,9 @@
 </head>
 
 <body class="bg-gradient-to-b min-h-screen from-dark-purple to-black via-black font-manrope min-w-80">
-    <header>
-        <x-navbar />
-    </header>
+    
+    <x-navbar />
+    
     <main class="flex max-lg:items-center w-8/12 mx-auto mt-10 max-lg:flex-col max-sm:w-10/12">
         <aside
             class=" w-fit min-w-48 h-fit grid grid-cols-1 max-lg:grid-cols-2 max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
@@ -71,32 +71,18 @@
             <p class="text-light-green text-xl">Vybrané položky: <span class="text-light-green">0</span></p>
             <br><br>
             <form class="grid grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1 gap-x-10 gap-y-6">
-                <div class="flex flex-col">
-                    <div
-                        class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
-                        <p class="text-white font-medium mt-2 px-6 text-lg text-center">Iphone 14 PRO Max</p>
-                        <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
-                    </div>
-                    <div class=" relative bottom-6 bg-transparent text-center w-9/12 py-1 mx-auto">
-                        <div class="grid grid-cols-3">
-                            <a href='admin_product/2'><img src="{{ asset('img/svg/pen.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
-                            <a><img src="{{ asset('img/svg/bin.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
-                            <input id="picker1" type="checkbox"
-                                class="appearance-none m-auto rounded-md border-[0.22rem] border-light-purple bg-light-green w-9 h-9 checked:bg-light-purple checked:border-light-green">
-                        </div>
-                    </div>
-                </div>  
+               
                 @foreach ($products as $index => $item)
                 <div class="flex flex-col">
                     <div
                         class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
-                        <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item['name'] }}</p>
+                        <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item['id'] }}</p>
                         <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
                     </div>
                     <div class=" relative bottom-6 bg-transparent text-center w-9/12 py-1 mx-auto">
                         <div class="grid grid-cols-3">
                             <a href="admin_product/{{$item['id']}}"><img src="{{ asset('img/svg/pen.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
-                            <a><img src="{{ asset('img/svg/bin.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
+                            <a href="admin/{{$item['id']}}"><img src="{{ asset('img/svg/bin.svg') }}" class="m-auto scale-120 bg-light-purple p-2 rounded-full"></a>
                             <input id="picker1" type="checkbox"
                                 class="appearance-none m-auto rounded-md border-[0.22rem] border-light-purple bg-light-green w-9 h-9 checked:bg-light-purple checked:border-light-green">
                         </div>

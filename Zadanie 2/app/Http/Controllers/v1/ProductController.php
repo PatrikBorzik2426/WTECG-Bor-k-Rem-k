@@ -224,6 +224,19 @@ class ProductController extends Controller
         );
 
     }
+    public function delete($id){
+        $item = Product::find($id);
+        
+        if ($item) {
+            $item->delete();
+            return "Item with ID $id deleted successfully!";
+        } else {
+            return "Item not found!";
+        }
+
+    return view('register');
+    }
+   
     public function admin(){
         
         $orderBy = '';

@@ -11,9 +11,9 @@
 </head>
 
 <body class="bg-gradient-to-b min-h-screen from-dark-purple to-black via-black font-manrope min-w-80">
-    <header>
-        <x-navbar />
-    </header>
+    
+    <x-navbar />
+    
     <main class="flex max-lg:items-center w-8/12 mx-auto mt-10 max-lg:mt-0 max-lg:flex-col max-sm:w-10/12">
         <aside
             class=" w-fit min-w-48 h-fit grid grid-cols-1 max-lg:grid-cols-2 max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">

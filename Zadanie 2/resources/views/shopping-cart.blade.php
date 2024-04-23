@@ -10,9 +10,9 @@
 </head>
 
 <body class=" text-manrope bg-gradient-to-b from-dark-purple to-black min-h-screen max-sm:h-full font-manrope min-w-80">
-    <header>
-        <x-navbar />
-    </header>
+   
+    <x-navbar />
+    
     <main
         class="flex mb-10 justify-center items-start gap-x-32 mx-auto pt-20 max-sm:pt-10 max-lg:gap-x-10 max-sm:flex-col max-sm:h-full">
         <div class="w-5/12 text-light-green max-sm:w-10/12 max-sm:mx-auto mb-12">
