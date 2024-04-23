@@ -203,7 +203,6 @@ class ProductController extends Controller
         $parameterProducts = ParameterProduct::where('product_id', $id)->get();
         $parameters = [];
 
-        foreach ($parameterProducts as $parameterProduct) {
             $parameter = Parameter::where('id', $parameterProduct->parameter_id)->first();
             array_push($parameters, $parameter);
         }
@@ -257,6 +256,7 @@ class ProductController extends Controller
         ]);
     }
 
+        foreach ($parameterProducts as $parameterProduct) {
     public function shopFilter()
     {
     }
