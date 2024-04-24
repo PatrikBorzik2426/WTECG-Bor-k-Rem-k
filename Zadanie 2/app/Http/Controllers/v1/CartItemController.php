@@ -75,6 +75,13 @@ class CartItemController extends Controller
         return (response(["Message" => "Quantity updated"], 201));
     }
 
+    public function deleteItem($id)
+    {
+        CartItem::where('id', $id)->delete();
+
+        return (response(["Message" => "Item deleted"], 201));
+    }
+
     /**
      * Store a newly created resource in storage.
      */

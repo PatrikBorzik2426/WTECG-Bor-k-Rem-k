@@ -49,6 +49,20 @@ matchedElements1.forEach((element,index) => {
         if (quantity.value > 1) {
             quantity.value--;
         }
+        else  {
+            console.log("Deleted item's id: ", cart_item_id.value)
+
+            fetch('api/v1/cart-items/delete/' + cart_item_id.value,
+                {method: "DELETE"})
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('cartItemDiv'+id).remove();
+                    
+                    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.replaceState({ path: newurl }, '', newurl);
+                });
+        }
 
         timer=setTimeout(function(){
         this.fetchQuantity(cart_item_id,quantity_element)
