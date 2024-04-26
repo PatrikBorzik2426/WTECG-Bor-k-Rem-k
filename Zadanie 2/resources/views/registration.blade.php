@@ -9,7 +9,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gradient-to-b min-h-screen from-dark-purple to-black font-manrope flex flex-col justify-between">
+<body class="bg-gradient-to-b min-h-screen from-dark-purple to-black font-manrope flex flex-col gap-16">
     <header class=" content-start">
         <x-navbar />
     </header>

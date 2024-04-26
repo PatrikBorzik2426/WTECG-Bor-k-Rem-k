@@ -16,19 +16,23 @@
     </header>
     <main class="flex max-lg:items-center w-8/12 mx-auto mt-10 max-lg:mt-0 max-lg:flex-col max-sm:w-10/12">
         <aside
-            class=" w-fit min-w-48 h-fit grid grid-cols-1 max-lg:grid-cols-2 max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
+            class=" w-fit min-w-48 h-fit flex flex-col max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
             <h3 class=" text-center font-bold text-2xl max-lg:hidden">Menu</h3>
-            <div class="flex justify-between items-center max-lg:justify-center">
-                <a href="./profile.html" class="text-md hover:font-bold"> Objednávky </a>
+            <div class="flex justify-between items-center">
+                <a href="/profile" class="text-md hover:font-bold"> Objednávky </a>
                 <img src="{{ asset('img/svg/box.svg') }}" class="max-lg:hidden">
             </div>
-            <hr class="max-lg:hidden">
-            <div class="flex justify-between items-center max-lg:justify-center">
-                <a href="./admin.html" class="text-md hover:font-bold"> Produkty </a>
-                <img src="{{ asset('img/svg/inventory.svg') }}" class="max-lg:hidden">
-            </div>
-            <a href="logout"
-                class="w-full h-fit text-center border-2 mt-4 px-4 py-2 max-lg:col-start-1 max-lg:col-span-2 max-lg:py-0 max-lg:mt-0 rounded-full hover:bg-light-green hover:font-extrabold hover:text-dark-purple">Odhlásiť</a>
+            @auth
+                @can('admin')
+                    <hr class="max-lg:hidden">
+                    <div class="flex justify-between items-center max-lg:justify-center">
+                        <a href="/admin" class="text-md hover:font-bold"> Produkty </a>
+                        <img src="{{ asset('img/svg/inventory.svg') }}" class="max-lg:hidden">
+                    </div>
+                @endcan
+            @endauth
+            <a href="/logout"
+                class="w-full h-fit text-center border-2 mt-4 px-4 py-2 max-lg:py-0 max-lg:mt-0 rounded-full hover:bg-light-green hover:font-extrabold hover:text-dark-purple">Odhlásiť</a>
         </aside>
         <div class="mx-auto w-8/12 h-fit max-lg:w-9/12 max-sm:w-full mb-10">
             <h1 class="text-center text-3xl font-bold text-light-green mb-10">Detail produktu</h1>
@@ -37,18 +41,18 @@
                 <div>
                     <label for="product_name">Meno produktu</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="product_name" name="name" value="{{$product->name}}" tabindex="1" />
+                        id="product_name" name="name" value="{{ $product->name }}" tabindex="1" />
                 </div>
                 <div>
                     <label for="description">Opis produktu</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="description" name="city" value="{{$product->description}}" tabindex="4">
+                        id="description" name="city" value="{{ $product->description }}" tabindex="4">
                 </div>
 
                 <div class="col-start-1">
                     <label for="category">Kategória</label><br>
                     <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                        id="category" name="category" value="{{$product->category}}" tabindex="2">
+                        id="category" name="category" value="{{ $product->category }}" tabindex="2">
                 </div>
                 <div>
                     <label for="price">Cena</label><br>
@@ -58,13 +62,13 @@
                 <div class="grid grid-cols-2 gap-x-4 col-start-2 max-lg:col-start-1 row-start-1 max-lg:row-start-auto">
                     <label for="paramter">Parametre</label><br>
                     @foreach ($parameters as $index => $parameter_array)
-                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                                id="paramter" name="parameter" value="{{ ucfirst($parameter_array->parameter) }}" tabindex="7">
-                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
-                                id="paramter" name="parameter" value="{{ ucfirst($parameter_array->value) }}" tabindex="7">
-                                    
-                           
-                        @endforeach
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                            id="paramter" name="parameter" value="{{ ucfirst($parameter_array->parameter) }}"
+                            tabindex="7">
+                        <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
+                            id="paramter" name="parameter" value="{{ ucfirst($parameter_array->value) }}"
+                            tabindex="7">
+                    @endforeach
                 </div>
                 <div id="photosHolder"
                     class="bg-white max-h-none max-lg: mt-2 rounded-lg row-span-3 row-start-2 col-start-2 max-lg:col-start-1 max-lg:row-start-auto">

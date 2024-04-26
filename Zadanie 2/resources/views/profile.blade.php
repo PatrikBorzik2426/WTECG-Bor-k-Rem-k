@@ -18,9 +18,18 @@
             class=" w-fit min-w-48 h-fit flex flex-col max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
             <h3 class=" text-center font-bold text-2xl max-lg:hidden">Menu</h3>
             <div class="flex justify-between items-center">
-                <a href="./profile.html" class="text-md hover:font-bold"> Objednávky </a>
+                <a href="/profile" class="text-md hover:font-bold"> Objednávky </a>
                 <img src="{{ asset('img/svg/box.svg') }}" class="max-lg:hidden">
             </div>
+            @auth
+                @can('admin')
+                    <hr class="max-lg:hidden">
+                    <div class="flex justify-between items-center max-lg:justify-center">
+                        <a href="/admin" class="text-md hover:font-bold"> Produkty </a>
+                        <img src="{{ asset('img/svg/inventory.svg') }}" class="max-lg:hidden">
+                    </div>
+                @endcan
+            @endauth
             <a href="/logout"
                 class="w-full h-fit text-center border-2 mt-4 px-4 py-2 max-lg:py-0 max-lg:mt-0 rounded-full hover:bg-light-green hover:font-extrabold hover:text-dark-purple">Odhlásiť</a>
         </aside>

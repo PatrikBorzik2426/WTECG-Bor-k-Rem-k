@@ -5,13 +5,12 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use App\Models\Image;
 use App\Models\ParameterProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Parameter;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -167,38 +166,42 @@ class ProductController extends Controller
             'parameters' => $parameters
         ]);
     }
-    public function homePage(){
+    public function homePage()
+    {
 
-        $apple = Product::where('category','1')
-                              ->take(4)
-                              ->get();
-        foreach($apple as $element){
+        $apple = Product::where('category', '1')
+            ->take(4)
+            ->get();
+        foreach ($apple as $element) {
             $image = Image::where("product_id", $element->id)->where("main", true)->first();
-            $element['image']=decrypt(stream_get_contents($image->link));
+            $element['image'] = decrypt(stream_get_contents($image->link));
         }
-        $android = Product::where('category','0')
-                              ->take(4)
-                              ->get();
-        foreach($android as $element){
+        $android = Product::where('category', '0')
+            ->take(4)
+            ->get();
+        foreach ($android as $element) {
             $image = Image::where("product_id", $element->id)->where("main", true)->first();
-            $element['image']=decrypt(stream_get_contents($image->link));
+            $element['image'] = decrypt(stream_get_contents($image->link));
         }
-        $news = Product::orderBy('id','desc')
-                              ->take(2)
-                              ->get();
-        foreach($news as $element){
+        $news = Product::orderBy('id', 'desc')
+            ->take(2)
+            ->get();
+        foreach ($news as $element) {
             $image = Image::where("product_id", $element->id)->where("main", true)->first();
-            $element['image']=decrypt(stream_get_contents($image->link));
-        }                          
+            $element['image'] = decrypt(stream_get_contents($image->link));
+        }
         return view('home')->with(
-            [    'apple' => $apple,
+            [
+                'apple' => $apple,
                 'android' => $android,
-                'news' => $news]
-        
+                'news' => $news
+            ]
+
         );
     }
-    public function adminProduct($id){
-        
+    public function adminProduct($id)
+    {
+
         $product = Product::find($id);
         $parameterProducts = ParameterProduct::where('product_id', $id)->get();
         $parameters = [];
@@ -214,84 +217,33 @@ class ProductController extends Controller
             $image->link = decrypt(stream_get_contents($image->link));
         }
 
+        return view('admin_product_detail')->with(
+            [
+                'product' => $product,
+                'parameters' => $parameters,
+            ]
 
-
-        return view('admin_product_detail') -> with(
-           ['product'=>$product,
-            'parameters'=>$parameters,
-           ]
-           
         );
-
-    }
-    public function admin(){
-        
-        $orderBy = '';
-        // Start building the base query
-        $sub_query_parameter_product = ParameterProduct::query();
-        $sub_query_parameter = Parameter::query();
-        $query = Product::query();
-        $products = Product::take(10)->get();
-
-       
-
-        
-
-       
-        return view('admin') -> with(
-        [ 'products' => $products,
-
-        ]);
     }
 
-    public function shopFilter()
+    public function admin()
     {
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $products = Product::all();
+
+        return view('admin')->with(
+            [
+                'products' => $products,
+            ]
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreProductRequest $request)
+    public function deleteProduct($id)
     {
-        //
-    }
+        $product = Product::find($id);
+        if ($product) {
+            $product->delete();
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateProductRequest $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
-    {
-        //
+        return redirect()->route('admin');
     }
 }
