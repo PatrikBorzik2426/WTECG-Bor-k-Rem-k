@@ -57,3 +57,5 @@ Route::get('/process-order', [OrderController::class, 'processOrder'])->middlewa
 Route::post('/create-order', [OrderController::class, 'createOrder'])->middleware('auth');
 
 Route::delete('/product/delete/{id}', [ProductController::class, 'deleteProduct'])->middleware('auth', 'can:admin');
+
+Route::delete('/cart-items/delete/multiple', [ProductController::class, 'deleteProductMultiple'])->middleware('auth', 'can:admin');

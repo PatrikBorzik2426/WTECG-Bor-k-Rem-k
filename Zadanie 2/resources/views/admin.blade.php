@@ -49,7 +49,7 @@
                         class="border-2 border-light-green rounded-2xl px-2 bg-transparent focus:outline-none w-full mr-3">
                 </div>
                 <div>
-                    <label class=" text-center px-2">Kategória: </label>
+                    <label class=" text-center px-2">Značka: </label>
                     <select name="category" id="category"
                         class="appearance-none bg-transparent rounded-full mr-3 px-2">
 
@@ -63,23 +63,27 @@
                     class=" border-2 border-light-green w-32 py-1 rounded-full hover:font-bold hover:text-dark-purple hover:bg-light-green">Search</button>
             </form>
             <br>
-            <form class="flex items-center justify-between gap-x-4 w-60 max-md:w-full">
-                <a href="./admin_product_detail.html"
-                    class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green text-center">
-                    Vytvoriť
-                </a>
-                <a
-                    class=" border-2 border-red-500 text-red-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-red-500 hover:text-light-green text-center">
-                    Odstrániť
-                </a>
+            <form id="delteMultipleForm" action="cart-items/delete/multiple" method="post">
+                @csrf
+                @method('DELETE')
+                <div class="flex items-center justify-between gap-x-4 w-60 max-md:w-full">
+                    <a href="./admin_product_detail.html"
+                        class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green text-center">
+                        Vytvoriť
+                    </a>
+                    <button type="submit"
+                        class=" border-2 border-red-500 text-red-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-red-500 hover:text-light-green text-center">
+                        Odstrániť
+                    </button>
+                </div>
+                <br><br>
+                <p class="text-light-green text-xl">Vybrané položky: <span class="text-light-green">0</span></p>
+                <br><br>
             </form>
-            <br><br>
-            <p class="text-light-green text-xl">Vybrané položky: <span class="text-light-green">0</span></p>
-            <br><br>
 
-            <div class="grid grid-cols-3 max-xl:grid-cols-2 max-sm:grid-cols-1 gap-x-10 gap-y-6">
+            <div class="grid grid-cols-3 gap-x-10 max-lg:grid-cols-2 max-md:grid-cols-1">
 
-                @foreach ($products as $index => $item)
+                @foreach ($products as $item)
                     <form id="formProduct{{ $item['id'] }}" class="flex flex-col" method="post"
                         action="product/delete/{{ $item['id'] }}">
                         @csrf
@@ -98,8 +102,8 @@
                                     id="product-{{ $item['id'] }}" class=" cursor-pointer"><img
                                         src="{{ asset('img/svg/bin.svg') }}"
                                         class="m-auto scale-120 bg-light-purple p-2 rounded-full"></button>
-                                <input form="formProduct{{ $item['id'] }}" id="picker{{ $item['id'] }}"
-                                    type="checkbox" name="product-{{ $item['id'] }}" value="{{ $item['id'] }}"
+                                <input form="delteMultipleForm" id="picker{{ $item['id'] }}" type="checkbox"
+                                    name="product-{{ $item['id'] }}" value="{{ $item['id'] }}"
                                     class="appearance-none m-auto rounded-md border-[0.22rem] border-light-purple bg-light-green w-9 h-9 checked:bg-light-purple checked:border-light-green">
                             </div>
                         </div>

@@ -246,4 +246,23 @@ class ProductController extends Controller
 
         return redirect()->route('admin');
     }
+
+    public function deleteProductMultiple(Request $request)
+    {
+        $pattern = '/^product-(\d+)$/';
+
+        $all_parameters = $request->all();
+
+        foreach ($all_parameters as $key => $value) {
+            if (preg_match($pattern, $key)) {
+                $id = preg_replace($pattern, '$1', $key);
+                $product = Product::find($id);
+                if ($product) {
+                    $product->delete();
+                }
+            }
+        }
+
+        return redirect()->route('admin');
+    }
 }
