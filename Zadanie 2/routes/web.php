@@ -34,6 +34,8 @@ Route::get('/admin', [ProductController::class, 'admin'])->middleware('auth', 'c
 
 Route::get('/admin_product/{id}', [ProductController::class, 'adminProduct']);
 
+Route::get('/admin_product', [ProductController::class, 'emptyProduct']);
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -60,4 +62,5 @@ Route::delete('/product/delete/{id}', [ProductController::class, 'deleteProduct'
 
 Route::delete('/cart-items/delete/multiple', [ProductController::class, 'deleteProductMultiple'])->middleware('auth', 'can:admin');
 
-Route::put('/product/update', [ProductController::class, 'updateProduct'])->middleware('auth', 'can:admin');
+Route::match(['put', 'post'], '/product/update', [ProductController::class, 'updateProduct'])
+    ->middleware('auth', 'can:admin');

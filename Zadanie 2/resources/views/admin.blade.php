@@ -66,7 +66,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="flex items-center justify-between gap-x-4 w-60 max-md:w-full">
-                    <a href="./admin_product_detail.html"
+                    <a href="admin_product/"
                         class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green text-center">
                         Vytvoriť
                     </a>
@@ -76,7 +76,6 @@
                     </button>
                 </div>
                 <br><br>
-                <p class="text-light-green text-xl">Vybrané položky: <span class="text-light-green">0</span></p>
                 <br><br>
             </form>
 

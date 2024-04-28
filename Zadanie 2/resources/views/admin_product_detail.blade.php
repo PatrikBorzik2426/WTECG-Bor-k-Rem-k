@@ -47,24 +47,34 @@
                 enctype="multipart/form-data"
                 class="grid grid-cols-2 max-lg:grid-cols-1 w-full h-full p-6 gap-x-6 gap-y-0 max-md:w-full shadow-custom shadow-purple text-light-green rounded-2xl">
                 @csrf
-                @method('PUT')
+                @if (isset($product))
+                    @method('PUT')
+                @else
+                    @method('POST')
+                @endif
                 <div>
-                    <input name="product_id" type="hidden" value="{{ $product->id }}">
+                    <input name="product_id" type="hidden"
+                        value="@if (isset($product)) {{ $product->id }} @endif">
                     <div>
                         <label for="product_name">Meno produktu</label><br>
                         <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
-                            id="product_name" name="product_name" value="{{ $product->name }}" tabindex="1" />
+                            id="product_name" name="product_name"
+                            value=" 
+                            @if (isset($product)) {{ $product->name }} @endif"
+                            tabindex="1" />
                     </div>
                     <div>
                         <label for="description">Opis produktu</label><br>
                         <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
-                            id="description" name="description" value="{{ $product->description }}" tabindex="4">
+                            id="description" name="description"
+                            value="@if (isset($product)) {{ $product->description }} @endif" tabindex="4">
                     </div>
                     <div>
                         <label for="price">Cena ( € )</label><br>
                         <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
                             id="price" name="price"
-                            value="{{ str_replace(',', '', number_format($product->price, 2)) }}" tabindex="5">
+                            value="@if (isset($product)) {{ str_replace(',', '', number_format($product->price, 2)) }} @endif"
+                            tabindex="5">
                     </div>
                 </div>
                 <div class="h-fit">
@@ -75,21 +85,23 @@
                     </div>
                     <div id="parametersHolder"
                         class="grid grid-cols-[38%_38%_12%] justify-center items-center gap-x-4 max-lg:col-start-1 max-lg:row-start-auto w-full max-h-[19vh] overflow-auto">
-
-                        @foreach ($parameters as $index => $parameter_array)
-                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2"
-                                type="text" id="parameter-key-{{ $index }}"
-                                name="parameter-key-{{ $index }}"
-                                value="{{ ucfirst($parameter_array->parameter) }}" tabindex="7">
-                            <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2"
-                                type="text" id="parameter-value-{{ $index }}"
-                                name="parameter-value-{{ $index }}"
-                                value="{{ ucfirst($parameter_array->value) }}" tabindex="7">
-                            <div id="delete-div-{{ $index }}" class="flex w-fit justify-center items-center">
-                                <button id="delete-parameter-{{ $index }}" type="button"
-                                    class="flex justify-center items-center min-w-4 max-h-4 rounded-full  font-bold bg-white text-dark-purple hover:text-white hover:bg-dark-purple hover:border-2 hover:border-white">-</button>
-                            </div>
-                        @endforeach
+                        @if (isset($parameters))
+                            @foreach ($parameters as $index => $parameter_array)
+                                <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2"
+                                    type="text" id="parameter-key-{{ $index }}"
+                                    name="parameter-key-{{ $index }}"
+                                    value="{{ ucfirst($parameter_array->parameter) }}" tabindex="7">
+                                <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-1 mb-2"
+                                    type="text" id="parameter-value-{{ $index }}"
+                                    name="parameter-value-{{ $index }}"
+                                    value="{{ ucfirst($parameter_array->value) }}" tabindex="7">
+                                <div id="delete-div-{{ $index }}"
+                                    class="flex w-fit justify-center items-center">
+                                    <button id="delete-parameter-{{ $index }}" type="button"
+                                        class="flex justify-center items-center min-w-4 max-h-4 rounded-full  font-bold bg-white text-dark-purple hover:text-white hover:bg-dark-purple hover:border-2 hover:border-white">-</button>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                     <div id="photosHolder"
                         class="bg-white max-h-none max-lg: mt-2 rounded-lg row-span-3 row-start-3 col-start-2 max-lg:col-start-1 max-lg:row-start-auto">
@@ -104,17 +116,21 @@
                     </div>
                     <div id="imagePreview"
                         class="grid grid-cols-4 col-start-2 max-lg:col-start-1 rounded-lg pt-4 gap-x-2 max-">
-                        @foreach ($images as $index => $image)
-                            <img id='image_id_img-{{ $index }}' src="{{ asset('storage/' . $image->link) }}"
-                                class="max-h-fit rounded-lg scale-100 product_image cursor-pointer">
-                            <input id="image_id_input-{{ $index }}" hidden name="image_id-{{ $index }}"
-                                form="updateProducts" type="text" value="{{ $image->link }}">
-                        @endforeach
+                        @if (isset($images))
+                            @foreach ($images as $index => $image)
+                                <img id='image_id_img-{{ $index }}'
+                                    src="{{ asset('storage/' . $image->link) }}"
+                                    class="max-h-fit rounded-lg scale-100 product_image cursor-pointer">
+                                <input id="image_id_input-{{ $index }}" hidden
+                                    name="image_id-{{ $index }}" form="updateProducts" type="text"
+                                    value="{{ $image->link }}">
+                            @endforeach
+                        @endif
                     </div>
                     <div class=" flex gap-4 col-span-2 max-lg:col-span-1 mt-8 max-lg:mx-auto">
                         <button type="submit" form="updateProducts"
                             class=" border-2 border-green-500 text-green-500 px-4 py-1 w-32 rounded-full hover:font-bold hover:bg-green-500 hover:text-light-green text-center">
-                            @if ($product)
+                            @if (isset($product))
                                 Upraviť
                             @else
                                 Vytvoriť

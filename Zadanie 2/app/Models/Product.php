@@ -11,6 +11,13 @@ class Product extends Model
 
     const UPDATED_AT = null;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'category'
+    ];
+
     public function product()
     {
         return [

@@ -14,6 +14,10 @@ var counter=number_of_images;
 var file_counter = 0;
 var fileList = new DataTransfer();
 
+const name_input = document.getElementById('product_name');
+
+name_input.value=name_input.value.trim();
+
 var new_parameters=deleteParameters(allElements,regex1);
 deletePreLoadedImg(allElements,regex2);
 

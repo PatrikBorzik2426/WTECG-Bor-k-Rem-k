@@ -230,10 +230,10 @@ class ProductController extends Controller
 
     public function admin(Request $request)
     {
-        if ($request->input('name') || $product_id = $request->input('id')) {
+        if ($request->input('name') || $product_id = $request->input('id') || $request->input('category') != null) {
             $products_name = [];
             $products_id = [];
-            $products_category = [];
+            $product_category = [];
 
             $product_name = $request->input('name');
 
@@ -256,12 +256,30 @@ class ProductController extends Controller
 
             $product_category = $request->input('category');
 
-            if ($product_category && $product_category != 'none') {
-                $products_category = Product::where('category', $product_category)->get();
-                $products_category = $products_category->toArray();
+            if ($product_category == 'none') {
+                $product_category = [];
             }
 
-            $products = array_merge($products_name, $products_id, $products_category);
+            if ($product_category && $product_category != 'none') {
+                $product_ids = DB::table('parameters')
+                    ->join('parameter_products', 'parameters.id', '=', 'parameter_products.parameter_id')
+                    ->select('parameter_products.product_id')
+                    ->where('parameters.value', $product_category)
+                    ->where('parameters.parameter', 'brand')
+                    ->get();
+
+                $product_ids = $product_ids->pluck('product_id');
+
+
+                foreach ($product_ids as $index => $element) {
+                    $product_ids[$index] = (string)$element;
+                }
+
+                $product_category = Product::whereIn('id', $product_ids)->orderBy('id')->get();
+                $product_category = $product_category->toArray();
+            }
+
+            $products = array_merge($products_name, $products_id, $product_category);
         } else {
             $products = Product::orderBy('id')->get();
         }
@@ -315,9 +333,24 @@ class ProductController extends Controller
             'price' => 'required|numeric',
         ]);
 
+        $method = $request->method();
+
+        if ($method == 'POST') {
+            $product = Product::create([
+                'name' => $request->input('product_name'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'category' => 1
+            ]);
+
+            $product_id = $product->id;
+        } else {
+            $product_id = $request->input('product_id');
+        }
+
         if ($request->has('product_id')) {
 
-            $images_to_delete = Image::where('product_id', $request->input('product_id'))->get();
+            $images_to_delete = Image::where('product_id', $product_id)->get();
 
             foreach ($images_to_delete as $image) {
                 $image->delete();
@@ -332,7 +365,7 @@ class ProductController extends Controller
 
                     try {
                         Image::create([
-                            'product_id' => $request->input('product_id'),
+                            'product_id' => $product_id,
                             'link' => encrypt($path),
                             'main' => false
                         ]);
@@ -348,7 +381,7 @@ class ProductController extends Controller
                 if (preg_match($regex, $key)) {
                     try {
                         $image = Image::create([
-                            'product_id' => $request->input('product_id'),
+                            'product_id' => $product_id,
                             'link' => encrypt($value),
                             'main' => false
                         ]);
@@ -358,14 +391,17 @@ class ProductController extends Controller
                 }
             }
 
-            $product = Product::where('id', $request->input('product_id'));
-            $product->update([
-                'name' => $request->input('product_name'),
-                'description' => $request->input('description'),
-                'price' => $request->input('price'),
-            ]);
+            if ($method == 'PUT') {
 
-            ParameterProduct::where('product_id', $request->input('product_id'))->delete();
+                $product = Product::where('id', $product_id);
+                $product->update([
+                    'name' => $request->input('product_name'),
+                    'description' => $request->input('description'),
+                    'price' => $request->input('price'),
+                ]);
+
+                ParameterProduct::where('product_id', $product_id)->delete();
+            }
 
             $parameter_regex_key = '/^parameter-key-(\d+)$/';
             $parameter_regex_value = '/^parameter-value-(\d+)$/';
@@ -387,26 +423,31 @@ class ProductController extends Controller
 
                 if ($old_param) {
                     ParameterProduct::create([
-                        'product_id' => $request->input('product_id'),
+                        'product_id' => $product_id,
                         'parameter_id' => $old_param->id
                     ]);
                 } else {
-                    $parameter_data1 = $data;
-                    $parameter_data2 = $parameter_value[$index];
+                    $parameter_data1 = strtolower($data);
+                    $parameter_data2 = strtolower($parameter_value[$index]);
 
                     if ($parameter_data1 == '' || $parameter_data2 == '') {
                         dd('Empty parameter', $parameter_data1, $parameter_data2);
                     }
 
-                    $parameter = Parameter::create(
-                        [
-                            'parameter' => $parameter_data1,
-                            'value' => $parameter_data2
-                        ]
-                    );
+                    if (Parameter::where('parameter', $parameter_data1)->where('value', $parameter_data2)->exists()) {
+                        $parameter = Parameter::where('parameter', $parameter_data1)->where('value', $parameter_data2)->first();
+                    } else {
+
+                        $parameter = Parameter::create(
+                            [
+                                'parameter' => $parameter_data1,
+                                'value' => $parameter_data2
+                            ]
+                        );
+                    };
 
                     ParameterProduct::create([
-                        'product_id' => $request->input('product_id'),
+                        'product_id' => $product_id,
                         'parameter_id' => $parameter->id
                     ]);
                 };
@@ -415,5 +456,10 @@ class ProductController extends Controller
 
 
         return redirect()->route('admin');
+    }
+
+    public function emptyProduct()
+    {
+        return view('admin_product_detail');
     }
 }
