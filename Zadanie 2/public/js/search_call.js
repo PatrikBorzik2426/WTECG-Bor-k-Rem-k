@@ -4,6 +4,8 @@ const searchResults = document.getElementById("searchResults");
 
 let timerItself;
 
+searchResultsHolder.classList.remove('hidden');
+
 searchInput.addEventListener('input', () => {
     clearTimeout(timerItself);
 
@@ -18,21 +20,24 @@ searchInput.addEventListener('input', () => {
         fetch('/api/v1/search/products?search=' + query, {method: 'GET'})
             .then(response => response.json())
             .then(data => {
+                console.log(data);
+
                 searchResults.classList.remove('hidden');
 
                 console.log(data.length);
 
                 data.forEach(product => {
-                    let productDiv = document.createElement('div');
+                    const productDiv = document.createElement('div');
                     productDiv.classList.add('flex','justify-between');
                     productDiv.innerHTML = `
-                        <a href="/single-page/${product.id}" class=" hover:font-bold">${product.name}</a>
-                        <p>${product.price} €</p>
+                    <a href="/single-page/${product.id}" class=" hover:font-bold">${product.name}</a>
+                    <p>${product.price} €</p>
                     `;
                     searchResultsHolder.appendChild(productDiv);
+                    console.log(searchResultsHolder);
                 });
 
-                if (data.length === 0 || productDiv.innerHTML === '') {
+                if (data.length === 0) {
                     let productDiv = document.createElement('div');
                     productDiv.innerHTML = `
                         <p>No results found</p>

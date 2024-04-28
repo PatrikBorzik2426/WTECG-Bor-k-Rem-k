@@ -40,23 +40,22 @@
                 class="flex items-center text-light-green max-xl:grid max-xl:grid-col-2 gap-4 max-md:gap-8">
                 <div>
                     <label>ID: </label>
-                    <input name="id" id="id" type="text" value=""
+                    <input id="id_input" name="id" id="id" type="number" value=""
                         class="border-2 border-light-green rounded-2xl px-2 bg-transparent focus:outline-none w-full mr-3">
                 </div>
                 <div>
                     <label>Názov: </label>
-                    <input name="name" id="name" type="text" value=""
+                    <input id="name_input" name="name" id="name" type="text" value=""
                         class="border-2 border-light-green rounded-2xl px-2 bg-transparent focus:outline-none w-full mr-3">
                 </div>
                 <div>
                     <label class=" text-center px-2">Značka: </label>
                     <select name="category" id="category"
                         class="appearance-none bg-transparent rounded-full mr-3 px-2">
-
-                        <option value="1" class="bg-dark-purple">Možnosť 1</option>
-                        <option value="2" class="bg-dark-purple">Možnosť 2</option>
-                        <option value="3" class="bg-dark-purple">Možnosť 3</option>
-                        <option value="4" class="bg-dark-purple">Možnosť 4</option>
+                        <option value="none" class="bg-dark-purple" selected hidden>Vyber_možnosť</option>
+                        @foreach ($brands_only as $brand)
+                            <option value="{{ $brand }}" class="bg-dark-purple">{{ $brand }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <button type="submit"
@@ -90,7 +89,8 @@
                         @method('DELETE')
                         <div
                             class=" w-fit h-full flex flex-col justify-between items-center shadow-custom shadow-purple mx-auto rounded-[2.5rem]">
-                            <p class="text-white font-medium mt-2 px-6 text-lg text-center">{{ $item['name'] }}
+                            <p class="text-white font-medium mt-2 px-6 text-lg text-center">#{{ $item['id'] }} -
+                                {{ $item['name'] }}
                             </p>
                             <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
                         </div>
@@ -113,6 +113,7 @@
             </div>
         </div>
     </main>
+    <script src={{ asset('js/admin_input_field.js') }}></script>
 </body>
 
 </html>

@@ -205,6 +205,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $parameterProducts = ParameterProduct::where('product_id', $id)->get();
         $parameters = [];
+        $images = [];
 
         foreach ($parameterProducts as $parameterProduct) {
             $parameter = Parameter::where('id', $parameterProduct->parameter_id)->first();
@@ -221,18 +222,58 @@ class ProductController extends Controller
             [
                 'product' => $product,
                 'parameters' => $parameters,
+                'images' => $images
             ]
 
         );
     }
 
-    public function admin()
+    public function admin(Request $request)
     {
-        $products = Product::all();
+        if ($request->input('name') || $product_id = $request->input('id')) {
+            $products_name = [];
+            $products_id = [];
+            $products_category = [];
+
+            $product_name = $request->input('name');
+
+            if ($product_name) {
+
+                $products_name = Product::selectRaw('*, word_similarity(name, \'' . $product_name . '\') as sim')
+                    ->where('name', 'ilike', '%' . $product_name . '%')
+                    ->orderByRaw('sim DESC')
+                    ->get();
+
+                $products_name = $products_name->toArray();
+            }
+
+            $product_id = $request->input('id');
+
+            if ($product_id) {
+                $products_id = Product::where('id', $product_id)->orderBy('id')->get();
+                $products_id = $products_id->toArray();
+            }
+
+            $product_category = $request->input('category');
+
+            if ($product_category && $product_category != 'none') {
+                $products_category = Product::where('category', $product_category)->get();
+                $products_category = $products_category->toArray();
+            }
+
+            $products = array_merge($products_name, $products_id, $products_category);
+        } else {
+            $products = Product::orderBy('id')->get();
+        }
+
+        $brands_only = DB::table('parameters')->where('parameter', 'brand')->get();
+
+        $brands_only = $brands_only->pluck('value');
 
         return view('admin')->with(
             [
                 'products' => $products,
+                'brands_only' => $brands_only
             ]
         );
     }
@@ -262,6 +303,108 @@ class ProductController extends Controller
                 }
             }
         }
+
+        return redirect()->route('admin');
+    }
+
+    public function updateProduct(Request $request)
+    {
+        $request->validate([
+            'product_name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+        ]);
+
+        if ($request->has('product_id')) {
+
+            $images_to_delete = Image::where('product_id', $request->input('product_id'))->get();
+
+            foreach ($images_to_delete as $image) {
+                $image->delete();
+            }
+
+            if ($request->has('fileInput')) {
+                $file_input = $request->file('fileInput');
+
+                foreach ($file_input as $image) {
+
+                    $path = $image->store('images', 'public');
+
+                    try {
+                        Image::create([
+                            'product_id' => $request->input('product_id'),
+                            'link' => encrypt($path),
+                            'main' => false
+                        ]);
+                    } catch (\Exception $e) {
+                        dd($e);
+                    };
+                };
+            };
+
+            $regex = '/^image_id-(\d+)$/';
+
+            foreach ($request->all() as $key => $value) {
+                if (preg_match($regex, $key)) {
+                    try {
+                        $image = Image::create([
+                            'product_id' => $request->input('product_id'),
+                            'link' => encrypt($value),
+                            'main' => false
+                        ]);
+                    } catch (\Exception $e) {
+                        dd($e);
+                    };
+                }
+            }
+
+            $product = Product::where('id', $request->input('product_id'));
+            $product->update([
+                'name' => $request->input('product_name'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+            ]);
+
+            ParameterProduct::where('product_id', $request->input('product_id'))->delete();
+
+            $parameter_regex_key = '/^parameter-key-(\d+)$/';
+            $parameter_regex_value = '/^parameter-value-(\d+)$/';
+
+            $parameter_key = [];
+            $parameter_value = [];
+
+            foreach ($request->all() as $key => $value) {
+                if (preg_match($parameter_regex_key, $key)) {
+                    array_push($parameter_key, $value);
+                }
+                if (preg_match($parameter_regex_value, $key)) {
+                    array_push($parameter_value, $value);
+                }
+            };
+
+            foreach ($parameter_key as $index => $data) {
+                if (Parameter::where('parameter', $data)->where('value', $parameter_value[$index])->exists()) {
+                } else {
+                    $parameter_data1 = $data;
+                    $parameter_data2 = $parameter_value[$index];
+
+                    if ($parameter_data1 == '' || $parameter_data2 == '') {
+                        dd('Empty parameter', $parameter_data1, $parameter_data2);
+                    }
+
+                    $parameter = Parameter::create([
+                        'parameter' => 'piča',
+                        'value' => 'kokot'
+                    ]);
+
+                    ParameterProduct::create([
+                        'product_id' => $request->input('product_id'),
+                        'parameter_id' => $parameter->id
+                    ]);
+                };
+            };
+        }
+
 
         return redirect()->route('admin');
     }

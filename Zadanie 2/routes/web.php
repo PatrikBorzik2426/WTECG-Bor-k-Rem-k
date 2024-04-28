@@ -59,3 +59,5 @@ Route::post('/create-order', [OrderController::class, 'createOrder'])->middlewar
 Route::delete('/product/delete/{id}', [ProductController::class, 'deleteProduct'])->middleware('auth', 'can:admin');
 
 Route::delete('/cart-items/delete/multiple', [ProductController::class, 'deleteProductMultiple'])->middleware('auth', 'can:admin');
+
+Route::put('/product/update', [ProductController::class, 'updateProduct'])->middleware('auth', 'can:admin');

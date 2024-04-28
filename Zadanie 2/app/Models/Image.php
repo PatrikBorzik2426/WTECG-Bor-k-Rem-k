@@ -9,6 +9,12 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'link',
+        'product_id',
+        'main'
+    ];
+
     const UPDATED_AT = null;
 
     public function image()
