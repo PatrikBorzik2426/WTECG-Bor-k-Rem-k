@@ -383,7 +383,13 @@ class ProductController extends Controller
             };
 
             foreach ($parameter_key as $index => $data) {
-                if (Parameter::where('parameter', $data)->where('value', $parameter_value[$index])->exists()) {
+                $old_param = Parameter::where('parameter', $data)->where('value', $parameter_value[$index])->first();
+
+                if ($old_param) {
+                    ParameterProduct::create([
+                        'product_id' => $request->input('product_id'),
+                        'parameter_id' => $old_param->id
+                    ]);
                 } else {
                     $parameter_data1 = $data;
                     $parameter_data2 = $parameter_value[$index];
@@ -392,10 +398,12 @@ class ProductController extends Controller
                         dd('Empty parameter', $parameter_data1, $parameter_data2);
                     }
 
-                    $parameter = Parameter::create([
-                        'parameter' => 'piča',
-                        'value' => 'kokot'
-                    ]);
+                    $parameter = Parameter::create(
+                        [
+                            'parameter' => $parameter_data1,
+                            'value' => $parameter_data2
+                        ]
+                    );
 
                     ParameterProduct::create([
                         'product_id' => $request->input('product_id'),

@@ -9,13 +9,10 @@ class Parameter extends Model
 {
     use HasFactory;
 
-    const UPDATED_AT = false;
-    const CREATED_AT = false;
+    const UPDATED_AT = null;
+    const CREATED_AT = null;
 
-    protected $fillable = [
-        'parameter',
-        'value'
-    ];
+    protected $fillable = ['parameter', 'value'];
 
     public function parameter()
     {
