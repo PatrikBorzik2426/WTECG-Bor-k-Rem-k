@@ -52,3 +52,7 @@ searchInput.addEventListener('input', () => {
     },500);
 });
 
+searchInput.addEventListener('focusout', () => {
+    searchInput.value = '';
+    searchResultsHolder.classList.toggle('hidden');
+});

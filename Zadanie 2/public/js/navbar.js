@@ -4,10 +4,10 @@ const menuToggle = document.getElementById('menuToggle');
 const menuClose = document.getElementById('menuClose');
 const authPriceNav = document.getElementById('numberOfCartItemAuth');
 
-const searchResultsHolder = document.getElementById("searchResultsHolder");
-const searchResults = document.getElementById("searchResults");
+// const searchResultsHolder = document.getElementById("searchResultsHolder");
+// const searchResults = document.getElementById("searchResults");
 
-let timerItself;
+// let timerItself;
 
 
 fetch('/cart-items/count',{method: 'GET'})

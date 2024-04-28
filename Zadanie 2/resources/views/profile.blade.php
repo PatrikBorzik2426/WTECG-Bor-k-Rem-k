@@ -59,7 +59,8 @@
                                     <img src="{{ asset('img/svg/done.svg') }}" class="scale-75">
                                 @endif
                             </div>
-                            <p class=" font-bold max-sm:text-sm max-sm:w-full">{{ $shopping_sessions[$index]->total }}€
+                            <p class=" font-bold max-sm:text-sm max-sm:w-full">
+                                {{ number_format($shopping_sessions[$index]->total, 2, ',', ' ') }}€
                             </p>
                         </div>
                     </div>
@@ -94,7 +95,7 @@
                                         <li class="flex justify-between  max-sm:flex-col">{{ $inner_item->quantity }}x
                                             {{ $products[$index_item]->name }}
                                             <span
-                                                class=" font-bold">{{ $products[$index_item]->price * $inner_item->quantity }}
+                                                class=" font-bold">{{ number_format($products[$index_item]->price * $inner_item->quantity, 2, ',', ' ') }}
                                                 €</span>
                                             <input type="hidden"
                                                 value="{{ $sum_of_order += $products[$index_item]->price * $inner_item->quantity }}">
@@ -105,7 +106,7 @@
                         </ul>
                         <ul class=" col-start-2">
                             <li class="flex justify-between">Sumár ceny: <span
-                                    class=" font-bold">{{ $sum_of_order }}€</span></li>
+                                    class=" font-bold">{{ number_format($sum_of_order, 2, ',', ' ') }}€</span></li>
                         </ul>
                     </div>
                 </div>

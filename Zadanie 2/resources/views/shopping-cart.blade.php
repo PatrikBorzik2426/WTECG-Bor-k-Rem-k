@@ -25,7 +25,7 @@
             </div>
             @auth
                 @foreach ($product_names as $index => $product_name)
-                    <div id="cartItemDiv{{ $index }}" class="grid grid-cols-3 gap-y-4">
+                    <div id="cartItemDiv{{ $index }}" class="grid grid-cols-3 gap-y-4 mb-4">
                         <input type="number" name="cartItemId{{ $index }}" id="cartItemId{{ $index }}"
                             value={{ $cart_items[$index] }} class="hidden">
                         <p class="font-light">{{ $product_name }}</p>
