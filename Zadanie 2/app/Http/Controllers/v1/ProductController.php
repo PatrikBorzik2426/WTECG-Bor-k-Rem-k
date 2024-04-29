@@ -374,7 +374,7 @@ class ProductController extends Controller
             $images_to_delete = Image::where('product_id', $product_id)->get();
 
             foreach ($images_to_delete as $image) {
-                $image->delete();
+                $image->delete();           
             }
 
             if ($request->has('fileInput')) {
@@ -404,7 +404,7 @@ class ProductController extends Controller
                         $image = Image::create([
                             'product_id' => $product_id,
                             'link' => encrypt($value),
-                            'main' => false
+                            'main' => true
                         ]);
                     } catch (\Exception $e) {
                         dd($e);
