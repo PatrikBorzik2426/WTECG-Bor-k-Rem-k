@@ -77,6 +77,15 @@
                             value="@if (isset($product)) {{ str_replace(',', '', number_format($product->price, 2)) }} @endif"
                             tabindex="5">
                     </div>
+                    <div>
+                        <label for="price">Categória</label><br>
+                        <select class="w-full h-fit rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
+                            id="price" name="category" tabindex="6">
+                            <option value='0' @if (isset($product) && $product->category == 0) selected @endif>Android</option>
+                            <option value='1' @if (isset($product) && $product->category == 1) selected @endif>Apple</option>
+                            <option value='2' @if (isset($product) && $product->category == 2) selected @endif>News</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="h-fit">
                     <div class="flex mb-2 gap-x-4 h-6">

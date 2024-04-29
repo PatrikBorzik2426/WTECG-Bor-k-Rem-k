@@ -173,21 +173,21 @@ class ProductController extends Controller
             ->take(4)
             ->get();
         foreach ($apple as $element) {
-            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $image = Image::where("product_id", $element->id)->first();
             $element['image'] = decrypt(stream_get_contents($image->link));
         }
         $android = Product::where('category', '0')
             ->take(4)
             ->get();
         foreach ($android as $element) {
-            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $image = Image::where("product_id", $element->id)->first();
             $element['image'] = decrypt(stream_get_contents($image->link));
         }
         $news = Product::orderBy('id', 'desc')
             ->take(2)
             ->get();
         foreach ($news as $element) {
-            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $image = Image::where("product_id", $element->id)->first();
             $element['image'] = decrypt(stream_get_contents($image->link));
         }
         return view('home')->with(
@@ -320,6 +320,17 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         $product = Product::find($id);
+
+        $images_to_delete = Image::where('product_id', $id)->get();
+
+        foreach ($images_to_delete as $image) {
+            $encryptedFileName = decrypt(stream_get_contents($image->link));
+
+            if ($encryptedFileName != 'images/ascpect_1_1.png') {
+                unlink(storage_path('app/public/' . $encryptedFileName));
+            }
+        }
+
         if ($product) {
             $product->delete();
         }
@@ -337,6 +348,16 @@ class ProductController extends Controller
             if (preg_match($pattern, $key)) {
                 $id = preg_replace($pattern, '$1', $key);
                 $product = Product::find($id);
+
+                $images_to_delete = Image::where('product_id', $id)->get();
+
+                foreach ($images_to_delete as $image) {
+                    $encryptedFileName = decrypt(stream_get_contents($image->link));
+                    if ($encryptedFileName != 'images/ascpect_1_1.png') {
+                        unlink(storage_path('app/public/' . $encryptedFileName));
+                    }
+                }
+
                 if ($product) {
                     $product->delete();
                 }
@@ -361,7 +382,7 @@ class ProductController extends Controller
                 'name' => $request->input('product_name'),
                 'description' => $request->input('description'),
                 'price' => $request->input('price'),
-                'category' => 1
+                'category' => $request->input('category')
             ]);
 
             $product_id = $product->id;
@@ -374,7 +395,11 @@ class ProductController extends Controller
             $images_to_delete = Image::where('product_id', $product_id)->get();
 
             foreach ($images_to_delete as $image) {
-                $image->delete();           
+                $encryptedFileName = decrypt(stream_get_contents($image->link));
+                if ($encryptedFileName != 'images/ascpect_1_1.png') {
+                    unlink(storage_path('app/public/' . $encryptedFileName));
+                }
+                $image->delete();
             }
 
             if ($request->has('fileInput')) {
@@ -419,6 +444,7 @@ class ProductController extends Controller
                     'name' => $request->input('product_name'),
                     'description' => $request->input('description'),
                     'price' => $request->input('price'),
+                    'category' => $request->input('category')
                 ]);
 
                 ParameterProduct::where('product_id', $product_id)->delete();

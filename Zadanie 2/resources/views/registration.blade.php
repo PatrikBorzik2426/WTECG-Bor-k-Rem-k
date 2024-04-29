@@ -21,6 +21,13 @@
                 {{ $errors }}
             </p>
         </div>
+    @elseif($errors->has('code'))
+        <div
+            class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
+            <p>
+                Došlo k duplicite údajov - tel. číslo alebo login sú už registrované.
+            </p>
+        </div>
     @endif
     <main class="flex justify-center items-center h-full py-10">
         <div

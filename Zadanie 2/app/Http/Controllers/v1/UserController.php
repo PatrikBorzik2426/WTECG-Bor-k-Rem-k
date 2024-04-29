@@ -41,7 +41,6 @@ class UserController extends Controller
     public function registration(Request $request)
     {
         #TODO V situácií, kde user sa chce zaregistrovať a je zatiaľ temporary iba updatnúť jeho dáta
-
         $validationOfData = $request->validate(
             [
                 'login' => 'required|max:64|unique:users,login',
@@ -49,7 +48,7 @@ class UserController extends Controller
                 'password' => 'required|min:8|regex:/[!@#$%^&*()\-+=\[\]{};:",.<>\/?]/',
                 'address' => 'required | max:255',
                 'postal_code' => 'required | nullable|digits:5',
-                'phone' => 'required | max:20',
+                'phone' => 'required | max:20 | unique:users,phone_number',
                 'first_name' => 'required | max:35',
                 'last_name' => 'required | max:35'
             ],
@@ -59,20 +58,29 @@ class UserController extends Controller
                 'password.required' => 'Heslo je povinné',
                 'password.regex' => 'Heslo musí obsahovať aspoň jeden špeciálny znak',
                 'password.min' => 'Heslo musí mať aspoň 8 znakov',
+                'phone.unique' => 'Tento telefónny čísla už je registrované',
+                'login.unique' => 'Užívateľ s týmto prihlasovacím menom existuje',
+                'email.unique' => 'Užívateľ s týmto e-mailom existuje'
             ]
         );
 
-        $user = User::create([
-            'login' => $validationOfData['login'],
-            'email' => $validationOfData['email'],
-            'password' => Hash::make($validationOfData['password']),
-            'address' => $validationOfData['address'],
-            'postal_code' => $validationOfData['postal_code'],
-            'phone_number' => $validationOfData['phone'],
-            'name' => $validationOfData['first_name'],
-            'surname' => $validationOfData['last_name'],
-            'temporary' => false
-        ]);
+        try {
+            $user = User::create([
+                'login' => $validationOfData['login'],
+                'email' => $validationOfData['email'],
+                'password' => Hash::make($validationOfData['password']),
+                'address' => $validationOfData['address'],
+                'postal_code' => $validationOfData['postal_code'],
+                'phone_number' => $validationOfData['phone'],
+                'name' => $validationOfData['first_name'],
+                'surname' => $validationOfData['last_name'],
+                'temporary' => false
+            ]);
+        } catch (Exception $e) {
+            $code_value = $e->getCode();
+            $code_value = ['code' => $code_value];
+            return redirect()->back()->withErrors($code_value)->withInput();
+        };
 
         return view('login', [
             'message' => 'Registrácia prebehla úspešne'

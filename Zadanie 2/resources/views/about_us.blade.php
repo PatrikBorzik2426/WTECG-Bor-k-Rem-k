@@ -23,50 +23,34 @@
         </div>
     @endif
     <main class="flex flex-col justify-center items-center h-full">
-        <div class="w-1/2">
-            <h1 class=" font-bold text-light-green text-4xl mb-20">O nás</h1>
-            <p class=" text-light-green">
-                Samozrejme! Tu je popis nového malého eshopu zameraného výhradne na mobilné technológie:
-
-                Vitajte v MobileTechLand, vašom novom útočisku pre všetko, čo sa týka mobilných technológií! Sme malý,
-                ale
-                vášnivý tím technologických nadšencov, ktorí sa spojili s jediným cieľom: priniesť vám najnovšie a
-                najlepšie
-                mobilné zážitky priamo do vašich rúk.
-
-                Naša misia je jednoduchá: ponúknuť našim zákazníkom najvyššiu kvalitu a najnovšie produkty z oblasti
-                mobilných technológií za dostupné ceny. Nezáleží na tom, či ste nadšený fanúšik najnovších modelov
-                smartfónov, vášnivý fotograf, ktorý hľadá tie najlepšie fotoaparáty, alebo technologický dobrodruh,
-                ktorý
-                túži po objavení najnovších trendov v oblasti gadgetov - MobileTechLand je tu pre vás!
-
-                V našom sortimente nájdete širokú škálu produktov od popredných značiek, vrátane najnovších modelov
-                smartfónov, tabletov, inteligentných hodiniek, slúchadiel, powerbankov, príslušenstva a ďalších
-                technologických doplnkov. Neustále sledujeme trendy a inovácie v oblasti mobilných technológií, aby sme
-                vám
-                mohli ponúknuť len to najlepšie, čo trh má ponúknuť.
-
-                Jedným z našich záväzkov je tiež poskytovať vynikajúcu zákaznícku podporu. Náš tím odborníkov je tu, aby
-                vám
-                pomohol s akýmkoľvek dotazom, problémom alebo radou ohľadom vášho nákupu. Chceme, aby ste sa cítili istí
-                a
-                spokojní s každým nákupom u nás.
-
-                Okrem toho sa snažíme udržiavať šetrný prístup k životnému prostrediu. Preto sme sa zaviazali k čo
-                najmenšiemu množstvu plastového obalu a podporujeme recykláciu našich produktov. Sme presvedčení, že
-                môžeme
-                spolu prispieť k čistejšiemu a zdravšiemu prostrediu pre budúce generácie.
-
-                MobileTechLand nie je len obyčajný eshop, je to spoločenstvo technologických nadšencov, ktorí sa
-                spájajú,
-                aby zdieľali vášeň a záujem o mobilné technológie. Sledujte nás na sociálnych médiách a buďte vždy v
-                obraze
-                s najnovšími novinkami, ponukami a technologickými tipmi.
-
-                Ďakujeme, že ste si vybrali MobileTechLand ako svojho partnera v technologickom svete. Tešíme sa na
-                spoločnú
-                cestu plnú inovácií, zábavy a neustáleho objavovania. Vítame vás do nášho sveta mobilných technológií
-            </p>
+        <div class="w-3/4 flex flex-col justify-center items-center mb-20">
+            <h1 class=" font-bold text-light-green text-4xl mb-10">O nás</h1>
+            <div class="flex max-lg:flex-col gap-10">
+                <p class=" text-light-green">
+                    Samozrejme! Tu je popis nového malého eshopu zameraného výhradne na mobilné technológie:
+                    <br><br>
+                    Vitajte v MobileTechLand, vašom novom útočisku pre všetko, čo sa týka mobilných technológií! Sme
+                    malý,
+                    ale
+                    vášnivý tím technologických nadšencov, ktorí sa spojili s jediným cieľom: priniesť vám najnovšie a
+                    najlepšie
+                    mobilné zážitky priamo do vašich rúk.
+                    <br><br>
+                    Naša misia je jednoduchá: ponúknuť našim zákazníkom najvyššiu kvalitu a najnovšie produkty z oblasti
+                    mobilných technológií za dostupné ceny. Nezáleží na tom, či ste nadšený fanúšik najnovších modelov
+                    smartfónov, vášnivý fotograf, ktorý hľadá tie najlepšie fotoaparáty, alebo technologický dobrodruh,
+                    ktorý
+                    túži po objavení najnovších trendov v oblasti gadgetov - MobileTechLand je tu pre vás!
+                    <br><br>
+                    V našom sortimente nájdete širokú škálu produktov od popredných značiek, vrátane najnovších modelov
+                    smartfónov, tabletov, inteligentných hodiniek, slúchadiel, powerbankov, príslušenstva a ďalších
+                    technologických doplnkov. Neustále sledujeme trendy a inovácie v oblasti mobilných technológií, aby
+                    sme
+                    vám
+                    mohli ponúknuť len to najlepšie, čo trh má ponúknuť.
+                </p>
+                <img src={{ asset('img/kolektiv.jpg') }} class="w-1/2 h-1/2 rounded-2xl max-lg:w-full">
+            </div>
         </div>
     </main>
 </body>
