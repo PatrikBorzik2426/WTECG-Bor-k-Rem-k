@@ -325,7 +325,8 @@ class ProductController extends Controller
 
         foreach ($images_to_delete as $image) {
             $encryptedFileName = decrypt(stream_get_contents($image->link));
-            if ($encryptedFileName != 'ascpect_1_1.png') {
+
+            if ($encryptedFileName != 'images/ascpect_1_1.png') {
                 unlink(storage_path('app/public/' . $encryptedFileName));
             }
         }
@@ -352,7 +353,7 @@ class ProductController extends Controller
 
                 foreach ($images_to_delete as $image) {
                     $encryptedFileName = decrypt(stream_get_contents($image->link));
-                    if ($encryptedFileName != 'ascpect_1_1.png') {
+                    if ($encryptedFileName != 'images/ascpect_1_1.png') {
                         unlink(storage_path('app/public/' . $encryptedFileName));
                     }
                 }
@@ -395,7 +396,7 @@ class ProductController extends Controller
 
             foreach ($images_to_delete as $image) {
                 $encryptedFileName = decrypt(stream_get_contents($image->link));
-                if ($encryptedFileName != 'ascpect_1_1.png') {
+                if ($encryptedFileName != 'images/ascpect_1_1.png') {
                     unlink(storage_path('app/public/' . $encryptedFileName));
                 }
                 $image->delete();
