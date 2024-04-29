@@ -207,6 +207,7 @@ class ProductController extends Controller
         $parameters = [];
         $images = [];
 
+        foreach ($parameterProducts as $parameterProduct) {
             $parameter = Parameter::where('id', $parameterProduct->parameter_id)->first();
             array_push($parameters, $parameter);
         }
