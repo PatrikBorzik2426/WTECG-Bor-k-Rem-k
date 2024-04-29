@@ -92,7 +92,10 @@
                             <p class="text-white font-medium mt-2 px-6 text-lg text-center">#{{ $item['id'] }} -
                                 {{ $item['name'] }}
                             </p>
-                            <img src="{{ asset('storage/' . $images[$index]) }}" class=" mb-8 scale-[80%] rounded-2xl">
+                            @if (isset($images[$index]))
+                                <img src="{{ asset('storage/' . $images[$index]) }}"
+                                    class=" mb-8 scale-[80%] rounded-2xl">
+                            @endif
                         </div>
                         <div class=" relative bottom-6 bg-transparent text-center w-9/12 py-1 mx-auto">
                             <div class="grid grid-cols-3">
