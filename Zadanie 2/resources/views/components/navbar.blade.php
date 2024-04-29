@@ -126,10 +126,10 @@
         </div>
     </div>
     </div>
-    <div id="searchResults" class="hidden flex w-8/12 max-md:w-9/12 h-0 justify-end mx-auto z-40">
+    <div id="searchResults" class="hidden flex w-8/12 max-lg:w-6/12 h-0 justify-end mx-auto z-40">
         <div class="absolute w-fit mt-2">
             <div id="searchResultsHolder"
-                class="flex justify-between max-h-60 overflow-auto flex-col col-start-4 text-center w-96 max-md:w-64 bg-light-green py-4 px-4 rounded-md">
+                class="flex justify-between max-h-60 overflow-auto flex-col col-start-4 text-center w-96 max-md:w-72 max-sm:w-60 bg-light-green py-4 px-4 rounded-md">
             </div>
         </div>
     </div>
