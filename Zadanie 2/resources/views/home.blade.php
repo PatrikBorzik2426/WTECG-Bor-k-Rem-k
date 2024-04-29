@@ -12,9 +12,9 @@
 
 <body class="bg-black font-manrope min-w-80">
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
-        <header>
-            <x-navbar />
-        </header>
+        
+        <x-navbar />
+       
         <div
             class="max-sm:grid-cols-1 max-sm:gap-y-4 w-7/12 max-lg:w-8/12 max-md:w-10/12 mx-auto my-20 text-center text-light-green">
             <a href="./single_page.html">
