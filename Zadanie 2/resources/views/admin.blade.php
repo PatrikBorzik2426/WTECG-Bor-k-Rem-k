@@ -82,7 +82,7 @@
 
             <div class="grid grid-cols-3 gap-x-10 max-lg:grid-cols-2 max-md:grid-cols-1">
 
-                @foreach ($products as $item)
+                @foreach ($products as $index => $item)
                     <form id="formProduct{{ $item['id'] }}" class="flex flex-col" method="post"
                         action="product/delete/{{ $item['id'] }}">
                         @csrf
@@ -92,7 +92,7 @@
                             <p class="text-white font-medium mt-2 px-6 text-lg text-center">#{{ $item['id'] }} -
                                 {{ $item['name'] }}
                             </p>
-                            <img src="../img/iphone_mockup.jpg" class=" mb-8 scale-[80%] rounded-2xl">
+                            <img src="{{ asset('storage/' . $images[$index]) }}" class=" mb-8 scale-[80%] rounded-2xl">
                         </div>
                         <div class=" relative bottom-6 bg-transparent text-center w-9/12 py-1 mx-auto">
                             <div class="grid grid-cols-3">

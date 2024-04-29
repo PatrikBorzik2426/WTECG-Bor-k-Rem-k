@@ -280,8 +280,28 @@ class ProductController extends Controller
             }
 
             $products = array_merge($products_name, $products_id, $product_category);
+
+            $images_product_ids = [];
+
+            foreach ($products as $product) {
+                array_push($images_product_ids, $product['id']);
+            }
+
+            $images = Image::whereIn('product_id', $images_product_ids)->get();
+            $images_link = [];
+
+            foreach ($images as $image) {
+                array_push($images_link, decrypt(stream_get_contents($image->link)));
+            }
         } else {
             $products = Product::orderBy('id')->get();
+            $images = Image::orderBy('product_id')->get();
+
+            $images_link = [];
+
+            foreach ($images as $image) {
+                array_push($images_link, decrypt(stream_get_contents($image->link)));
+            }
         }
 
         $brands_only = DB::table('parameters')->where('parameter', 'brand')->get();
@@ -290,8 +310,9 @@ class ProductController extends Controller
 
         return view('admin')->with(
             [
-                'products' => $products,
-                'brands_only' => $brands_only
+                'products' => $products ?? null,
+                'brands_only' => $brands_only ?? null,
+                'images' => $images_link ?? null
             ]
         );
     }
