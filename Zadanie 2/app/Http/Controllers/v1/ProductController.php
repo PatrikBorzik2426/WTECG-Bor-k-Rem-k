@@ -320,6 +320,16 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         $product = Product::find($id);
+
+        $images_to_delete = Image::where('product_id', $id)->get();
+
+        foreach ($images_to_delete as $image) {
+            $encryptedFileName = decrypt(stream_get_contents($image->link));
+            if ($encryptedFileName != 'ascpect_1_1.png') {
+                unlink(storage_path('app/public/' . $encryptedFileName));
+            }
+        }
+
         if ($product) {
             $product->delete();
         }
@@ -337,6 +347,16 @@ class ProductController extends Controller
             if (preg_match($pattern, $key)) {
                 $id = preg_replace($pattern, '$1', $key);
                 $product = Product::find($id);
+
+                $images_to_delete = Image::where('product_id', $id)->get();
+
+                foreach ($images_to_delete as $image) {
+                    $encryptedFileName = decrypt(stream_get_contents($image->link));
+                    if ($encryptedFileName != 'ascpect_1_1.png') {
+                        unlink(storage_path('app/public/' . $encryptedFileName));
+                    }
+                }
+
                 if ($product) {
                     $product->delete();
                 }
@@ -374,6 +394,10 @@ class ProductController extends Controller
             $images_to_delete = Image::where('product_id', $product_id)->get();
 
             foreach ($images_to_delete as $image) {
+                $encryptedFileName = decrypt(stream_get_contents($image->link));
+                if ($encryptedFileName != 'ascpect_1_1.png') {
+                    unlink(storage_path('app/public/' . $encryptedFileName));
+                }
                 $image->delete();
             }
 
