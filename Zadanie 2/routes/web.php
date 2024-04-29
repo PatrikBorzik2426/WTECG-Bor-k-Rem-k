@@ -30,11 +30,13 @@ Route::get('/posts/{id}', function ($id) {
 Route::get('/registration', function () {
     return view('registration');
 });
-Route::get('/admin',[ProductController::class, 'admin']);
+Route::get('/admin', [ProductController::class, 'admin'])->middleware('auth', 'can:admin')->name('admin');
 
 Route::get('/admin/{id}',[ProductController::class, 'delete']);
 
 Route::get('/admin_product/{id}',[ProductController::class, 'adminProduct']);
+
+Route::get('/admin_product', [ProductController::class, 'emptyProduct']);
 
 Route::get('/login', function () {
     return view('login');
@@ -57,3 +59,10 @@ Route::get('/cart-items/count', [CartItemController::class, 'numberOfItems']);
 Route::get('/process-order', [OrderController::class, 'processOrder'])->middleware('auth');
 
 Route::post('/create-order', [OrderController::class, 'createOrder'])->middleware('auth');
+
+Route::delete('/product/delete/{id}', [ProductController::class, 'deleteProduct'])->middleware('auth', 'can:admin');
+
+Route::delete('/cart-items/delete/multiple', [ProductController::class, 'deleteProductMultiple'])->middleware('auth', 'can:admin');
+
+Route::match(['put', 'post'], '/product/update', [ProductController::class, 'updateProduct'])
+    ->middleware('auth', 'can:admin');

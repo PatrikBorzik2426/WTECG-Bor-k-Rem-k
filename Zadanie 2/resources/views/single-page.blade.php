@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Product</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/svg/cart.svg') }}">
     @vite('resources/css/app.css')
 </head>
 
@@ -16,13 +17,12 @@
        
         <div class="mt-4 w-full">
             <h1 class="text-3xl font-bold tracking-tight text-white sm:text-3xl text-center">{{ $product->name }}</h1>
-
             <!-- Image gallery -->
             <div class="flex w-4/12 justify-center items-center max-w-fit mx-auto mt-8 gap-8 max-lg:flex-col">
-                <img src="{{ $images[0]->link }}" alt="obrazok1"
-                    class="h-full w-full object-cover object-center rounded-3xl">
-                <img src="{{ $images[0]->link }}" alt="obrazok2"
-                    class="h-full w-full object-cover object-center rounded-3xl">
+                @foreach ($images as $image)
+                    <img src="{{ asset('storage/' . $image->link) }}" alt="obrazok1"
+                        class="h-full w-full object-cover object-center rounded-3xl">
+                @endforeach
             </div>
 
             <!-- Product info -->

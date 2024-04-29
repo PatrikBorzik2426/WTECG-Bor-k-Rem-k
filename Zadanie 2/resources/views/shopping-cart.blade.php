@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Cart</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/svg/cart.svg') }}">
     @vite('resources/css/app.css')
 </head>
 
@@ -17,13 +18,14 @@
         class="flex mb-10 justify-center items-start gap-x-32 mx-auto pt-20 max-sm:pt-10 max-lg:gap-x-10 max-sm:flex-col max-sm:h-full">
         <div class="w-5/12 text-light-green max-sm:w-10/12 max-sm:mx-auto mb-12">
             <h2 class="text-4xl font-bold mb-10">Nákupný košík</h2>
-            <div class="grid grid-cols-3 gap-y-4">
+            <div class="grid grid-cols-3 gap-y-4 mb-5">
                 <h3 class="text-lg font-medium">Názov</h3>
                 <h3 class="text-lg font-medium text-center">Kusy</h3>
                 <h3 class="text-lg font-medium text-right">Cena (ks)</h3>
-
-                @auth
-                    @foreach ($product_names as $index => $product_name)
+            </div>
+            @auth
+                @foreach ($product_names as $index => $product_name)
+                    <div id="cartItemDiv{{ $index }}" class="grid grid-cols-3 gap-y-4 mb-4">
                         <input type="number" name="cartItemId{{ $index }}" id="cartItemId{{ $index }}"
                             value={{ $cart_items[$index] }} class="hidden">
                         <p class="font-light">{{ $product_name }}</p>
@@ -38,9 +40,10 @@
                         </div>
                         <p class="text-right font-bold my-auto">
                             {{ ucfirst(number_format($product_prices[$index], 2, ',', ' ')) }} €</p>
-                    @endforeach
-                @endauth
-            </div>
+                    </div>
+                @endforeach
+            @endauth
+
         </div>
         <aside
             class=" h-10/12 text-light-green shadow-custom shadow-light-purple rounded-3xl p-10 max-sm:mb-16 max-sm:mx-auto">

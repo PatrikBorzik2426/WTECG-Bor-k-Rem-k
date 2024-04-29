@@ -5,13 +5,12 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use App\Models\Image;
 use App\Models\ParameterProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Parameter;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -167,41 +166,46 @@ class ProductController extends Controller
             'parameters' => $parameters
         ]);
     }
-    public function homePage(){
+    public function homePage()
+    {
 
-        $apple = Product::where('category','1')
-                              ->take(4)
-                              ->get();
-        foreach($apple as $element){
+        $apple = Product::where('category', '1')
+            ->take(4)
+            ->get();
+        foreach ($apple as $element) {
             $image = Image::where("product_id", $element->id)->where("main", true)->first();
-            $element['image']=decrypt(stream_get_contents($image->link));
+            $element['image'] = decrypt(stream_get_contents($image->link));
         }
-        $android = Product::where('category','0')
-                              ->take(4)
-                              ->get();
-        foreach($android as $element){
+        $android = Product::where('category', '0')
+            ->take(4)
+            ->get();
+        foreach ($android as $element) {
             $image = Image::where("product_id", $element->id)->where("main", true)->first();
-            $element['image']=decrypt(stream_get_contents($image->link));
+            $element['image'] = decrypt(stream_get_contents($image->link));
         }
-        $news = Product::orderBy('id','desc')
-                              ->take(2)
-                              ->get();
-        foreach($news as $element){
+        $news = Product::orderBy('id', 'desc')
+            ->take(2)
+            ->get();
+        foreach ($news as $element) {
             $image = Image::where("product_id", $element->id)->where("main", true)->first();
-            $element['image']=decrypt(stream_get_contents($image->link));
-        }                          
+            $element['image'] = decrypt(stream_get_contents($image->link));
+        }
         return view('home')->with(
-            [    'apple' => $apple,
+            [
+                'apple' => $apple,
                 'android' => $android,
-                'news' => $news]
-        
+                'news' => $news
+            ]
+
         );
     }
-    public function adminProduct($id){
-        
+    public function adminProduct($id)
+    {
+
         $product = Product::find($id);
         $parameterProducts = ParameterProduct::where('product_id', $id)->get();
         $parameters = [];
+        $images = [];
 
             $parameter = Parameter::where('id', $parameterProduct->parameter_id)->first();
             array_push($parameters, $parameter);
@@ -213,98 +217,248 @@ class ProductController extends Controller
             $image->link = decrypt(stream_get_contents($image->link));
         }
 
+        return view('admin_product_detail')->with(
+            [
+                'product' => $product,
+                'parameters' => $parameters,
+                'images' => $images
+            ]
 
-
-        return view('admin_product_detail') -> with(
-           ['product'=>$product,
-            'parameters'=>$parameters,
-           ]
-           
         );
-
     }
-    public function delete($id){
-        $item = Product::find($id);
-        
-        if ($item) {
-            $item->delete();
-            return "Item with ID $id deleted successfully!";
+
+    public function admin(Request $request)
+    {
+        if ($request->input('name') || $product_id = $request->input('id') || $request->input('category') != null) {
+            $products_name = [];
+            $products_id = [];
+            $product_category = [];
+
+            $product_name = $request->input('name');
+
+            if ($product_name) {
+
+                $products_name = Product::selectRaw('*, word_similarity(name, \'' . $product_name . '\') as sim')
+                    ->where('name', 'ilike', '%' . $product_name . '%')
+                    ->orderByRaw('sim DESC')
+                    ->get();
+
+                $products_name = $products_name->toArray();
+            }
+
+            $product_id = $request->input('id');
+
+            if ($product_id) {
+                $products_id = Product::where('id', $product_id)->orderBy('id')->get();
+                $products_id = $products_id->toArray();
+            }
+
+            $product_category = $request->input('category');
+
+            if ($product_category == 'none') {
+                $product_category = [];
+            }
+
+            if ($product_category && $product_category != 'none') {
+                $product_ids = DB::table('parameters')
+                    ->join('parameter_products', 'parameters.id', '=', 'parameter_products.parameter_id')
+                    ->select('parameter_products.product_id')
+                    ->where('parameters.value', $product_category)
+                    ->where('parameters.parameter', 'brand')
+                    ->get();
+
+                $product_ids = $product_ids->pluck('product_id');
+
+
+                foreach ($product_ids as $index => $element) {
+                    $product_ids[$index] = (string)$element;
+                }
+
+                $product_category = Product::whereIn('id', $product_ids)->orderBy('id')->get();
+                $product_category = $product_category->toArray();
+            }
+
+            $products = array_merge($products_name, $products_id, $product_category);
         } else {
-            return "Item not found!";
+            $products = Product::orderBy('id')->get();
         }
 
-    return view('register');
+        $brands_only = DB::table('parameters')->where('parameter', 'brand')->get();
+
+        $brands_only = $brands_only->pluck('value');
+
+        return view('admin')->with(
+            [
+                'products' => $products,
+                'brands_only' => $brands_only
+            ]
+        );
     }
-   
-    public function admin(){
-        
-        $orderBy = '';
-        // Start building the base query
-        $sub_query_parameter_product = ParameterProduct::query();
-        $sub_query_parameter = Parameter::query();
-        $query = Product::query();
-        $products = Product::take(10)->get();
 
-       
+    public function deleteProduct($id)
+    {
+        $product = Product::find($id);
+        if ($product) {
+            $product->delete();
+        }
 
-        
+        return redirect()->route('admin');
+    }
 
-       
-        return view('admin') -> with(
-        [ 'products' => $products,
+    public function deleteProductMultiple(Request $request)
+    {
+        $pattern = '/^product-(\d+)$/';
 
+        $all_parameters = $request->all();
+
+        foreach ($all_parameters as $key => $value) {
+            if (preg_match($pattern, $key)) {
+                $id = preg_replace($pattern, '$1', $key);
+                $product = Product::find($id);
+                if ($product) {
+                    $product->delete();
+                }
+            }
+        }
+
+        return redirect()->route('admin');
+    }
+
+    public function updateProduct(Request $request)
+    {
+        $request->validate([
+            'product_name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
         ]);
+
+        $method = $request->method();
+
+        if ($method == 'POST') {
+            $product = Product::create([
+                'name' => $request->input('product_name'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'category' => 1
+            ]);
+
+            $product_id = $product->id;
+        } else {
+            $product_id = $request->input('product_id');
+        }
+
+        if ($request->has('product_id')) {
+
+            $images_to_delete = Image::where('product_id', $product_id)->get();
+
+            foreach ($images_to_delete as $image) {
+                $image->delete();
+            }
+
+            if ($request->has('fileInput')) {
+                $file_input = $request->file('fileInput');
+
+                foreach ($file_input as $image) {
+
+                    $path = $image->store('images', 'public');
+
+                    try {
+                        Image::create([
+                            'product_id' => $product_id,
+                            'link' => encrypt($path),
+                            'main' => false
+                        ]);
+                    } catch (\Exception $e) {
+                        dd($e);
+                    };
+                };
+            };
+
+            $regex = '/^image_id-(\d+)$/';
+
+            foreach ($request->all() as $key => $value) {
+                if (preg_match($regex, $key)) {
+                    try {
+                        $image = Image::create([
+                            'product_id' => $product_id,
+                            'link' => encrypt($value),
+                            'main' => false
+                        ]);
+                    } catch (\Exception $e) {
+                        dd($e);
+                    };
+                }
+            }
+
+            if ($method == 'PUT') {
+
+                $product = Product::where('id', $product_id);
+                $product->update([
+                    'name' => $request->input('product_name'),
+                    'description' => $request->input('description'),
+                    'price' => $request->input('price'),
+                ]);
+
+                ParameterProduct::where('product_id', $product_id)->delete();
+            }
+
+            $parameter_regex_key = '/^parameter-key-(\d+)$/';
+            $parameter_regex_value = '/^parameter-value-(\d+)$/';
+
+            $parameter_key = [];
+            $parameter_value = [];
+
+            foreach ($request->all() as $key => $value) {
+                if (preg_match($parameter_regex_key, $key)) {
+                    array_push($parameter_key, $value);
+                }
+                if (preg_match($parameter_regex_value, $key)) {
+                    array_push($parameter_value, $value);
+                }
+            };
+
+            foreach ($parameter_key as $index => $data) {
+                $old_param = Parameter::where('parameter', $data)->where('value', $parameter_value[$index])->first();
+
+                if ($old_param) {
+                    ParameterProduct::create([
+                        'product_id' => $product_id,
+                        'parameter_id' => $old_param->id
+                    ]);
+                } else {
+                    $parameter_data1 = strtolower($data);
+                    $parameter_data2 = strtolower($parameter_value[$index]);
+
+                    if ($parameter_data1 == '' || $parameter_data2 == '') {
+                        dd('Empty parameter', $parameter_data1, $parameter_data2);
+                    }
+
+                    if (Parameter::where('parameter', $parameter_data1)->where('value', $parameter_data2)->exists()) {
+                        $parameter = Parameter::where('parameter', $parameter_data1)->where('value', $parameter_data2)->first();
+                    } else {
+
+                        $parameter = Parameter::create(
+                            [
+                                'parameter' => $parameter_data1,
+                                'value' => $parameter_data2
+                            ]
+                        );
+                    };
+
+                    ParameterProduct::create([
+                        'product_id' => $product_id,
+                        'parameter_id' => $parameter->id
+                    ]);
+                };
+            };
+        }
+
+
+        return redirect()->route('admin');
     }
 
-        foreach ($parameterProducts as $parameterProduct) {
-    public function shopFilter()
+    public function emptyProduct()
     {
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreProductRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateProductRequest $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
-    {
-        //
+        return view('admin_product_detail');
     }
 }

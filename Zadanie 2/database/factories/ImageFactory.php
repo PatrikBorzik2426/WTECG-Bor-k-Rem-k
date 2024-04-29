@@ -27,7 +27,7 @@ class ImageFactory extends Factory
 
         return [
             'product_id' => self::$productId,
-            'link' => encrypt('https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png'),
+            'link' => encrypt('images/' . 'ascpect_1_1.png'),
             'main' =>  true,
             'created_at' => $faker->dateTimeBetween('-1 year', 'now')
         ];

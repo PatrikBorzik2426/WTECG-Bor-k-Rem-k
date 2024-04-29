@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Registration</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/svg/cart.svg') }}">
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gradient-to-b min-h-screen from-dark-purple to-black font-manrope flex flex-col justify-between">
-    
-    <x-navbar />
-  
+<body class="bg-gradient-to-b min-h-screen from-dark-purple to-black font-manrope flex flex-col gap-16">
+    <header class=" content-start">
+        <x-navbar />
+    </header>
     @if ($errors->has('500'))
         <div
             class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">

@@ -57,7 +57,19 @@
         <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
         <a href="/shop" class="hover:font-bold cursor-pointer">Obchod</a>
         <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
-        <a href="/profile" class="hover:font-bold cursor-pointer">O nás</a>
+        <a href="/about_us" class="hover:font-bold cursor-pointer">O nás</a>
+        <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+        @auth
+            @cannot('temporary-login')
+                <a href="/profile" class="hover:font-bold cursor-pointer">Profile</a>
+            @else
+                <a href="/login" class="hover:font-bold cursor-pointer">Login</a>
+                <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+                <a href="/registration" class="hover:font-bold cursor-pointer">Registration</a>
+            @endcannot
+        @endauth
+        <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+        <a href="/cart" class="hover:font-bold cursor-pointer">Košík</a>
     </div>
     <div id="profileMenu" class="hidden flex w-8/12 h-0 justify-end mx-auto z-30">
         <div class="absolute w-fit -mr-6 mt-2">
@@ -66,19 +78,18 @@
                 @auth
                     @cannot('temporary-login')
                         <p class="mb-2">Vitajte, {{ Auth::user()->login }} <span class=" font-bold"> </span> !</p>
-                            @if(Auth::user()->admin)
-                                <a href="/admin"
+                        @if (Auth::user()->admin)
+                            <a href="/admin"
                                 class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
                                 Profile
-                                </a>
-                            @else 
-                                <a href="/profile"
+                            </a>
+                        @else
+                            <a href="/profile"
                                 class=" w-32 px-2 border-dark-purple border-2 rounded-lg mb-2 hover:bg-dark-purple hover:text-light-green hover:font-bold">
                                 Profile
-                                </a>
-                            
-                            @endif
-                        
+                            </a>
+                        @endif
+
                         <a href="/logout"
                             class=" w-32 px-2 border-dark-purple border-2 rounded-lg hover:bg-dark-purple hover:text-light-green hover:font-bold">
                             Logout
@@ -106,10 +117,11 @@
             @endauth
         </div>
     </div>
-    <div id="searchResults" class="hidden flex w-8/12 h-0 justify-end mx-auto z-40">
+    </div>
+    <div id="searchResults" class="hidden flex w-8/12 max-md:w-9/12 h-0 justify-end mx-auto z-40">
         <div class="absolute w-fit mt-2">
             <div id="searchResultsHolder"
-                class="flex justify-between max-h-60 overflow-auto flex-col col-start-4 text-center w-72 bg-light-green py-4 px-4 rounded-md">
+                class="flex justify-between max-h-60 overflow-auto flex-col col-start-4 text-center w-96 max-md:w-64 bg-light-green py-4 px-4 rounded-md">
             </div>
         </div>
     </div>

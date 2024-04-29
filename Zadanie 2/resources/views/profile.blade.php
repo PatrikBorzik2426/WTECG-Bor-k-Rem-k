@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Profile</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/svg/cart.svg') }}">
     @vite('resources/css/app.css')
 </head>
 
@@ -18,9 +19,18 @@
             class=" w-fit min-w-48 h-fit flex flex-col max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
             <h3 class=" text-center font-bold text-2xl max-lg:hidden">Menu</h3>
             <div class="flex justify-between items-center">
-                <a href="./profile.html" class="text-md hover:font-bold"> Objednávky </a>
+                <a href="/profile" class="text-md hover:font-bold"> Objednávky </a>
                 <img src="{{ asset('img/svg/box.svg') }}" class="max-lg:hidden">
             </div>
+            @auth
+                @can('admin')
+                    <hr class="max-lg:hidden">
+                    <div class="flex justify-between items-center max-lg:justify-center">
+                        <a href="/admin" class="text-md hover:font-bold"> Produkty </a>
+                        <img src="{{ asset('img/svg/inventory.svg') }}" class="max-lg:hidden">
+                    </div>
+                @endcan
+            @endauth
             <a href="/logout"
                 class="w-full h-fit text-center border-2 mt-4 px-4 py-2 max-lg:py-0 max-lg:mt-0 rounded-full hover:bg-light-green hover:font-extrabold hover:text-dark-purple">Odhlásiť</a>
         </aside>
@@ -49,7 +59,8 @@
                                     <img src="{{ asset('img/svg/done.svg') }}" class="scale-75">
                                 @endif
                             </div>
-                            <p class=" font-bold max-sm:text-sm max-sm:w-full">{{ $shopping_sessions[$index]->total }}€
+                            <p class=" font-bold max-sm:text-sm max-sm:w-full">
+                                {{ number_format($shopping_sessions[$index]->total, 2, ',', ' ') }}€
                             </p>
                         </div>
                     </div>
@@ -84,7 +95,7 @@
                                         <li class="flex justify-between  max-sm:flex-col">{{ $inner_item->quantity }}x
                                             {{ $products[$index_item]->name }}
                                             <span
-                                                class=" font-bold">{{ $products[$index_item]->price * $inner_item->quantity }}
+                                                class=" font-bold">{{ number_format($products[$index_item]->price * $inner_item->quantity, 2, ',', ' ') }}
                                                 €</span>
                                             <input type="hidden"
                                                 value="{{ $sum_of_order += $products[$index_item]->price * $inner_item->quantity }}">
@@ -95,7 +106,7 @@
                         </ul>
                         <ul class=" col-start-2">
                             <li class="flex justify-between">Sumár ceny: <span
-                                    class=" font-bold">{{ $sum_of_order }}€</span></li>
+                                    class=" font-bold">{{ number_format($sum_of_order, 2, ',', ' ') }}€</span></li>
                         </ul>
                     </div>
                 </div>
