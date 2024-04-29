@@ -64,3 +64,7 @@ Route::delete('/cart-items/delete/multiple', [ProductController::class, 'deleteP
 
 Route::match(['put', 'post'], '/product/update', [ProductController::class, 'updateProduct'])
     ->middleware('auth', 'can:admin');
+
+Route::get('/about_us', function () {
+    return view('about_us');
+});

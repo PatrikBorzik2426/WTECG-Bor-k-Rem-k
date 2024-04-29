@@ -104,12 +104,7 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        if (auth()->user()) {
-
-            if (auth()->user()->temporary == true) {
-                $this->deleteTemporary();
-            };
-        }
+        $this->deleteTemporary();
 
         Auth::logout();
 
