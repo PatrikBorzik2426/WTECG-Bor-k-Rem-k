@@ -49,7 +49,7 @@
         </div>
     </div>
     <div id="menu"
-        class="hidden flex flex-col items-center text-center text-dark-purple bg-light-green gap-y-2 py-2 lg:hidden">
+        class="hidden flex flex-col items-center text-center text-dark-purple bg-light-green gap-y-2 py-2 lg:hidden mb-10">
         <input id="searchBarInputSmall" type="text"
             class=" border-2 w-10/12 h-8 border-dark-purple rounded-3xl bg-transparent focus:outline-none text-center"
             placeholder="Hľadať">
@@ -62,11 +62,19 @@
         @auth
             @cannot('temporary-login')
                 <a href="/profile" class="hover:font-bold cursor-pointer">Profile</a>
-            @else
+                <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+                <a href="/logout" class="hover:font-bold cursor-pointer">Logout</a>
+            @endcannot
+            @can('temporary-login')
                 <a href="/login" class="hover:font-bold cursor-pointer">Login</a>
                 <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
                 <a href="/registration" class="hover:font-bold cursor-pointer">Registration</a>
-            @endcannot
+                <a href="/logout" class="hover:font-bold cursor-pointer">Logout</a>
+            @endcan
+        @else
+            <a href="/login" class="hover:font-bold cursor-pointer">Login</a>
+            <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
+            <a href="/registration" class="hover:font-bold cursor-pointer">Registration</a>
         @endauth
         <hr class="bg-dark-purple opacity-20 h-0.5 w-11/12" />
         <a href="/cart" class="hover:font-bold cursor-pointer">Košík</a>
