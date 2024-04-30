@@ -383,6 +383,12 @@ class ProductController extends Controller
 
         $method = $request->method();
 
+        if (!$request->has('image_id-0') && !$request->has('fileInput')) {
+            return redirect()->back(302)->withErrors(["img" => "failed"]);
+        }
+
+        dd(!$request->has('image_id-0'), !$request->has('fileInput'));
+
         if ($method == 'POST') {
             $product = Product::create([
                 'name' => $request->input('product_name'),

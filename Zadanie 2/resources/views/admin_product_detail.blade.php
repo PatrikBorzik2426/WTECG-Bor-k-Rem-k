@@ -14,11 +14,18 @@
     <header>
         <x-navbar />
     </header>
-    @if ($errors->any())
+    @if ($errors->any() && !$errors->has('img'))
         <div
             class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
             <p>
                 {{ $errors }}
+            </p>
+        </div>
+    @else
+        <div
+            class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
+            <p>
+                Produkt <strong>musí</strong> obsahovať <strong>obrázok</strong>!
             </p>
         </div>
     @endif
