@@ -10,6 +10,7 @@ use App\Models\ParameterProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Parameter;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -327,7 +328,11 @@ class ProductController extends Controller
             $encryptedFileName = decrypt(stream_get_contents($image->link));
 
             if ($encryptedFileName != 'images/ascpect_1_1.png') {
-                unlink(storage_path('app/public/' . $encryptedFileName));
+                try {
+                    unlink(storage_path('app/public/' . $encryptedFileName));
+                } catch (Exception $e) {
+                    continue;
+                }
             }
         }
 
@@ -369,6 +374,7 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request)
     {
+
         $request->validate([
             'product_name' => 'required|string',
             'description' => 'required|string',
@@ -376,6 +382,12 @@ class ProductController extends Controller
         ]);
 
         $method = $request->method();
+
+        if (!$request->has('image_id-0') && !$request->has('fileInput')) {
+            return redirect()->back(302)->withErrors(["img" => "failed"]);
+        }
+
+        dd(!$request->has('image_id-0'), !$request->has('fileInput'));
 
         if ($method == 'POST') {
             $product = Product::create([
@@ -396,8 +408,17 @@ class ProductController extends Controller
 
             foreach ($images_to_delete as $image) {
                 $encryptedFileName = decrypt(stream_get_contents($image->link));
-                if ($encryptedFileName != 'images/ascpect_1_1.png') {
-                    unlink(storage_path('app/public/' . $encryptedFileName));
+
+                if (
+                    $encryptedFileName != 'images/ascpect_1_1.png'
+                    && $encryptedFileName != $request->get('image_id-0')
+                    && $encryptedFileName != $request->get('image_id-1')
+                ) {
+                    try {
+                        unlink(storage_path('app/public/' . $encryptedFileName));
+                    } catch (Exception $e) {
+                        continue;
+                    }
                 }
                 $image->delete();
             }
@@ -425,6 +446,7 @@ class ProductController extends Controller
 
             foreach ($request->all() as $key => $value) {
                 if (preg_match($regex, $key)) {
+
                     try {
                         $image = Image::create([
                             'product_id' => $product_id,
