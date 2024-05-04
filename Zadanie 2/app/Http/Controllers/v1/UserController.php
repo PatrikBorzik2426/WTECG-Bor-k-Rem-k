@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         #TODO V situácií, kde user sa chce zaregistrovať a je zatiaľ temporary iba updatnúť jeho dáta
         $validationOfData = $request->validate(
-            [
+            [            
                 'login' => 'required|max:64|unique:users,login',
                 'email' => 'required|email|max:254|unique:users,email',
                 'password' => 'required|min:8|regex:/[!@#$%^&*()\-+=\[\]{};:",.<>\/?]/',
@@ -58,9 +58,14 @@ class UserController extends Controller
                 'password.required' => 'Heslo je povinné',
                 'password.regex' => 'Heslo musí obsahovať aspoň jeden špeciálny znak',
                 'password.min' => 'Heslo musí mať aspoň 8 znakov',
-                'phone.unique' => 'Tento telefónny čísla už je registrované',
+                'phone.unique' => 'Toto telefónne číslo už je registrované',
                 'login.unique' => 'Užívateľ s týmto prihlasovacím menom existuje',
-                'email.unique' => 'Užívateľ s týmto e-mailom existuje'
+                'email.unique' => 'Užívateľ s týmto e-mailom existuje',
+                'first_name' => 'Meno je povinné',
+                'last_name' => 'Priezvisko je povinné',
+                'address' => 'Adresa je povinná',
+                'postal_code' => 'PSČ je povinné',
+                'phone' => 'Telefónne číslo je povinné',
             ]
         );
 
@@ -93,7 +98,7 @@ class UserController extends Controller
             'login' => 'required',
             'password' => 'required'
         ], [
-            'login.required' => 'Prihlásenie je povinné',
+            'login.required' => 'Prihlasovacie meno je povinné',
             'password.required' => 'Heslo je povinné'
         ]);
 

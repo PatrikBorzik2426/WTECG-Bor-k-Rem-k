@@ -27,7 +27,7 @@ Cieľom nášho projekt je vytvoriť funkčnú simuláciu e-shopu s ľubovoľnou
 ## Návrhové rozhodnutia
 Pri navrhovaní systém sme sa rozhodli orientovať sa plne na server-side riešenie, teda chceli sme sa vyhnúť odkladania údajov do úložísk koncových používateľov - rovnako, tak na úkor dátovej záťaže sme nadobudli jednoduchšiu implementáciu. Toto naše rozhodnutie najviac ovplyvnilo manažovanie používateľských účtov a ich ukladanie produktov do virtuálneho nákupného košu.
 ### Pridané knižnice a rozšírenia
-Pre všetky funkcionality sme nepridávali žiadne špecifické knižnice, ktoré by neboli súčasťou základnej stavby Laravelu, avšak v rámci naše databázy sme pridali rozšírenie s názvom - **PG_TRGM**. Toto rozšírenie za nás rieši problematiku vyhľadávania najpríbuznejšieho výstupnému reťazcu znakov na základe špecifického vstupu. Čo patrične zjednodušuje implementáciu vyhľadávania, kde túto funkciu využívame.
+Pre všetky funkcionality sme nepridávali žiadne špecifické knižnice, ktoré by neboli súčasťou základnej stavby Laravelu, avšak v rámci našej databázy sme pridali rozšírenie s názvom - **PG_TRGM**. Toto rozšírenie za nás rieši problematiku vyhľadávania najpríbuznejšieho výstupnému reťazcu znakov na základe špecifického vstupu. Čo patrične zjednodušuje implementáciu vyhľadávania, kde túto funkciu využívame.
 ### Používatelia
 Náš systém rozpoznáva 3 typy používateľov: **registrovaného, neregistrovaného a adamina**. Z tabuľky nižšie vidíme aké základné funkcie aká rola nadobúda. Ako je vyššie avizované všetky dáta, ktoré udržujeme podľa fyzického modelu sú uložené iba v databáze a nie lokálne u jednotlivých používateľoch.
 
@@ -64,6 +64,10 @@ Na vytvorenie funkcie stránkovania používame základnú funkciu Larvel-u, kto
 
 ### Filtrovanie
 Náš systém povoľuje filtrovanie na ľubovoľnom počte používaných parametrov, následne ma fixne danú možnosť nastavenia maximálnej ceny vyhľadávania. Pri načítaní daného filtrovacieho rozhrania načítame všetky používané parametere a zahrnieme ich do elementu formuláru pod elementom select. Následne si používateľ môže z každého parametru vybrať špecifickú kombináciu výberu. Pri filtrovaní sa všetky tieto podmienky navzájom logicky viažu pomocou spojky "and". Následne dané kritéria sú spracované a z databázy produktov vyberieme iba tie, ktoré spĺňajú všetky kritéria - následne sú spracované a zobrazené na stránke obchodu.
+Filtrovanie používame na 2 stránkach:
+- **Obchod:**  filtrovanie na základe ceny, atribútov a zoradenie zostupne/vzostupne
+- **Admin zóna:** zjednodušený typ filtra na základe mena,id a typu pruduktu.  
+
 
 ## Záznamy obrazoviek
 - Detail produktu:

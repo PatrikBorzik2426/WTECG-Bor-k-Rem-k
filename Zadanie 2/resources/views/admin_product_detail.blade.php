@@ -14,21 +14,6 @@
     <header>
         <x-navbar />
     </header>
-    @if ($errors->any() && !$errors->has('img'))
-        <div
-            class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
-            <p>
-                {{ $errors }}
-            </p>
-        </div>
-    @elseif($errors->has('img'))
-        <div
-            class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
-            <p>
-                Produkt <strong>musí</strong> obsahovať <strong>obrázok</strong>!
-            </p>
-        </div>
-    @endif
     <main class="flex max-lg:items-center w-8/12 mx-auto mt-10 max-lg:mt-0 max-lg:flex-col max-sm:w-10/12">
         <aside
             class=" w-fit min-w-48 h-fit flex flex-col max-lg:mb-8 max-lg:gap-x-4 max-lg:flex-row max-lg:w-fit max-lg:items-center py-4 px-8 text-light-green shadow-custom shadow-purple rounded-2xl gap-y-4">
@@ -70,12 +55,20 @@
                             value=" 
                             @if (isset($product)) {{ $product->name }} @endif"
                             tabindex="1" />
+                        @error('product_name')
+                            <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="description">Opis produktu</label><br>
                         <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
                             id="description" name="description"
                             value="@if (isset($product)) {{ $product->description }} @endif" tabindex="4">
+                        @error('description')
+                            <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="price">Cena ( € )</label><br>
@@ -83,9 +76,13 @@
                             id="price" name="price"
                             value="@if (isset($product)) {{ str_replace(',', '', number_format($product->price, 2)) }} @endif"
                             tabindex="5">
+                        @error('price')
+                            <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
-                        <label for="price">Categória</label><br>
+                        <label for="price">Kategória</label><br>
                         <select class="w-full h-fit rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
                             id="price" name="category" tabindex="6">
                             <option value='0' @if (isset($product) && $product->category == 0) selected @endif>Android</option>
@@ -130,7 +127,12 @@
                             <img src="{{ asset('img/svg/picture_add.svg') }}" class="max-h-fit">
                             <p class="text-center text-dark-purple font-extrabold text-xl">Pridať obrázok/y</p>
                         </label>
+
                     </div>
+                    @if($errors->has('img'))
+                    <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                        Produkt musí obsahovať obrázok!</p>
+                    @endif
                     <div id="imagePreview"
                         class="grid grid-cols-4 col-start-2 max-lg:col-start-1 rounded-lg pt-4 gap-x-2 max-">
                         @if (isset($images))
@@ -143,6 +145,7 @@
                                     value="{{ $image->link }}">
                             @endforeach
                         @endif
+                       
                     </div>
                     <div class=" flex gap-4 col-span-2 max-lg:col-span-1 mt-8 max-lg:mx-auto">
                         <button type="submit" form="updateProducts"

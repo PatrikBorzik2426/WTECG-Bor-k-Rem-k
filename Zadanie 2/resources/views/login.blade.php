@@ -34,12 +34,20 @@
                     <label for="login">Login</label><br>
                     <input class="w-full h-10 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="text"
                         id="login" name="login" value="{{ old('login') }}" tabindex="1" />
+                    @error('login')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="password">Heslo</label><br>
                     <input class="w-full h-10 rounded text-dark-purple font-semibold p-2 mt-1 mb-2" type="password"
                         id="password" name="password" tabindex="2">
+                    @error('password')
+                        <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
+                            {{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="flex gap-x-4 mt-8 max-lg:flex-col max-lg:gap-y-4">
                     <button type="submit"

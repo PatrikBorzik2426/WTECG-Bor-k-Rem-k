@@ -382,6 +382,10 @@ class ProductController extends Controller
             'product_name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
+        ],[
+            'product_name.required' =>"Meno je povinné",
+            'description.required' =>"Opis je povinný",
+            'price.required' =>"Cena je povinná"
         ]);
 
         $method = $request->method();
