@@ -11,8 +11,7 @@ class Image extends Model
 
     protected $fillable = [
         'link',
-        'product_id',
-        'main'
+        'product_id'
     ];
 
     const UPDATED_AT = null;

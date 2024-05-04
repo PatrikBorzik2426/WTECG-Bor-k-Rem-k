@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Parameter;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Param;
 
 class ProductController extends Controller
 {
@@ -90,7 +91,7 @@ class ProductController extends Controller
 
         foreach ($array as $index => $element) {
 
-            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $image = Image::where("product_id", $element->id)->first();
 
             $data = [
                 'id' => $element->id,
@@ -383,11 +384,19 @@ class ProductController extends Controller
 
         $method = $request->method();
 
+        $not_used_parameters = DB::table('parameters')
+            ->leftJoin('parameter_products', 'parameters.id', '=', 'parameter_products.parameter_id')
+            ->where('product_id', '=', null)
+            ->get()
+            ->pluck('id');
+
+        foreach ($not_used_parameters as  $paramId) {
+            Parameter::where('id', '=', $paramId)->delete();
+        }
+
         if (!$request->has('image_id-0') && !$request->has('fileInput')) {
             return redirect()->back(302)->withErrors(["img" => "failed"]);
         }
-
-        dd(!$request->has('image_id-0'), !$request->has('fileInput'));
 
         if ($method == 'POST') {
             $product = Product::create([
@@ -434,7 +443,6 @@ class ProductController extends Controller
                         Image::create([
                             'product_id' => $product_id,
                             'link' => encrypt($path),
-                            'main' => false
                         ]);
                     } catch (\Exception $e) {
                         dd($e);
@@ -451,7 +459,6 @@ class ProductController extends Controller
                         $image = Image::create([
                             'product_id' => $product_id,
                             'link' => encrypt($value),
-                            'main' => true
                         ]);
                     } catch (\Exception $e) {
                         dd($e);
@@ -509,8 +516,8 @@ class ProductController extends Controller
 
                         $parameter = Parameter::create(
                             [
-                                'parameter' => $parameter_data1,
-                                'value' => $parameter_data2
+                                'parameter' => strtolower($parameter_data1),
+                                'value' => strtolower($parameter_data2)
                             ]
                         );
                     };

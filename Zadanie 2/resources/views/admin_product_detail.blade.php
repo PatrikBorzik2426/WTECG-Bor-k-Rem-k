@@ -21,7 +21,7 @@
                 {{ $errors }}
             </p>
         </div>
-    @else
+    @elseif($errors->has('img'))
         <div
             class="max-w-fit mx-auto z-10 absolute top-20 left-12 bg-light-green py-4 px-10 rounded-md animate-fade-down">
             <p>
