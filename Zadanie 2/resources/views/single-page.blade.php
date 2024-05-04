@@ -12,16 +12,16 @@
 
 <body class="bg-black font-manrope min-w-80">
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
-        
+
         <x-navbar />
-       
+
         <div class="mt-4 w-full">
             <h1 class="text-3xl font-bold tracking-tight text-white sm:text-3xl text-center">{{ $product->name }}</h1>
             <!-- Image gallery -->
             <div class="flex w-4/12 justify-center items-center max-w-fit mx-auto mt-8 gap-8 max-lg:flex-col">
                 @foreach ($images as $image)
                     <img src="{{ asset('storage/' . $image->link) }}" alt="obrazok1"
-                        class="h-full w-full object-cover object-center rounded-3xl">
+                        class="h-full w-full object-cover object-center rounded-3xl max-h-[40vh]">
                 @endforeach
             </div>
 

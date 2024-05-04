@@ -15,9 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('product_id');
             $table->binary('link')->nullable(false);
-            $table->boolean('main')->default(false);
             $table->timestamp('created_at')->useCurrent();
-
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

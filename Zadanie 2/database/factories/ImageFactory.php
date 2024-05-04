@@ -21,14 +21,11 @@ class ImageFactory extends Factory
     {
         $faker = Faker::create();
 
-        $imagePath = $faker->imageUrl(640, 640); // Generates a random image file with specific dimensions
-
         self::$productId++; // Increment the product_id
 
         return [
             'product_id' => self::$productId,
             'link' => encrypt('images/' . 'ascpect_1_1.png'),
-            'main' =>  true,
             'created_at' => $faker->dateTimeBetween('-1 year', 'now')
         ];
     }
