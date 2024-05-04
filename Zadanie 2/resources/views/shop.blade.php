@@ -14,7 +14,6 @@
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
         
         <x-navbar />
-        
         <div class="flex flex-col items-center mt-12 text-light-green">
             <h1 class=" font-bold text-5xl mb-8 max-sm:text-3xl">Katalóg produktov</h1>
             <p class=" font-light text-xl max-md:text-lg max-sm:text-md text-center">Všeobecný prehľad všetkých
@@ -27,13 +26,13 @@
                 <div class="flex flex-col font-medium max-md:col-span-2 text-center">
                     <div class="flex justify-between w-full ">
                         <label for="maxPrice">Cena: </label>
-                        <input id="inputPrice" name="maxPrice" type="number" min="0" max="1300"
+                        <input id="inputPrice" name="maxPrice" type="number" min="0" max="{{ $maximal_price }}"
                             value="{{ $max_price }}"
                             class=" inputPrice bg-transparent text-right font-bold hover:cursor-pointer">
                         <span class=" font-bold">€</span>
                     </div>
                     <div>
-                        <input type="range" id="sliderPrice" min="0" max="1300" value="{{ $max_price }}"
+                        <input type="range" id="sliderPrice" min="0" max="{{ $maximal_price }}" value="{{ $max_price }}"
                             class="rounded-3xl custom-slider sliderPrice">
                     </div>
                 </div>

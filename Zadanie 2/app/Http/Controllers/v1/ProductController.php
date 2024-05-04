@@ -90,7 +90,7 @@ class ProductController extends Controller
 
         foreach ($array as $index => $element) {
 
-            $image = Image::where("product_id", $element->id)->where("main", true)->first();
+            $image = Image::where("product_id", $element->id)->where("main", true)->first();        
 
             $data = [
                 'id' => $element->id,
@@ -104,10 +104,11 @@ class ProductController extends Controller
 
             array_push($whole_products, $data);
         }
-
+        
         $all_parameters = DB::table('parameters')->get();
         $number_of_parameters =  DB::table('parameters')->distinct()->orderBy('parameter')->get('parameter');
-
+        $query = Product::query();
+        $maximal_price = ($query->max('price'))+1;
         return view('shop', [
             'array_products' => $whole_products,
             'pagination' => $array,
@@ -115,7 +116,8 @@ class ProductController extends Controller
             'all_parameters' => $all_parameters,
             'unique_parameters' => $number_of_parameters,
             'all_query_parameters' => $all_query_parameters,
-            'max_price' => $all_query_parameters ? $all_query_parameters[0] : 0
+            'max_price' => $all_query_parameters ? $all_query_parameters[0] : 0,
+            'maximal_price'=> $maximal_price
         ]);
     }
 
@@ -387,7 +389,7 @@ class ProductController extends Controller
             return redirect()->back(302)->withErrors(["img" => "failed"]);
         }
 
-        dd(!$request->has('image_id-0'), !$request->has('fileInput'));
+        #dd(!$request->has('image_id-0'), !$request->has('fileInput'));
 
         if ($method == 'POST') {
             $product = Product::create([

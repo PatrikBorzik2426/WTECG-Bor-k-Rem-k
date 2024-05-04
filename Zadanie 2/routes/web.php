@@ -32,8 +32,6 @@ Route::get('/registration', function () {
 });
 Route::get('/admin', [ProductController::class, 'admin'])->middleware('auth', 'can:admin')->name('admin');
 
-Route::get('/admin/{id}',[ProductController::class, 'delete']);
-
 Route::get('/admin_product/{id}',[ProductController::class, 'adminProduct']);
 
 Route::get('/admin_product', [ProductController::class, 'emptyProduct']);
