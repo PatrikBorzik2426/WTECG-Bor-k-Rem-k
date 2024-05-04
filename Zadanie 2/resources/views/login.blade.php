@@ -53,13 +53,16 @@
             </form>
         </div>
         <div class="grid grid-cols-2 gap-8 max-xl:hidden">
-            <div class="w-52 h-52 bg-light-green rounded-3xl">
+            <div class=" flex justify-center items-center w-52 h-52 bg-slate-50 rounded-3xl">
+                <img src="{{ asset('images/login_1.webp') }}" class="">
             </div>
 
-            <div class="w-52 h-52 bg-light-green rounded-3xl">
+            <div class=" flex justify-center items-center w-52 h-52 bg-slate-50 rounded-3xl">
+                <img src="{{ asset('images/login_1.webp') }}" class="">
             </div>
 
-            <div class="h-52 bg-light-green col-span-2 rounded-3xl">
+            <div class="flex justify-center items-center p-2 h-52 bg-slate-50 col-span-2 rounded-3xl">
+                <img src="{{ asset('images/login_3.png') }}" class=" h-full">
             </div>
         </div>
     </div>

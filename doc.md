@@ -8,12 +8,13 @@
     - [Objednávky a košík](#objednávky-a-košík)
   - [Programové prostredie](#programové-prostredie)
   - [Implementácia](#implementácia)
-    - [Zmena množstva prodkutov](#zmena-množstva-prodkutov)
+    - [Zmena množstva produktov](#zmena-množstva-produktov)
     - [Prihlásenie](#prihlásenie)
     - [Vyhľadávanie](#vyhľadávanie)
     - [Pridanie produktu do košíka](#pridanie-produktu-do-košíka)
     - [Stránkovanie](#stránkovanie)
     - [Filtrovanie](#filtrovanie)
+  - [Záznamy obrazoviek](#záznamy-obrazoviek)
 
 ## Zadanie
 Cieľom nášho projekt je vytvoriť funkčnú simuláciu e-shopu s ľubovoľnou selekciou produktov, ktorý daný e-shop poskytuje. V našej implementácií sme si zvolili predaj mobilných telefón a iných produktov v oblasti mobilných technológií. Našou úlohou je napísať aplikovateľné princípy frontend a backend funkcií, ktoré budú nosnou časťou nášho projektu. 
@@ -44,18 +45,32 @@ Náš systém rozpoznáva 3 typy používateľov: **registrovaného, neregistrov
 Náš systém dovoľuje používateľom mať evidovaných viacero objednávok, avšak v rámci jedného používateľa v jednom čase dovoľuje iba jeden košík. Vytvárame vždy novú inštanciu košíka pri ukončenej predošlej objednávke alebo pri prvotnej interakcií s nákupnými funkciami nášho e-shopu. Pri zhotovení objednávky zaregistrovaným či nezaregistrovaným používateľom vytvárame novú inštanciu celkovej objednávky - zaregistrovaný používatelia nadobúdajú možnosť otvorenia svojho profilu, kde môžu vidieť detail svojich objednávok. Toto zabezpečujeme pomocou funkcií Gates v Laraveli a určujeme rolu pomocou hodnoty zápisu v stĺpci `temporary`, ktorý označuje dočasných (neregistrovaných) používateľov. Ako je aj vyššie písané všetky dáta sú ukladané zo strany systému a používateľ neukladá žiadne dodatočné dáta.
 
 ## Programové prostredie
-
+Na celú realizáciu nášho projektu sme použili Laravel framework, na štýlovanie front-endu sme použili Tailwind a celá aplikácie operuje nad Postgresql databázou.
 
 ## Implementácia
-
-### Zmena množstva prodkutov
-
+### Zmena množstva produktov
+Vychádzajúc z nášho fyzického modelu, my definujeme množstvo daného produktu v "objekte" cart_item. Teda pri kliknutí tlačidiel na zmenu počtu produktov sa jednoduchým API volaním zmení a aktualizujú sa prepočty novej výslednej ceny. V prípade, že daný produkt bude mať počet kusov rovný 0 celá položka zoznamu je následne odstránená. 
 ### Prihlásenie
+Po odoslaní prihlasovacieho formuláru prebehne validácia vstupov, ktorá zabezpečí, že na vstup do autorizačnej funkcie prídu 2 reťazce znakov, ktoré môžeme otestovať s našou databázou. Na základe login-u môžeme vybrať daný záznam z databázy, zašifrovať vstupné heslo a porovnať ho s údajom z databazy. Pri úspešnom nájdení a overení, je daný user autorizovaný - v prípade, že ho nenájdeme alebo používateľ zadal zlé heslo, informujeme koncového používateľa o neúspešnej autorizácií.
 
 ### Vyhľadávanie
+Naša implementácia spočíva v zobrazovaní modálneho okna s výsledkami daného vyhľadávania. Do vyhľadávacieho okna používateľ vloží reťazec znakov, ktorý symbolizuje hľadaný produkt, následne sa cez daný vstup pri zmene posiela dopyt na endpoint, ktorý prijíma reťazec znakov a hľadá nad tabuľkou produktov najväčšiu zhodu medzi menom produktu a zadaným reťazcom znakov. Na toto porovnávanie používame rozšírenie PG_TRGM a funkciu word_similarity(), ktorá v číselnej hodnote vyjadrí zhodu dvoch reťazcov znakov, následne výsledky zoradíme od najvyššej tieto hodnoty po najnižšiu a zobrazíme ich v danom okne.
 
 ### Pridanie produktu do košíka
+Koncový používateľ má možnosť pridať nový produkt do košíka cez tlačidlo "Kúpiť" pri zobrazovaní všetkých produktoch vyhľadávania v obchode. Druhý spôsob je vybrať špecifické množstvo pri "single-page" zobrazení produktu. Následne sa po potvrdení skontroluje či daný používateľ už nemá otvorenú shopping-session, ak nie vytvorí sa mu nová a taktiež sa vytvorí aj nový záznam v tabuľke "shopping_sessions" a aj v tabuľke "cart_items". V prípade, že už má vytvorený košík pridá sa nový "cart_items" záznam s novým produktom a aktualizuje sa daná shopping session. Následne si načítavame všetky údaje o otvorenej inštancií košíka a všetkých vložených produktov, ktoré si môže používateľ pozerať a poprípade aj meniť. 
  
 ### Stránkovanie
+Na vytvorenie funkcie stránkovania používame základnú funkciu Larvel-u, ktorá umožňuje pri dopyte do databázy automaticky pripraviť zhluky n-tíc chcených objektov/dát na zobrazenie a následne vygeneruje základný komponent, ktorý je predštýlovaný a pripravený na funkčné použitie. Na aplikovanie vlastného štýlovania sme pomocou príkazu vytvorili vlastnú inštanciu tohto komponentu a nastavili dané štýlovanie podľa vlastnej potreby. Vytváranie jednotlivých linkov a preklikov v rámci stránkovania je manažované daným framework-om.
 
 ### Filtrovanie
+Náš systém povoľuje filtrovanie na ľubovoľnom počte používaných parametrov, následne ma fixne danú možnosť nastavenia maximálnej ceny vyhľadávania. Pri načítaní daného filtrovacieho rozhrania načítame všetky používané parametere a zahrnieme ich do elementu formuláru pod elementom select. Následne si používateľ môže z každého parametru vybrať špecifickú kombináciu výberu. Pri filtrovaní sa všetky tieto podmienky navzájom logicky viažu pomocou spojky "and". Následne dané kritéria sú spracované a z databázy produktov vyberieme iba tie, ktoré spĺňajú všetky kritéria - následne sú spracované a zobrazené na stránke obchodu.
+
+## Záznamy obrazoviek
+- Detail produktu:
+![single_page](./Zadanie%202/public/images/single_page.png)
+- Prihlásenie:
+![login_page](./Zadanie%202/public/images/login_page.png)
+- Homepage:
+![home_page](./Zadanie%202/public/images/home_page.png)
+- Nákupný košík s produktom:
+![cart_page](./Zadanie%202/public/images/cart_page.png)

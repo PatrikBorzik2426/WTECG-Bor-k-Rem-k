@@ -12,17 +12,17 @@
 
 <body class="bg-black font-manrope min-w-80">
     <main class=" bg-gradient-to-b from-dark-purple to-black via-black h-full">
-        
+
         <x-navbar />
-       
+
         <div
             class="max-sm:grid-cols-1 max-sm:gap-y-4 w-7/12 max-lg:w-8/12 max-md:w-10/12 mx-auto my-20 text-center text-light-green">
-            <a href="./single_page.html">
+            <a href="/about_us">
                 <div class="flex justify-center items-center h-fit min-h-48 max-sm:h-24 w-10/12 max-xl:w-11/12 bg-light-purple mx-auto rounded-3xl"
-                    style="background-image: url('../img/mobil.jpg')">
+                    style="background-image: url('{{ asset('img/kolektiv.jpg') }}'); background-size: 100%;">
                     <button
                         class="bg-light-purple text-light-green font-bold text-lg text-center w-fit h-12 py-2 px-10 rounded-3xl mx-auto hover:bg-light-green hover:text-light-purple cursor-pointer">
-                        Žhavá novinka
+                        O nás
                     </button>
                 </div>
             </a>
