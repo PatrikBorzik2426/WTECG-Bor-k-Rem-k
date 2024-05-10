@@ -91,6 +91,7 @@
             @endforeach
         </div>
         {{ $pagination->links() }}
+        <x-footer />
     </main>
 </body>
 

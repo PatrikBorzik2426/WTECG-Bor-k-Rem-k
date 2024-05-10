@@ -347,7 +347,7 @@ class ProductController extends Controller
     }
 
     public function deleteProductMultiple(Request $request)
-    {
+    {  
         $pattern = '/^product-(\d+)$/';
 
         $all_parameters = $request->all();

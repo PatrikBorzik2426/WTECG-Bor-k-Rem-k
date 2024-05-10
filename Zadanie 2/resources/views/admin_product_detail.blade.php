@@ -53,7 +53,7 @@
                         <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
                             id="product_name" name="product_name"
                             value=" 
-                            @if (isset($product)) {{ $product->name }} @endif"
+                            @if (isset($product)) {{ $product->name }} @else {{old('name')}} @endif"
                             tabindex="1" />
                         @error('product_name')
                             <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
@@ -64,7 +64,7 @@
                         <label for="description">Opis produktu</label><br>
                         <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
                             id="description" name="description"
-                            value="@if (isset($product)) {{ $product->description }} @endif" tabindex="4">
+                            value="@if (isset($product)) {{ $product->description }} @else {{old('description')}}  @endif" tabindex="4">
                         @error('description')
                             <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
                             {{ $message }}</p>
@@ -74,7 +74,7 @@
                         <label for="price">Cena ( € )</label><br>
                         <input class="w-full h-8 rounded text-dark-purple font-semibold p-2 mt-3 mb-2" type="text"
                             id="price" name="price"
-                            value="@if (isset($product)) {{ str_replace(',', '', number_format($product->price, 2)) }} @endif"
+                            value="@if (isset($product)) {{ str_replace(',', '', number_format($product->price, 2)) }} @else {{old('price')}} @endif"
                             tabindex="5">
                         @error('price')
                             <p class="animate-custom_pulse animate-once font-light text-red-600 px-2 mb-2 rounded-xl">
