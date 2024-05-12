@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\v1\ProductController;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\v1\ShoppingSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\v1\UserController;
+use App\Http\Controllers\v1\CartItemController;
+use App\Http\Controllers\v1\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,37 +18,53 @@ use App\Http\Controllers\v1\UserController;
 |
 */
 
-//! dd() - function for debbuging  in Laravel
-//! ddd() - function for debbuging  in Laravel on deeper level
 
-Route::get('/shop', [ProductController::class, 'index']); # This is the correct way to use controllers
+Route::get('/shop', [ProductController::class, 'index'])->name('shop'); # This is the correct way to use controllers
 
-Route::get('/', function () {
-    return view('home');
-});
-
-//TODO Vymazať slúži iba na učenie
-
-Route::get('/hello', function () {
-    return response('Hello, World!', 200);
-});
+Route::get('/', [ProductController::class, 'homePage'])->name('home');
 
 Route::get('/posts/{id}', function ($id) {
     return response('Hello, World ' . $id, 200);
 })->where('id', '[0-9]+');;
 
-Route::get('/search', function (Request $request) {
-    dd($request->name);
-});
-
 Route::get('/registration', function () {
     return view('registration');
 });
+Route::get('/admin', [ProductController::class, 'admin'])->middleware('auth', 'can:admin')->name('admin');
+
+Route::get('/admin_product/{id}',[ProductController::class, 'adminProduct']);
+
+Route::get('/admin_product', [ProductController::class, 'emptyProduct']);
 
 Route::get('/login', function () {
     return view('login');
 });
 
-Route::post('/submit-registration', [UserController::class, 'registration']);
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth', 'can:temporary-profile');
 
-Route::post('/submit-login', [UserController::class, 'login']);
+Route::get('/logout', [UserController::class, 'logout']);
+
+Route::post('/login-submit', [UserController::class, 'login']);
+
+Route::post('/registration-submit', [UserController::class, 'registration']);
+
+Route::get('/single-page/{id}', [ProductController::class, 'singlePage']);
+
+Route::get('/cart', [UserController::class, 'temporaryAccount']);
+
+Route::get('/cart-items/count', [CartItemController::class, 'numberOfItems']);
+
+Route::get('/process-order', [OrderController::class, 'processOrder'])->middleware('auth');
+
+Route::post('/create-order', [OrderController::class, 'createOrder'])->middleware('auth');
+
+Route::delete('/product/delete/{id}', [ProductController::class, 'deleteProduct'])->middleware('auth', 'can:admin');
+
+Route::delete('/cart-items/delete/multiple', [ProductController::class, 'deleteProductMultiple'])->middleware('auth', 'can:admin');
+
+Route::match(['put', 'post'], '/product/update', [ProductController::class, 'updateProduct'])
+    ->middleware('auth', 'can:admin');
+
+Route::get('/about_us', function () {
+    return view('about_us');
+});

@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: 'Manrope';
-    src: url(../fonts/Manrope-VariableFont_wght.ttf);
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .sliderPrice{
     -webkit-appearance: none;
     appearance: none;
@@ -67,4 +58,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #95ADBE;
   }
-  
+
+  input[type=number]::-webkit-inner-spin-button {
+    opacity: 0;
+  }

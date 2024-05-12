@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
-
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -27,8 +27,9 @@ class UserFactory extends Factory
             'surname' => $faker->lastName,
             'email' => $faker->unique()->email,
             'address' => $faker->address,
-            'phone_number' => $faker->unique()->phoneNumber,
+            'phone_number' => Str::replace(' ', '', $faker->unique()->phoneNumber),
             'created_at' => $faker->dateTimeBetween('-1 year', 'now'),
+            'temporary' => false
         ];
     }
 }

@@ -24,8 +24,6 @@ class ProductFactory extends Factory
             'description' => $faker->text,
             'category' => $faker->randomElement([0, 1, 2]),
             'price' => $faker->randomFloat(2, 0, 1000),
-            'quantity' => $faker->numberBetween(0, 100),
-            'image' => $faker->imageUrl(640, 480, 'cats', true),
             'created_at' => $faker->dateTimeBetween('-1 year', 'now')
         ];
     }

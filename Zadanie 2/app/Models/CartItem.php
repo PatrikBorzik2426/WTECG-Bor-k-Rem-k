@@ -11,6 +11,11 @@ class CartItem extends Model
 
     const UPDATED_AT = null;
 
+    protected $fillable = [
+        'product_id',
+        'session_id',
+        'quantity',
+    ];
 
     public function cartItem()
     {

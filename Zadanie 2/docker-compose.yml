@@ -7,11 +7,13 @@ services:
     env_file:
       - "/.env"
     ports:
-      - "5432:5432"
+      - "1313:1313"
     networks:
       - sharednetwork
     volumes:
       - db_data:/var/lib/postgresql/data
+    command: -p 1313
+
 
 networks:
   sharednetwork:
